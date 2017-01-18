@@ -9,39 +9,39 @@
 #include <QPalette>
 
 Calculator::Calculator(QWidget *parent) : QWidget(parent) {
-  QPalette *result_line_palette = new QPalette;
-  result_line_palette->setColor(QPalette::Base, Qt::black);
-  result_line_palette->setColor(QPalette::Text, Qt::green);
+  QPalette result_line_palette;
+  result_line_palette.setColor(QPalette::Base, Qt::black);
+  result_line_palette.setColor(QPalette::Text, Qt::green);
 
   result_line_ = new QLineEdit;
-  result_line_->setPalette(*result_line_palette);
+  result_line_->setPalette(result_line_palette);
   result_line_->setAlignment(Qt::AlignRight);
 
-  QPalette *lcd_palette = new QPalette;
-  lcd_palette->setColor(QPalette::Text, Qt::green);
-  lcd_palette->setColor(QPalette::Background, Qt::black);
-  lcd_palette->setColor(QPalette::Foreground, Qt::green);
+  QPalette lcd_palette;
+  lcd_palette.setColor(QPalette::Text, Qt::green);
+  lcd_palette.setColor(QPalette::Background, Qt::black);
+  lcd_palette.setColor(QPalette::Foreground, Qt::green);
 
   lcd_ = new QLCDNumber(16);
   lcd_->setAutoFillBackground(true);
   lcd_->setSegmentStyle(QLCDNumber::Flat);
-  lcd_->setPalette(*lcd_palette);
+  lcd_->setPalette(lcd_palette);
   lcd_->setFrameStyle(QFrame::NoFrame);
 
-  QPalette *line_edit_palette = new QPalette;
-  line_edit_palette->setColor(QPalette::Base, Qt::black);
-  line_edit_palette->setColor(QPalette::Text, Qt::green);
+  QPalette line_edit_palette;
+  line_edit_palette.setColor(QPalette::Base, Qt::black);
+  line_edit_palette.setColor(QPalette::Text, Qt::green);
 
   coefficient_line_ = new QLineEdit;
   coefficient_line_->setAlignment(Qt::AlignRight);
   coefficient_line_->setText("1.18");
   coefficient_line_->setMaximumSize(75, 25);
   coefficient_line_->setFrame(QFrame::WinPanel);
-  coefficient_line_->setPalette(*line_edit_palette);
+  coefficient_line_->setPalette(line_edit_palette);
 
   value_line_ = new QLineEdit;
   value_line_->setAlignment(Qt::AlignRight);
-  value_line_->setPalette(*line_edit_palette);
+  value_line_->setPalette(line_edit_palette);
 
   QFont *label_font = new QFont;
   label_font->setPointSize(14);
