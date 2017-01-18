@@ -20,9 +20,9 @@ class Calculator : public QWidget {
   void CompleteQStringValue(const QString& complete_value);
 
  private:
-  QLCDNumber* lcd_ = nullptr;
   QLineEdit* coefficient_line_ = nullptr;
   QLineEdit* value_line_ = nullptr;
+  QLCDNumber* lcd_ = nullptr;
   QLineEdit* result_line_ = nullptr;
 
   double complete_value_ = 0.0;
