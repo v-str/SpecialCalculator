@@ -11,3 +11,6 @@ SOURCES += main.cpp \
 
 HEADERS  += \
     calculator.h
+
+DISTFILES += \
+    Todo_list
