@@ -14,10 +14,7 @@ Calculator::Calculator(QWidget *parent)
       value_line_(new QLineEdit),
       lcd_(new QLCDNumber(16)),
       result_line_(new QLineEdit) {
-  coefficient_line_->setAlignment(Qt::AlignRight);
-  coefficient_line_->setText("1.18");
-  coefficient_line_->setMaximumSize(75, 25);
-  SetPaletteForLineEdit(coefficient_line_);
+  SetCoefficientLine(coefficient_line_);
 
   value_line_->setAlignment(Qt::AlignRight);
   SetPaletteForLineEdit(value_line_);
@@ -87,6 +84,13 @@ void Calculator::CalculateResult(const QString &value) {
 void Calculator::DisplayResult(double result) {
   result_line_->clear();
   result_line_->setText(QString::number(result, 'f', 2));
+}
+
+void Calculator::SetCoefficientLine(QLineEdit *coefficient_line) {
+  coefficient_line->setAlignment(Qt::AlignRight);
+  coefficient_line->setText("1.18");
+  coefficient_line->setMaximumSize(75, 25);
+  SetPaletteForLineEdit(coefficient_line_);
 }
 
 void Calculator::SetPaletteForLineEdit(QLineEdit *line) {

@@ -20,6 +20,7 @@ class Calculator : public QWidget {
   void CompleteQStringValue(const QString& complete_value);
 
  private:
+  void SetCoefficientLine(QLineEdit * coefficient_line);
   void SetPaletteForLineEdit(QLineEdit* line);
 
   QLineEdit* coefficient_line_ = nullptr;
