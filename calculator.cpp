@@ -14,12 +14,14 @@ Calculator::Calculator(QWidget *parent)
       value_line_(new QLineEdit),
       lcd_(new QLCDNumber(16)),
       result_line_(new QLineEdit) {
-  QPalette result_line_palette;
-  result_line_palette.setColor(QPalette::Base, Qt::black);
-  result_line_palette.setColor(QPalette::Text, Qt::green);
+  coefficient_line_->setAlignment(Qt::AlignRight);
+  coefficient_line_->setText("1.18");
+  coefficient_line_->setMaximumSize(75, 25);
+  coefficient_line_->setFrame(QFrame::WinPanel);
+  SetPaletteForLineEdit(coefficient_line_);
 
-  result_line_->setPalette(result_line_palette);
-  result_line_->setAlignment(Qt::AlignRight);
+  value_line_->setAlignment(Qt::AlignRight);
+  SetPaletteForLineEdit(value_line_);
 
   QPalette lcd_palette;
   lcd_palette.setColor(QPalette::Text, Qt::green);
@@ -31,18 +33,8 @@ Calculator::Calculator(QWidget *parent)
   lcd_->setPalette(lcd_palette);
   lcd_->setFrameStyle(QFrame::NoFrame);
 
-  QPalette line_edit_palette;
-  line_edit_palette.setColor(QPalette::Base, Qt::black);
-  line_edit_palette.setColor(QPalette::Text, Qt::green);
-
-  coefficient_line_->setAlignment(Qt::AlignRight);
-  coefficient_line_->setText("1.18");
-  coefficient_line_->setMaximumSize(75, 25);
-  coefficient_line_->setFrame(QFrame::WinPanel);
-  coefficient_line_->setPalette(line_edit_palette);
-
-  value_line_->setAlignment(Qt::AlignRight);
-  value_line_->setPalette(line_edit_palette);
+  result_line_->setAlignment(Qt::AlignRight);
+  SetPaletteForLineEdit(result_line_);
 
   QFont *label_font = new QFont;
   label_font->setPointSize(14);
@@ -97,4 +89,12 @@ void Calculator::CalculateResult(const QString &value) {
 void Calculator::DisplayResult(double result) {
   result_line_->clear();
   result_line_->setText(QString::number(result, 'f', 2));
+}
+
+void Calculator::SetPaletteForLineEdit(QLineEdit *line) {
+  QPalette line_edit_palette;
+  line_edit_palette.setColor(QPalette::Base, Qt::black);
+  line_edit_palette.setColor(QPalette::Text, Qt::green);
+
+  line->setPalette(line_edit_palette);
 }

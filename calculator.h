@@ -20,6 +20,8 @@ class Calculator : public QWidget {
   void CompleteQStringValue(const QString& complete_value);
 
  private:
+  void SetPaletteForLineEdit(QLineEdit* line);
+
   QLineEdit* coefficient_line_ = nullptr;
   QLineEdit* value_line_ = nullptr;
   QLCDNumber* lcd_ = nullptr;
