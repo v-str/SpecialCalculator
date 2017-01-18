@@ -17,7 +17,6 @@ Calculator::Calculator(QWidget *parent)
   coefficient_line_->setAlignment(Qt::AlignRight);
   coefficient_line_->setText("1.18");
   coefficient_line_->setMaximumSize(75, 25);
-  coefficient_line_->setFrame(QFrame::WinPanel);
   SetPaletteForLineEdit(coefficient_line_);
 
   value_line_->setAlignment(Qt::AlignRight);
@@ -42,7 +41,6 @@ Calculator::Calculator(QWidget *parent)
   QLabel *coefficient_label_ = new QLabel;
   coefficient_label_->setText("<font color='green'>Coefficient:</font>");
   coefficient_label_->setFont(*label_font);
-  coefficient_label_->setAlignment(Qt::AlignRight);
 
   QLabel *result_label = new QLabel;
   result_label->setText("<font color='green'>Result:</font>");
@@ -78,11 +76,11 @@ void Calculator::CalculateResult(const QString &value) {
   double multiply_coefficient = coefficient_line_->text().toDouble();
   double number = value.toDouble();
 
-  double complete_double_value_ = number * multiply_coefficient;
+  complete_value_ = number * multiply_coefficient;
 
-  QString complete_qstring_value = QString::number(complete_double_value_);
+  QString complete_qstring_value = QString::number(complete_value_);
 
-  emit CompletedDoubleValue(complete_double_value_);
+  emit CompletedDoubleValue(complete_value_);
   emit CompleteQStringValue(complete_qstring_value);
 }
 
