@@ -9,10 +9,10 @@
 class Calculator : public QWidget {
   Q_OBJECT
  public:
-  explicit Calculator(QWidget* parent = 0);
+  explicit Calculator(QWidget* parent = nullptr);
 
  public slots:
-  void GetResult(QString result);
+  void CalculateResult(const QString& result);
   void DisplayResult(double result);
 
  signals:
@@ -20,14 +20,12 @@ class Calculator : public QWidget {
   void CompleteQStringValue(const QString& complete_value);
 
  private:
-  std::string GetString(double value);
+  QLCDNumber* lcd_ = nullptr;
+  QLineEdit* coefficient_line_ = nullptr;
+  QLineEdit* value_line_ = nullptr;
+  QLineEdit* result_line_ = nullptr;
 
-  QLCDNumber* lcd_;
-  QLineEdit* coefficient_line_;
-  QLineEdit* value_line_;
-  QLineEdit* result_line_;
-
-  double complete_double_value_;
+  double complete_value_ = 0.0;
 };
 
 #endif  // CALCULATOR_H
