@@ -2,14 +2,23 @@
 
 #include <sstream>
 
+#include <QApplication>
+#include <QApplication>
+#include <QClipboard>
+#include <QClipboard>
 #include <QFont>
 #include <QGridLayout>
 #include <QHBoxLayout>
+#include <QLCDNumber>
 #include <QLabel>
+#include <QLabel>
+#include <QLineEdit>
 #include <QPalette>
+#include <QTextEdit>
 
 Calculator::Calculator(QWidget *parent)
     : QWidget(parent),
+      clipboard_(QApplication::clipboard()),
       coefficient_line_(new QLineEdit),
       value_line_(new QLineEdit),
       lcd_(new QLCDNumber(16)),
@@ -20,10 +29,10 @@ Calculator::Calculator(QWidget *parent)
   SetResultLine(result_line_);
 
   QLabel *coefficient_label_ = new QLabel;
-  SetLabel(coefficient_label_, "Coefficient:", 14);
+  SetLabel(coefficient_label_, "Coefficient:");
 
   QLabel *result_label = new QLabel;
-  SetLabel(result_label, "Result:", 14);
+  SetLabel(result_label, "Result:");
 
   QHBoxLayout *horizontal_layout = new QHBoxLayout;
   horizontal_layout->setSpacing(5);
@@ -33,9 +42,9 @@ Calculator::Calculator(QWidget *parent)
   QGridLayout *layout = new QGridLayout;
   layout->addLayout(horizontal_layout, 0, 0, 1, 2);
   layout->addWidget(value_line_, 1, 1);
-  layout->addWidget(result_label, 2, 0, 1, 2);
-  layout->addWidget(lcd_, 3, 1);
-  layout->addWidget(result_line_, 4, 1);
+  layout->addWidget(result_label, 2, 0, 2, 2);
+  layout->addWidget(lcd_, 4, 1, 1, 2);
+  layout->addWidget(result_line_, 5, 1);
   layout->setSpacing(1);
 
   connect(value_line_, SIGNAL(returnPressed()), value_line_, SLOT(clear()));
@@ -50,6 +59,9 @@ Calculator::Calculator(QWidget *parent)
   setLayout(layout);
 }
 
+/// Эксперимент с системным буфером
+double Calculator::GetCompleteValue() { return complete_value_; }
+
 void Calculator::CalculateResult(const QString &value) {
   double multiply_coefficient = coefficient_line_->text().toDouble();
   double number = value.toDouble();
@@ -57,6 +69,8 @@ void Calculator::CalculateResult(const QString &value) {
   complete_value_ = number * multiply_coefficient;
 
   QString complete_qstring_value = QString::number(complete_value_);
+
+  clipboard_->setText(complete_qstring_value);
 
   emit CompletedDoubleValue(complete_value_);
   emit CompleteQStringValue(complete_qstring_value);
@@ -112,12 +126,12 @@ void Calculator::SetResultLine(QLineEdit *result_line) {
 void Calculator::SetLabel(QLabel *label, const QString text_of_label,
                           int label_font) {
   label->setText("<font color='green'>" + text_of_label + "</font>");
-  label->setFont(GetLabelFont(label_font));
+  label->setFont(GetFont(label_font));
 }
 
-QFont Calculator::GetLabelFont(int label_font) {
+QFont Calculator::GetFont(int point_size) {
   QFont *font = new QFont;
-  font->setPointSize(label_font);
+  font->setPointSize(point_size);
 
   return *font;
 }

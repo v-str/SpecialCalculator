@@ -1,12 +1,13 @@
-#include <QApplication>
-
 #include "calculator.h"
+
+#include <QApplication>
+#include <QClipboard>
 
 int main(int argc, char *argv[]) {
   QApplication a(argc, argv);
 
   Calculator calculator;
-  calculator.resize(210, 240);
+  calculator.resize(210, 160);
   calculator.setWindowTitle("Calculator");
 
   QPalette calculator_palette;
