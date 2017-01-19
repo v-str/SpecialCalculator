@@ -19,18 +19,10 @@ Calculator::Calculator(QWidget *parent)
   value_line_->setAlignment(Qt::AlignRight);
   SetPaletteForLineEdit(value_line_);
 
-  QPalette lcd_palette;
-  lcd_palette.setColor(QPalette::Text, Qt::green);
-  lcd_palette.setColor(QPalette::Background, Qt::black);
-  lcd_palette.setColor(QPalette::Foreground, Qt::green);
-
-  lcd_->setAutoFillBackground(true);
-  lcd_->setSegmentStyle(QLCDNumber::Flat);
-  lcd_->setPalette(lcd_palette);
-  lcd_->setFrameStyle(QFrame::NoFrame);
-
   result_line_->setAlignment(Qt::AlignRight);
   SetPaletteForLineEdit(result_line_);
+
+  SetLCDNumber(lcd_);
 
   QFont *label_font = new QFont;
   label_font->setPointSize(14);
@@ -90,7 +82,7 @@ void Calculator::SetCoefficientLine(QLineEdit *coefficient_line) {
   coefficient_line->setAlignment(Qt::AlignRight);
   coefficient_line->setText("1.18");
   coefficient_line->setMaximumSize(75, 25);
-  SetPaletteForLineEdit(coefficient_line_);
+  SetPaletteForLineEdit(coefficient_line);
 }
 
 void Calculator::SetPaletteForLineEdit(QLineEdit *line) {
@@ -99,4 +91,21 @@ void Calculator::SetPaletteForLineEdit(QLineEdit *line) {
   line_edit_palette.setColor(QPalette::Text, Qt::green);
 
   line->setPalette(line_edit_palette);
+}
+
+void Calculator::SetPaletteForLCD(QLCDNumber *lcd) {
+  QPalette lcd_palette;
+  lcd_palette.setColor(QPalette::Text, Qt::green);
+  lcd_palette.setColor(QPalette::Background, Qt::black);
+  lcd_palette.setColor(QPalette::Foreground, Qt::green);
+
+  lcd->setPalette(lcd_palette);
+}
+
+void Calculator::SetLCDNumber(QLCDNumber *lcd) {
+  lcd->setAutoFillBackground(true);
+  lcd->setSegmentStyle(QLCDNumber::Flat);
+  lcd->setFrameStyle(QFrame::NoFrame);
+
+  SetPaletteForLCD(lcd);
 }
