@@ -3,8 +3,6 @@
 #include <sstream>
 
 #include <QApplication>
-#include <QApplication>
-#include <QClipboard>
 #include <QClipboard>
 #include <QFont>
 #include <QGridLayout>
@@ -21,12 +19,10 @@ Calculator::Calculator(QWidget *parent)
       clipboard_(QApplication::clipboard()),
       coefficient_line_(new QLineEdit),
       value_line_(new QLineEdit),
-      lcd_(new QLCDNumber(16)),
-      result_line_(new QLineEdit) {
+      lcd_(new QLCDNumber(16)) {
   SetCoefficientLine(coefficient_line_);
   SetValueLine(value_line_);
   SetLCDNumber(lcd_);
-  SetResultLine(result_line_);
 
   QLabel *coefficient_label_ = new QLabel;
   SetLabel(coefficient_label_, "Coefficient:");
@@ -44,11 +40,9 @@ Calculator::Calculator(QWidget *parent)
   layout->addWidget(value_line_, 1, 1);
   layout->addWidget(result_label, 2, 0, 2, 2);
   layout->addWidget(lcd_, 4, 1, 1, 2);
-  layout->addWidget(result_line_, 5, 1);
   layout->setSpacing(1);
 
   connect(value_line_, SIGNAL(returnPressed()), value_line_, SLOT(clear()));
-  connect(value_line_, SIGNAL(returnPressed()), result_line_, SLOT(clear()));
   connect(value_line_, SIGNAL(textChanged(QString)),
           SLOT(CalculateResult(QString)));
   connect(this, SIGNAL(CompletedDoubleValue(double)), lcd_,
@@ -74,11 +68,6 @@ void Calculator::CalculateResult(const QString &value) {
 
   emit CompletedDoubleValue(complete_value_);
   emit CompleteQStringValue(complete_qstring_value);
-}
-
-void Calculator::DisplayResult(double result) {
-  result_line_->clear();
-  result_line_->setText(QString::number(result, 'f', 2));
 }
 
 void Calculator::SetCoefficientLine(QLineEdit *coefficient_line) {
@@ -116,11 +105,6 @@ void Calculator::SetLCDNumber(QLCDNumber *lcd) {
   lcd->setFrameStyle(QFrame::NoFrame);
 
   SetPaletteForLCD(lcd);
-}
-
-void Calculator::SetResultLine(QLineEdit *result_line) {
-  result_line->setAlignment(Qt::AlignRight);
-  SetPaletteForLineEdit(result_line_);
 }
 
 void Calculator::SetLabel(QLabel *label, const QString text_of_label,

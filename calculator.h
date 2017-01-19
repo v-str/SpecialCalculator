@@ -18,7 +18,6 @@ class Calculator : public QWidget {
 
  public slots:
   void CalculateResult(const QString& result);
-  void DisplayResult(double result);
 
  signals:
   void CompletedDoubleValue(double complete_value);
@@ -43,7 +42,6 @@ class Calculator : public QWidget {
   QLineEdit* coefficient_line_ = nullptr;
   QLineEdit* value_line_ = nullptr;
   QLCDNumber* lcd_ = nullptr;
-  QLineEdit* result_line_ = nullptr;
 
   double complete_value_ = 0.0;
 };
