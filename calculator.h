@@ -2,6 +2,7 @@
 #define CALCULATOR_H
 
 #include <QLCDNumber>
+#include <QLabel>
 #include <QLineEdit>
 #include <QTextEdit>
 #include <QWidget>
@@ -24,10 +25,15 @@ class Calculator : public QWidget {
   void SetPaletteForLineEdit(QLineEdit* line);
 
   void SetValueLine(QLineEdit* value_line);
-  void SetResultLine(QLineEdit* result_line);
 
   void SetPaletteForLCD(QLCDNumber* lcd);
   void SetLCDNumber(QLCDNumber* lcd);
+
+  void SetResultLine(QLineEdit* result_line);
+
+  void SetLabel(QLabel* label, const QString text_of_label,
+                int label_font = 10);
+  QFont GetLabelFont(int label_font);
 
   QLineEdit* coefficient_line_ = nullptr;
   QLineEdit* value_line_ = nullptr;

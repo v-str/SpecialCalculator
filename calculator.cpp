@@ -16,20 +16,14 @@ Calculator::Calculator(QWidget *parent)
       result_line_(new QLineEdit) {
   SetCoefficientLine(coefficient_line_);
   SetValueLine(value_line_);
-  SetResultLine(result_line_);
   SetLCDNumber(lcd_);
-
-  QFont *label_font = new QFont;
-  label_font->setPointSize(14);
+  SetResultLine(result_line_);
 
   QLabel *coefficient_label_ = new QLabel;
-  coefficient_label_->setText("<font color='green'>Coefficient:</font>");
-  coefficient_label_->setFont(*label_font);
+  SetLabel(coefficient_label_, "Coefficient:", 14);
 
   QLabel *result_label = new QLabel;
-  result_label->setText("<font color='green'>Result:</font>");
-  result_label->setFont(*label_font);
-  result_label->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
+  SetLabel(result_label, "Result:", 14);
 
   QHBoxLayout *horizontal_layout = new QHBoxLayout;
   horizontal_layout->setSpacing(5);
@@ -93,11 +87,6 @@ void Calculator::SetValueLine(QLineEdit *value_line) {
   SetPaletteForLineEdit(value_line_);
 }
 
-void Calculator::SetResultLine(QLineEdit *result_line) {
-  result_line->setAlignment(Qt::AlignRight);
-  SetPaletteForLineEdit(result_line_);
-}
-
 void Calculator::SetPaletteForLCD(QLCDNumber *lcd) {
   QPalette lcd_palette;
   lcd_palette.setColor(QPalette::Text, Qt::green);
@@ -113,4 +102,22 @@ void Calculator::SetLCDNumber(QLCDNumber *lcd) {
   lcd->setFrameStyle(QFrame::NoFrame);
 
   SetPaletteForLCD(lcd);
+}
+
+void Calculator::SetResultLine(QLineEdit *result_line) {
+  result_line->setAlignment(Qt::AlignRight);
+  SetPaletteForLineEdit(result_line_);
+}
+
+void Calculator::SetLabel(QLabel *label, const QString text_of_label,
+                          int label_font) {
+  label->setText("<font color='green'>" + text_of_label + "</font>");
+  label->setFont(GetLabelFont(label_font));
+}
+
+QFont Calculator::GetLabelFont(int label_font) {
+  QFont *font = new QFont;
+  font->setPointSize(label_font);
+
+  return *font;
 }
