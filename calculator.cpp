@@ -15,13 +15,8 @@ Calculator::Calculator(QWidget *parent)
       lcd_(new QLCDNumber(16)),
       result_line_(new QLineEdit) {
   SetCoefficientLine(coefficient_line_);
-
-  value_line_->setAlignment(Qt::AlignRight);
-  SetPaletteForLineEdit(value_line_);
-
-  result_line_->setAlignment(Qt::AlignRight);
-  SetPaletteForLineEdit(result_line_);
-
+  SetValueLine(value_line_);
+  SetResultLine(result_line_);
   SetLCDNumber(lcd_);
 
   QFont *label_font = new QFont;
@@ -91,6 +86,16 @@ void Calculator::SetPaletteForLineEdit(QLineEdit *line) {
   line_edit_palette.setColor(QPalette::Text, Qt::green);
 
   line->setPalette(line_edit_palette);
+}
+
+void Calculator::SetValueLine(QLineEdit *value_line) {
+  value_line->setAlignment(Qt::AlignRight);
+  SetPaletteForLineEdit(value_line_);
+}
+
+void Calculator::SetResultLine(QLineEdit *result_line) {
+  result_line->setAlignment(Qt::AlignRight);
+  SetPaletteForLineEdit(result_line_);
 }
 
 void Calculator::SetPaletteForLCD(QLCDNumber *lcd) {

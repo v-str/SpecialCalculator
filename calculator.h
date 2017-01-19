@@ -23,6 +23,9 @@ class Calculator : public QWidget {
   void SetCoefficientLine(QLineEdit* coefficient_line);
   void SetPaletteForLineEdit(QLineEdit* line);
 
+  void SetValueLine(QLineEdit* value_line);
+  void SetResultLine(QLineEdit* result_line);
+
   void SetPaletteForLCD(QLCDNumber* lcd);
   void SetLCDNumber(QLCDNumber* lcd);
 
