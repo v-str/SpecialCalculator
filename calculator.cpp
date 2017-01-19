@@ -1,5 +1,6 @@
 #include "calculator.h"
 
+#include <cmath>
 #include <sstream>
 
 #include <QApplication>
@@ -47,8 +48,6 @@ Calculator::Calculator(QWidget *parent)
           SLOT(CalculateResult(QString)));
   connect(this, SIGNAL(CompletedDoubleValue(double)), lcd_,
           SLOT(display(double)));
-  connect(this, SIGNAL(CompletedDoubleValue(double)),
-          SLOT(DisplayResult(double)));
 
   setLayout(layout);
 }
@@ -61,6 +60,8 @@ void Calculator::CalculateResult(const QString &value) {
   double number = value.toDouble();
 
   complete_value_ = number * multiply_coefficient;
+
+  complete_value_ = round(complete_value_ * 100) / 100;
 
   QString complete_qstring_value = QString::number(complete_value_);
 
