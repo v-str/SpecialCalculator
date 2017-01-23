@@ -1,15 +1,14 @@
 #include "calculator.h"
 
 #include <cmath>
-#include <sstream>
 
 #include <QApplication>
+#include <QCheckBox>
 #include <QClipboard>
 #include <QFont>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLCDNumber>
-#include <QLabel>
 #include <QLabel>
 #include <QLineEdit>
 #include <QPalette>
@@ -25,16 +24,16 @@ Calculator::Calculator(QWidget *parent)
   SetValueLine(value_line_);
   SetLCDNumber(lcd_);
 
-  QLabel *coefficient_label_ = new QLabel;
-  SetLabel(coefficient_label_, "Coefficient:");
+  QLabel *coefficient_label_ = GetLabel("Coefficient:");
+  QLabel *result_label = GetLabel("Result:", 14);
 
-  QLabel *result_label = new QLabel;
-  SetLabel(result_label, "Result:");
+  QCheckBox *coefficient_checkbox = new QCheckBox;
 
   QHBoxLayout *horizontal_layout = new QHBoxLayout;
   horizontal_layout->setSpacing(5);
   horizontal_layout->addWidget(coefficient_label_);
   horizontal_layout->addWidget(coefficient_line_);
+  horizontal_layout->addWidget(coefficient_checkbox);
 
   QGridLayout *layout = new QGridLayout;
   layout->addLayout(horizontal_layout, 0, 0, 1, 2);
@@ -52,9 +51,6 @@ Calculator::Calculator(QWidget *parent)
   setLayout(layout);
 }
 
-/// Эксперимент с системным буфером
-double Calculator::GetCompleteValue() { return complete_value_; }
-
 void Calculator::CalculateResult(const QString &value) {
   double multiply_coefficient = coefficient_line_->text().toDouble();
   double number = value.toDouble();
@@ -69,6 +65,13 @@ void Calculator::CalculateResult(const QString &value) {
 
   emit CompletedDoubleValue(complete_value_);
   emit CompleteQStringValue(complete_qstring_value);
+}
+
+QLabel *Calculator::GetLabel(const QString &text_label, int label_font) {
+  QLabel *label = new QLabel;
+  SetLabel(label, text_label, label_font);
+
+  return label;
 }
 
 void Calculator::SetCoefficientLine(QLineEdit *coefficient_line) {

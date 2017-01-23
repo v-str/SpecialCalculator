@@ -8,13 +8,12 @@ class QFont;
 class QLabel;
 class QLCDNumber;
 class QClipboard;
+class QHBoxLayout;
 
 class Calculator : public QWidget {
   Q_OBJECT
  public:
   explicit Calculator(QWidget* parent = nullptr);
-
-  double GetCompleteValue();
 
  public slots:
   void CalculateResult(const QString& result);
@@ -24,6 +23,8 @@ class Calculator : public QWidget {
   void CompleteQStringValue(const QString& complete_value);
 
  private:
+  QLabel* GetLabel(const QString& text_label, int label_font = 10);
+
   void SetCoefficientLine(QLineEdit* coefficient_line);
   void SetPaletteForLineEdit(QLineEdit* line);
 
@@ -35,7 +36,7 @@ class Calculator : public QWidget {
   void SetResultLine(QLineEdit* result_line);
 
   void SetLabel(QLabel* label, const QString text_of_label,
-                int label_font = 14);
+                int label_font = 10);
   QFont GetFont(int point_size);
 
   QClipboard* clipboard_;
