@@ -41,8 +41,13 @@ Calculator::Calculator(QWidget *parent)
           SLOT(CalculateResult(QString)));
   connect(this, SIGNAL(CompletedDoubleValue(double)), lcd_,
           SLOT(display(double)));
+  connect(coefficient_checkbox, SIGNAL(clicked(bool)), coefficient_line_,
+          SLOT(setEnabled(bool)));
 
   setLayout(grid_layout);
+  setFixedSize(210, 160);
+  setWindowTitle("Calculator");
+  setStyleSheet("background-color:black;");
 }
 
 void Calculator::CalculateResult(const QString &value) {
@@ -74,23 +79,28 @@ QCheckBox *Calculator::GetCheckBox() {
 }
 
 void Calculator::SetCoefficientLine(QLineEdit *coefficient_line) {
+  coefficient_line->setDisabled(true);
   coefficient_line->setAlignment(Qt::AlignRight);
   coefficient_line->setText("1.18");
   coefficient_line->setMaximumSize(75, 25);
-  SetPaletteForLineEdit(coefficient_line);
+  coefficient_line->setStyleSheet("border: 1px solid green;");
+  SetLineEditStyle(coefficient_line);
 }
 
-void Calculator::SetPaletteForLineEdit(QLineEdit *line) {
-  QPalette line_edit_palette;
-  line_edit_palette.setColor(QPalette::Base, Qt::black);
-  line_edit_palette.setColor(QPalette::Text, Qt::green);
-
-  line->setPalette(line_edit_palette);
+void Calculator::SetLineEditStyle(QLineEdit *line) {
+  line->setStyleSheet(
+      "QLineEdit {"
+      "border: 1px solid green;"
+      "background: black;"
+      "selection-background-color: #40494D;"
+      "color: green;"
+      "font-weight: bold;"
+      "}");
 }
 
 void Calculator::SetValueLine(QLineEdit *value_line) {
   value_line->setAlignment(Qt::AlignRight);
-  SetPaletteForLineEdit(value_line_);
+  SetLineEditStyle(value_line_);
 }
 
 void Calculator::SetPaletteForLCD(QLCDNumber *lcd) {
@@ -145,6 +155,7 @@ void Calculator::SetGridLayout(QGridLayout *grid_layout, QHBoxLayout *layout,
 QFont *Calculator::GetFont(int point_size) {
   QFont *font = new QFont;
   font->setPointSize(point_size);
+  font->setUnderline(true);
 
   return font;
 }

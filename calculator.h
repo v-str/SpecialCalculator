@@ -25,12 +25,14 @@ class Calculator : public QWidget {
   void CompleteQStringValue(const QString& complete_value);
 
  private:
+  enum AppTheme { kProgrammer, kMoto, kOffice };
+
   QLabel* GetLabel(const QString& text_label, int label_font = 10);
   QCheckBox* GetCheckBox();
   QFont* GetFont(int point_size);
 
   void SetCoefficientLine(QLineEdit* coefficient_line);
-  void SetPaletteForLineEdit(QLineEdit* line);
+  void SetLineEditStyle(QLineEdit* line);
   void SetValueLine(QLineEdit* value_line);
   void SetPaletteForLCD(QLCDNumber* lcd);
   void SetLCDNumber(QLCDNumber* lcd);
