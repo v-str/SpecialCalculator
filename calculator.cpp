@@ -26,14 +26,11 @@ Calculator::Calculator(QWidget *parent)
 
   QLabel *coefficient_label_ = GetLabel("Coefficient:");
   QLabel *result_label = GetLabel("Result:", 14);
-
   QCheckBox *coefficient_checkbox = GetCheckBox();
 
   QHBoxLayout *horizontal_layout = new QHBoxLayout;
-  horizontal_layout->setSpacing(5);
-  horizontal_layout->addWidget(coefficient_label_);
-  horizontal_layout->addWidget(coefficient_checkbox);
-  horizontal_layout->addWidget(coefficient_line_);
+  SetHorizontalLayout(horizontal_layout, coefficient_label_,
+                      coefficient_checkbox, coefficient_line_);
 
   QGridLayout *layout = new QGridLayout;
   layout->addLayout(horizontal_layout, 0, 0, 1, 2);
@@ -70,7 +67,6 @@ void Calculator::CalculateResult(const QString &value) {
 QLabel *Calculator::GetLabel(const QString &text_label, int label_font) {
   QLabel *label = new QLabel;
   SetLabel(label, text_label, label_font);
-
   return label;
 }
 
@@ -120,7 +116,7 @@ void Calculator::SetLCDNumber(QLCDNumber *lcd) {
 void Calculator::SetLabel(QLabel *label, const QString text_of_label,
                           int label_font) {
   label->setText("<font color='green'>" + text_of_label + "</font>");
-  label->setFont(GetFont(label_font));
+  label->setFont(*GetFont(label_font));
 }
 
 void Calculator::SetCheckBox(QCheckBox *checkbox) {
@@ -130,9 +126,18 @@ void Calculator::SetCheckBox(QCheckBox *checkbox) {
       "}");
 }
 
-QFont Calculator::GetFont(int point_size) {
+void Calculator::SetHorizontalLayout(QHBoxLayout *layout, QLabel *label,
+                                     QCheckBox *checkbox,
+                                     QLineEdit *line_edit) {
+  layout->setSpacing(5);
+  layout->addWidget(label);
+  layout->addWidget(checkbox);
+  layout->addWidget(line_edit);
+}
+
+QFont *Calculator::GetFont(int point_size) {
   QFont *font = new QFont;
   font->setPointSize(point_size);
 
-  return *font;
+  return font;
 }
