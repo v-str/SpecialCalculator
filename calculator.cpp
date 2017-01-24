@@ -27,13 +27,13 @@ Calculator::Calculator(QWidget *parent)
   QLabel *coefficient_label_ = GetLabel("Coefficient:");
   QLabel *result_label = GetLabel("Result:", 14);
 
-  QCheckBox *coefficient_checkbox = new QCheckBox;
+  QCheckBox *coefficient_checkbox = GetCheckBox();
 
   QHBoxLayout *horizontal_layout = new QHBoxLayout;
   horizontal_layout->setSpacing(5);
   horizontal_layout->addWidget(coefficient_label_);
-  horizontal_layout->addWidget(coefficient_line_);
   horizontal_layout->addWidget(coefficient_checkbox);
+  horizontal_layout->addWidget(coefficient_line_);
 
   QGridLayout *layout = new QGridLayout;
   layout->addLayout(horizontal_layout, 0, 0, 1, 2);
@@ -72,6 +72,12 @@ QLabel *Calculator::GetLabel(const QString &text_label, int label_font) {
   SetLabel(label, text_label, label_font);
 
   return label;
+}
+
+QCheckBox *Calculator::GetCheckBox() {
+  QCheckBox *checkbox = new QCheckBox;
+  SetCheckBox(checkbox);
+  return checkbox;
 }
 
 void Calculator::SetCoefficientLine(QLineEdit *coefficient_line) {
@@ -115,6 +121,13 @@ void Calculator::SetLabel(QLabel *label, const QString text_of_label,
                           int label_font) {
   label->setText("<font color='green'>" + text_of_label + "</font>");
   label->setFont(GetFont(label_font));
+}
+
+void Calculator::SetCheckBox(QCheckBox *checkbox) {
+  checkbox->setStyleSheet(
+      "QCheckBox::indicator:unchecked {"
+      "image: url(:/img/checkbox_unchecked.png);"
+      "}");
 }
 
 QFont Calculator::GetFont(int point_size) {

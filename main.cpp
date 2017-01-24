@@ -1,7 +1,6 @@
 #include "calculator.h"
 
 #include <QApplication>
-#include <QClipboard>
 
 int main(int argc, char *argv[]) {
   QApplication a(argc, argv);

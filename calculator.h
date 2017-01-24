@@ -9,6 +9,7 @@ class QLabel;
 class QLCDNumber;
 class QClipboard;
 class QHBoxLayout;
+class QCheckBox;
 
 class Calculator : public QWidget {
   Q_OBJECT
@@ -24,20 +25,18 @@ class Calculator : public QWidget {
 
  private:
   QLabel* GetLabel(const QString& text_label, int label_font = 10);
+  QCheckBox* GetCheckBox();
+  QFont GetFont(int point_size);
 
   void SetCoefficientLine(QLineEdit* coefficient_line);
   void SetPaletteForLineEdit(QLineEdit* line);
-
   void SetValueLine(QLineEdit* value_line);
-
   void SetPaletteForLCD(QLCDNumber* lcd);
   void SetLCDNumber(QLCDNumber* lcd);
-
   void SetResultLine(QLineEdit* result_line);
-
   void SetLabel(QLabel* label, const QString text_of_label,
                 int label_font = 10);
-  QFont GetFont(int point_size);
+  void SetCheckBox(QCheckBox* checkbox);
 
   QClipboard* clipboard_;
   QLineEdit* coefficient_line_ = nullptr;
