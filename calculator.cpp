@@ -74,7 +74,7 @@ QLabel *Calculator::GetLabel(const QString &text_label, int label_font) {
 
 QCheckBox *Calculator::GetCheckBox() {
   QCheckBox *checkbox = new QCheckBox;
-  SetCheckBox(checkbox);
+  SetCheckBoxStyle(checkbox);
   return checkbox;
 }
 
@@ -83,7 +83,6 @@ void Calculator::SetCoefficientLine(QLineEdit *coefficient_line) {
   coefficient_line->setAlignment(Qt::AlignRight);
   coefficient_line->setText("1.18");
   coefficient_line->setMaximumSize(75, 25);
-  coefficient_line->setStyleSheet("border: 1px solid green;");
   SetLineEditStyle(coefficient_line);
 }
 
@@ -91,6 +90,7 @@ void Calculator::SetLineEditStyle(QLineEdit *line) {
   line->setStyleSheet(
       "QLineEdit {"
       "border: 1px solid green;"
+      "border-radius: 7px;"
       "background: black;"
       "selection-background-color: #40494D;"
       "color: green;"
@@ -126,17 +126,23 @@ void Calculator::SetLabel(QLabel *label, const QString text_of_label,
   label->setFont(*GetFont(label_font));
 }
 
-void Calculator::SetCheckBox(QCheckBox *checkbox) {
+void Calculator::SetCheckBoxStyle(QCheckBox *checkbox) {
   checkbox->setStyleSheet(
       "QCheckBox::indicator:unchecked {"
-      "image: url(:/img/checkbox_unchecked.png);"
+      "border: 3px solid #084913;"
+      "border-radius: 5px;"
+      "background-color: black;"
+      "}"
+      "QCheckBox::indicator:checked {"
+      "border: 3px solid #084913;"
+      "border-radius: 5px;"
+      "background-color: #367240;"
       "}");
 }
 
 void Calculator::SetHorizontalLayout(QHBoxLayout *layout, QLabel *label,
                                      QCheckBox *checkbox,
                                      QLineEdit *line_edit) {
-  layout->setSpacing(5);
   layout->addWidget(label);
   layout->addWidget(checkbox);
   layout->addWidget(line_edit);
@@ -155,7 +161,6 @@ void Calculator::SetGridLayout(QGridLayout *grid_layout, QHBoxLayout *layout,
 QFont *Calculator::GetFont(int point_size) {
   QFont *font = new QFont;
   font->setPointSize(point_size);
-  font->setUnderline(true);
 
   return font;
 }

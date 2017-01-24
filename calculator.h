@@ -39,7 +39,7 @@ class Calculator : public QWidget {
   void SetResultLine(QLineEdit* result_line);
   void SetLabel(QLabel* label, const QString text_of_label,
                 int label_font = 10);
-  void SetCheckBox(QCheckBox* checkbox);
+  void SetCheckBoxStyle(QCheckBox* checkbox);
   void SetHorizontalLayout(QHBoxLayout* layout, QLabel* label,
                            QCheckBox* checkbox, QLineEdit* line_edit);
   void SetGridLayout(QGridLayout* grid_layout, QHBoxLayout* layout,
