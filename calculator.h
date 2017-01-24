@@ -10,6 +10,7 @@ class QLCDNumber;
 class QClipboard;
 class QHBoxLayout;
 class QCheckBox;
+class QGridLayout;
 
 class Calculator : public QWidget {
   Q_OBJECT
@@ -39,6 +40,8 @@ class Calculator : public QWidget {
   void SetCheckBox(QCheckBox* checkbox);
   void SetHorizontalLayout(QHBoxLayout* layout, QLabel* label,
                            QCheckBox* checkbox, QLineEdit* line_edit);
+  void SetGridLayout(QGridLayout* grid_layout, QHBoxLayout* layout,
+                     QLineEdit* line_edit, QLabel* label, QLCDNumber* lcd);
 
   QClipboard* clipboard_;
   QLineEdit* coefficient_line_ = nullptr;

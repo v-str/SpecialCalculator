@@ -32,12 +32,9 @@ Calculator::Calculator(QWidget *parent)
   SetHorizontalLayout(horizontal_layout, coefficient_label_,
                       coefficient_checkbox, coefficient_line_);
 
-  QGridLayout *layout = new QGridLayout;
-  layout->addLayout(horizontal_layout, 0, 0, 1, 2);
-  layout->addWidget(value_line_, 1, 1);
-  layout->addWidget(result_label, 2, 0, 2, 2);
-  layout->addWidget(lcd_, 4, 1, 1, 2);
-  layout->setSpacing(1);
+  QGridLayout *grid_layout = new QGridLayout;
+  SetGridLayout(grid_layout, horizontal_layout, value_line_, result_label,
+                lcd_);
 
   connect(value_line_, SIGNAL(returnPressed()), value_line_, SLOT(clear()));
   connect(value_line_, SIGNAL(textChanged(QString)),
@@ -45,7 +42,7 @@ Calculator::Calculator(QWidget *parent)
   connect(this, SIGNAL(CompletedDoubleValue(double)), lcd_,
           SLOT(display(double)));
 
-  setLayout(layout);
+  setLayout(grid_layout);
 }
 
 void Calculator::CalculateResult(const QString &value) {
@@ -133,6 +130,16 @@ void Calculator::SetHorizontalLayout(QHBoxLayout *layout, QLabel *label,
   layout->addWidget(label);
   layout->addWidget(checkbox);
   layout->addWidget(line_edit);
+}
+
+void Calculator::SetGridLayout(QGridLayout *grid_layout, QHBoxLayout *layout,
+                               QLineEdit *line_edit, QLabel *label,
+                               QLCDNumber *lcd) {
+  grid_layout->addLayout(layout, 0, 0, 1, 2);
+  grid_layout->addWidget(line_edit, 1, 1);
+  grid_layout->addWidget(label, 2, 0, 2, 2);
+  grid_layout->addWidget(lcd, 4, 1, 1, 2);
+  grid_layout->setSpacing(1);
 }
 
 QFont *Calculator::GetFont(int point_size) {
