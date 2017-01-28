@@ -1,4 +1,4 @@
-#include "label_syler.h"
+#include "label_styler.h"
 
 #include <QFont>
 #include <QLabel>

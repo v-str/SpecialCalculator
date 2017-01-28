@@ -1,7 +1,8 @@
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
 
-#include "label_syler.h"
+#include "checkbox_styler.h"
+#include "label_styler.h"
 
 #include <QWidget>
 
@@ -29,8 +30,6 @@ class Calculator : public QWidget {
 
   void SetMainWindow(QGridLayout* layout);
 
-  QCheckBox* GetCheckBox();
-
   void SetCoefficientLine(QLineEdit* coefficient_line);
   void SetLineEditStyle(QLineEdit* line);
   void SetValueLine(QLineEdit* value_line);
@@ -38,13 +37,13 @@ class Calculator : public QWidget {
   void SetLCDNumber(QLCDNumber* lcd);
   void SetResultLine(QLineEdit* result_line);
 
-  void SetCheckBoxStyle(QCheckBox* checkbox);
   void SetHorizontalLayout(QHBoxLayout* layout, QLabel* label,
                            QCheckBox* checkbox, QLineEdit* line_edit);
   void SetGridLayout(QGridLayout* grid_layout, QHBoxLayout* layout,
                      QLineEdit* line_edit, QLabel* label, QLCDNumber* lcd);
 
   LabelStyler label_styler_;
+  CheckBoxStyler checkbox_styler_;
 
   QClipboard* clipboard_ = nullptr;
   QLineEdit* coefficient_line_ = nullptr;

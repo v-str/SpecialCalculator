@@ -26,7 +26,7 @@ Calculator::Calculator(QWidget *parent)
 
   QLabel *coefficient_label_ = label_styler_.GetLabel("Coefficient:");
   QLabel *result_label = label_styler_.GetLabel("Result:", 14);
-  QCheckBox *coefficient_checkbox = GetCheckBox();
+  QCheckBox *coefficient_checkbox = checkbox_styler_.GetCheckBox();
 
   QHBoxLayout *horizontal_layout = new QHBoxLayout;
   SetHorizontalLayout(horizontal_layout, coefficient_label_,
@@ -70,12 +70,6 @@ void Calculator::SetMainWindow(QGridLayout *layout) {
   setStyleSheet("background-color:black;");
 }
 
-QCheckBox *Calculator::GetCheckBox() {
-  QCheckBox *checkbox = new QCheckBox;
-  SetCheckBoxStyle(checkbox);
-  return checkbox;
-}
-
 void Calculator::SetCoefficientLine(QLineEdit *coefficient_line) {
   coefficient_line->setDisabled(true);
   coefficient_line->setAlignment(Qt::AlignRight);
@@ -116,20 +110,6 @@ void Calculator::SetLCDNumber(QLCDNumber *lcd) {
   lcd->setFrameStyle(QFrame::NoFrame);
 
   SetPaletteForLCD(lcd);
-}
-
-void Calculator::SetCheckBoxStyle(QCheckBox *checkbox) {
-  checkbox->setStyleSheet(
-      "QCheckBox::indicator:unchecked {"
-      "border: 3px solid #084913;"
-      "border-radius: 5px;"
-      "background-color: black;"
-      "}"
-      "QCheckBox::indicator:checked {"
-      "border: 3px solid #084913;"
-      "border-radius: 5px;"
-      "background-color: #367240;"
-      "}");
 }
 
 void Calculator::SetHorizontalLayout(QHBoxLayout *layout, QLabel *label,
