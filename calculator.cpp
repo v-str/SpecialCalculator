@@ -44,6 +44,7 @@ Calculator::Calculator(QWidget *parent)
   connect(coefficient_checkbox, SIGNAL(clicked(bool)), coefficient_line_,
           SLOT(setEnabled(bool)));
 
+  // выделить в отдельный метод
   setLayout(grid_layout);
   setFixedSize(210, 160);
   setWindowTitle("Calculator");
@@ -123,7 +124,7 @@ void Calculator::SetLCDNumber(QLCDNumber *lcd) {
 void Calculator::SetLabel(QLabel *label, const QString text_of_label,
                           int label_font) {
   label->setText("<font color='green'>" + text_of_label + "</font>");
-  label->setFont(*GetFont(label_font));
+  label->setFont(GetFont(label_font));
 }
 
 void Calculator::SetCheckBoxStyle(QCheckBox *checkbox) {
@@ -158,9 +159,9 @@ void Calculator::SetGridLayout(QGridLayout *grid_layout, QHBoxLayout *layout,
   grid_layout->setSpacing(1);
 }
 
-QFont *Calculator::GetFont(int point_size) {
-  QFont *font = new QFont;
-  font->setPointSize(point_size);
+QFont Calculator::GetFont(int point_size) {
+  QFont font;
+  font.setPointSize(point_size);
 
   return font;
 }

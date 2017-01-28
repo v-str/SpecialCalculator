@@ -29,7 +29,7 @@ class Calculator : public QWidget {
 
   QLabel* GetLabel(const QString& text_label, int label_font = 10);
   QCheckBox* GetCheckBox();
-  QFont* GetFont(int point_size);
+  QFont GetFont(int point_size);
 
   void SetCoefficientLine(QLineEdit* coefficient_line);
   void SetLineEditStyle(QLineEdit* line);
@@ -45,7 +45,7 @@ class Calculator : public QWidget {
   void SetGridLayout(QGridLayout* grid_layout, QHBoxLayout* layout,
                      QLineEdit* line_edit, QLabel* label, QLCDNumber* lcd);
 
-  QClipboard* clipboard_;
+  QClipboard* clipboard_ = nullptr;
   QLineEdit* coefficient_line_ = nullptr;
   QLineEdit* value_line_ = nullptr;
   QLCDNumber* lcd_ = nullptr;
