@@ -8,14 +8,15 @@ void LcdStyler::SetLCDNumber(QLCDNumber *lcd) {
   lcd->setSegmentStyle(QLCDNumber::Flat);
   lcd->setFrameStyle(QFrame::NoFrame);
 
-  SetPaletteForLCD(lcd);
+  SetStyleForLCD(lcd);
 }
 
-void LcdStyler::SetPaletteForLCD(QLCDNumber *lcd) {
-  QPalette lcd_palette;
-  lcd_palette.setColor(QPalette::Text, Qt::green);
-  lcd_palette.setColor(QPalette::Background, Qt::black);
-  lcd_palette.setColor(QPalette::Foreground, Qt::green);
-
-  lcd->setPalette(lcd_palette);
+void LcdStyler::SetStyleForLCD(QLCDNumber *lcd) {
+  lcd->setStyleSheet(
+      "QLCDNumber {"
+      "border: 1px solid green;"
+      "border-radius: 7px;"
+      "background: black;"
+      "color: green;"
+      "}");
 }

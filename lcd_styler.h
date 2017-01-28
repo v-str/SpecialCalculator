@@ -8,7 +8,7 @@ class LcdStyler {
   void SetLCDNumber(QLCDNumber* lcd);
 
  private:
-  void SetPaletteForLCD(QLCDNumber* lcd);
+  void SetStyleForLCD(QLCDNumber* lcd);
 };
 
 #endif  // LCDSTYLER_H

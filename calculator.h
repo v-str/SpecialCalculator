@@ -8,7 +8,6 @@
 
 #include <QWidget>
 
-class QLCDNumber;
 class QClipboard;
 class QHBoxLayout;
 class QGridLayout;
