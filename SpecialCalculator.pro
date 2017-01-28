@@ -8,11 +8,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     calculator.cpp \
-    calculatorstyler.cpp
+    label_styler.cpp
 
 HEADERS  += \
     calculator.h \
-    calculatorstyler.h
+    label_syler.h
 
 DISTFILES += \
     Todo_list

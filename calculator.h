@@ -1,11 +1,11 @@
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
 
+#include "label_syler.h"
+
 #include <QWidget>
 
 class QLineEdit;
-class QFont;
-class QLabel;
 class QLCDNumber;
 class QClipboard;
 class QHBoxLayout;
@@ -27,11 +27,9 @@ class Calculator : public QWidget {
  private:
   enum AppTheme { kProgrammer, kMoto, kOffice };
 
-  void SetMainWindow(QGridLayout *layout);
+  void SetMainWindow(QGridLayout* layout);
 
-  QLabel* GetLabel(const QString& text_label, int label_font = 10);
   QCheckBox* GetCheckBox();
-  QFont GetFont(int point_size);
 
   void SetCoefficientLine(QLineEdit* coefficient_line);
   void SetLineEditStyle(QLineEdit* line);
@@ -39,13 +37,14 @@ class Calculator : public QWidget {
   void SetPaletteForLCD(QLCDNumber* lcd);
   void SetLCDNumber(QLCDNumber* lcd);
   void SetResultLine(QLineEdit* result_line);
-  void SetLabel(QLabel* label, const QString text_of_label,
-                int label_font = 10);
+
   void SetCheckBoxStyle(QCheckBox* checkbox);
   void SetHorizontalLayout(QHBoxLayout* layout, QLabel* label,
                            QCheckBox* checkbox, QLineEdit* line_edit);
   void SetGridLayout(QGridLayout* grid_layout, QHBoxLayout* layout,
                      QLineEdit* line_edit, QLabel* label, QLCDNumber* lcd);
+
+  LabelStyler label_styler_;
 
   QClipboard* clipboard_ = nullptr;
   QLineEdit* coefficient_line_ = nullptr;

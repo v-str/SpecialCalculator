@@ -24,8 +24,8 @@ Calculator::Calculator(QWidget *parent)
   SetValueLine(value_line_);
   SetLCDNumber(lcd_);
 
-  QLabel *coefficient_label_ = GetLabel("Coefficient:");
-  QLabel *result_label = GetLabel("Result:", 14);
+  QLabel *coefficient_label_ = label_styler_.GetLabel("Coefficient:");
+  QLabel *result_label = label_styler_.GetLabel("Result:", 14);
   QCheckBox *coefficient_checkbox = GetCheckBox();
 
   QHBoxLayout *horizontal_layout = new QHBoxLayout;
@@ -68,12 +68,6 @@ void Calculator::SetMainWindow(QGridLayout *layout) {
   setFixedSize(210, 160);
   setWindowTitle("Calculator");
   setStyleSheet("background-color:black;");
-}
-
-QLabel *Calculator::GetLabel(const QString &text_label, int label_font) {
-  QLabel *label = new QLabel;
-  SetLabel(label, text_label, label_font);
-  return label;
 }
 
 QCheckBox *Calculator::GetCheckBox() {
@@ -124,12 +118,6 @@ void Calculator::SetLCDNumber(QLCDNumber *lcd) {
   SetPaletteForLCD(lcd);
 }
 
-void Calculator::SetLabel(QLabel *label, const QString text_of_label,
-                          int label_font) {
-  label->setText("<font color='green'>" + text_of_label + "</font>");
-  label->setFont(GetFont(label_font));
-}
-
 void Calculator::SetCheckBoxStyle(QCheckBox *checkbox) {
   checkbox->setStyleSheet(
       "QCheckBox::indicator:unchecked {"
@@ -160,11 +148,4 @@ void Calculator::SetGridLayout(QGridLayout *grid_layout, QHBoxLayout *layout,
   grid_layout->addWidget(label, 2, 0, 2, 2);
   grid_layout->addWidget(lcd, 4, 1, 1, 2);
   grid_layout->setSpacing(1);
-}
-
-QFont Calculator::GetFont(int point_size) {
-  QFont font;
-  font.setPointSize(point_size);
-
-  return font;
 }
