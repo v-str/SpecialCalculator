@@ -27,6 +27,8 @@ class Calculator : public QWidget {
  private:
   enum AppTheme { kProgrammer, kMoto, kOffice };
 
+  void SetMainWindow(QGridLayout *layout);
+
   QLabel* GetLabel(const QString& text_label, int label_font = 10);
   QCheckBox* GetCheckBox();
   QFont GetFont(int point_size);

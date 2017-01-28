@@ -44,11 +44,7 @@ Calculator::Calculator(QWidget *parent)
   connect(coefficient_checkbox, SIGNAL(clicked(bool)), coefficient_line_,
           SLOT(setEnabled(bool)));
 
-  // выделить в отдельный метод
-  setLayout(grid_layout);
-  setFixedSize(210, 160);
-  setWindowTitle("Calculator");
-  setStyleSheet("background-color:black;");
+  SetMainWindow(grid_layout);
 }
 
 void Calculator::CalculateResult(const QString &value) {
@@ -65,6 +61,13 @@ void Calculator::CalculateResult(const QString &value) {
 
   emit CompletedDoubleValue(complete_value_);
   emit CompleteQStringValue(complete_qstring_value);
+}
+
+void Calculator::SetMainWindow(QGridLayout *layout) {
+  setLayout(layout);
+  setFixedSize(210, 160);
+  setWindowTitle("Calculator");
+  setStyleSheet("background-color:black;");
 }
 
 QLabel *Calculator::GetLabel(const QString &text_label, int label_font) {
