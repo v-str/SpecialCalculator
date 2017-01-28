@@ -3,11 +3,11 @@
 
 #include "checkbox_styler.h"
 #include "label_styler.h"
+#include "lcd_styler.h"
 #include "line_styler.h"
 
 #include <QWidget>
 
-class QLineEdit;
 class QLCDNumber;
 class QClipboard;
 class QHBoxLayout;
@@ -30,10 +30,6 @@ class Calculator : public QWidget {
 
   void SetMainWindow(QGridLayout* layout);
 
-  void SetPaletteForLCD(QLCDNumber* lcd);
-  void SetLCDNumber(QLCDNumber* lcd);
-  void SetResultLine(QLineEdit* result_line);
-
   void SetHorizontalLayout(QHBoxLayout* layout, QLabel* label,
                            QCheckBox* checkbox, QLineEdit* line_edit);
   void SetGridLayout(QGridLayout* grid_layout, QHBoxLayout* layout,
@@ -42,6 +38,7 @@ class Calculator : public QWidget {
   LabelStyler label_styler_;
   CheckBoxStyler checkbox_styler_;
   LineStyler line_styler_;
+  LcdStyler lcd_styler_;
 
   QClipboard* clipboard_ = nullptr;
   QLineEdit* coefficient_line_ = nullptr;

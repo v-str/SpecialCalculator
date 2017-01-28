@@ -23,7 +23,7 @@ Calculator::Calculator(QWidget *parent)
   line_styler_.SetCoefficientLine(coefficient_line_);
   line_styler_.SetValueLine(value_line_);
 
-  SetLCDNumber(lcd_);
+  lcd_styler_.SetLCDNumber(lcd_);
 
   QLabel *coefficient_label_ = label_styler_.GetLabel("Coefficient:");
   QLabel *result_label = label_styler_.GetLabel("Result:", 14);
@@ -69,23 +69,6 @@ void Calculator::SetMainWindow(QGridLayout *layout) {
   setFixedSize(210, 160);
   setWindowTitle("Calculator");
   setStyleSheet("background-color:black;");
-}
-
-void Calculator::SetPaletteForLCD(QLCDNumber *lcd) {
-  QPalette lcd_palette;
-  lcd_palette.setColor(QPalette::Text, Qt::green);
-  lcd_palette.setColor(QPalette::Background, Qt::black);
-  lcd_palette.setColor(QPalette::Foreground, Qt::green);
-
-  lcd->setPalette(lcd_palette);
-}
-
-void Calculator::SetLCDNumber(QLCDNumber *lcd) {
-  lcd->setAutoFillBackground(true);
-  lcd->setSegmentStyle(QLCDNumber::Flat);
-  lcd->setFrameStyle(QFrame::NoFrame);
-
-  SetPaletteForLCD(lcd);
 }
 
 void Calculator::SetHorizontalLayout(QHBoxLayout *layout, QLabel *label,
