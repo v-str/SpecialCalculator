@@ -2,6 +2,7 @@
 #define CALCULATOR_H
 
 #include "checkbox_styler.h"
+#include "common_layout.h"
 #include "label_styler.h"
 #include "lcd_styler.h"
 #include "line_styler.h"
@@ -9,8 +10,6 @@
 #include <QWidget>
 
 class QClipboard;
-class QHBoxLayout;
-class QGridLayout;
 
 class Calculator : public QWidget {
   Q_OBJECT
@@ -29,15 +28,11 @@ class Calculator : public QWidget {
 
   void SetMainWindow(QGridLayout* layout);
 
-  void SetHorizontalLayout(QHBoxLayout* layout, QLabel* label,
-                           QCheckBox* checkbox, QLineEdit* line_edit);
-  void SetGridLayout(QGridLayout* grid_layout, QHBoxLayout* layout,
-                     QLineEdit* line_edit, QLabel* label, QLCDNumber* lcd);
-
   LabelStyler label_styler_;
   CheckBoxStyler checkbox_styler_;
   LineStyler line_styler_;
   LcdStyler lcd_styler_;
+  CommonLayout layout_;
 
   QClipboard* clipboard_ = nullptr;
   QLineEdit* coefficient_line_ = nullptr;

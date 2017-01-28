@@ -11,14 +11,16 @@ SOURCES += main.cpp \
     label_styler.cpp \
     checkbox_styler.cpp \
     line_styler.cpp \
-    lcd_styler.cpp
+    lcd_styler.cpp \
+    common_layout.cpp
 
 HEADERS  += \
     calculator.h \
     label_styler.h \
     checkbox_styler.h \
     line_styler.h \
-    lcd_styler.h
+    lcd_styler.h \
+    common_layout.h
 
 DISTFILES += \
     Todo_list

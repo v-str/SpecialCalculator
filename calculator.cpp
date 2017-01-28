@@ -5,14 +5,10 @@
 #include <QApplication>
 #include <QCheckBox>
 #include <QClipboard>
-#include <QFont>
 #include <QGridLayout>
-#include <QHBoxLayout>
 #include <QLCDNumber>
 #include <QLabel>
 #include <QLineEdit>
-#include <QPalette>
-#include <QTextEdit>
 
 Calculator::Calculator(QWidget *parent)
     : QWidget(parent),
@@ -29,13 +25,9 @@ Calculator::Calculator(QWidget *parent)
   QLabel *result_label = label_styler_.GetLabel("Result:", 14);
   QCheckBox *coefficient_checkbox = checkbox_styler_.GetCheckBox();
 
-  QHBoxLayout *horizontal_layout = new QHBoxLayout;
-  SetHorizontalLayout(horizontal_layout, coefficient_label_,
-                      coefficient_checkbox, coefficient_line_);
-
-  QGridLayout *grid_layout = new QGridLayout;
-  SetGridLayout(grid_layout, horizontal_layout, value_line_, result_label,
-                lcd_);
+  layout_.SetHorizontalLayout(coefficient_label_, coefficient_checkbox,
+                              coefficient_line_);
+  layout_.SetGridLayout(value_line_, result_label, lcd_);
 
   connect(value_line_, SIGNAL(returnPressed()), value_line_, SLOT(clear()));
   connect(value_line_, SIGNAL(textChanged(QString)),
@@ -45,7 +37,7 @@ Calculator::Calculator(QWidget *parent)
   connect(coefficient_checkbox, SIGNAL(clicked(bool)), coefficient_line_,
           SLOT(setEnabled(bool)));
 
-  SetMainWindow(grid_layout);
+  SetMainWindow(layout_.GetLayout());
 }
 
 void Calculator::CalculateResult(const QString &value) {
@@ -69,22 +61,4 @@ void Calculator::SetMainWindow(QGridLayout *layout) {
   setFixedSize(210, 160);
   setWindowTitle("Calculator");
   setStyleSheet("background-color:black;");
-}
-
-void Calculator::SetHorizontalLayout(QHBoxLayout *layout, QLabel *label,
-                                     QCheckBox *checkbox,
-                                     QLineEdit *line_edit) {
-  layout->addWidget(label);
-  layout->addWidget(checkbox);
-  layout->addWidget(line_edit);
-}
-
-void Calculator::SetGridLayout(QGridLayout *grid_layout, QHBoxLayout *layout,
-                               QLineEdit *line_edit, QLabel *label,
-                               QLCDNumber *lcd) {
-  grid_layout->addLayout(layout, 0, 0, 1, 2);
-  grid_layout->addWidget(line_edit, 1, 1);
-  grid_layout->addWidget(label, 2, 0, 2, 2);
-  grid_layout->addWidget(lcd, 4, 1, 1, 2);
-  grid_layout->setSpacing(1);
 }
