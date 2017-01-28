@@ -7,10 +7,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    calculator.cpp
+    calculator.cpp \
+    calculatorstyler.cpp
 
 HEADERS  += \
-    calculator.h
+    calculator.h \
+    calculatorstyler.h
 
 DISTFILES += \
     Todo_list
