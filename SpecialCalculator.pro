@@ -9,12 +9,14 @@ TEMPLATE = app
 SOURCES += main.cpp \
     calculator.cpp \
     label_styler.cpp \
-    checkbox_styler.cpp
+    checkbox_styler.cpp \
+    line_styler.cpp
 
 HEADERS  += \
     calculator.h \
     label_styler.h \
-    checkbox_styler.h
+    checkbox_styler.h \
+    line_styler.h
 
 DISTFILES += \
     Todo_list

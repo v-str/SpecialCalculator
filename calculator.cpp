@@ -20,8 +20,9 @@ Calculator::Calculator(QWidget *parent)
       coefficient_line_(new QLineEdit),
       value_line_(new QLineEdit),
       lcd_(new QLCDNumber(16)) {
-  SetCoefficientLine(coefficient_line_);
-  SetValueLine(value_line_);
+  line_styler_.SetCoefficientLine(coefficient_line_);
+  line_styler_.SetValueLine(value_line_);
+
   SetLCDNumber(lcd_);
 
   QLabel *coefficient_label_ = label_styler_.GetLabel("Coefficient:");
@@ -68,31 +69,6 @@ void Calculator::SetMainWindow(QGridLayout *layout) {
   setFixedSize(210, 160);
   setWindowTitle("Calculator");
   setStyleSheet("background-color:black;");
-}
-
-void Calculator::SetCoefficientLine(QLineEdit *coefficient_line) {
-  coefficient_line->setDisabled(true);
-  coefficient_line->setAlignment(Qt::AlignRight);
-  coefficient_line->setText("1.18");
-  coefficient_line->setMaximumSize(75, 25);
-  SetLineEditStyle(coefficient_line);
-}
-
-void Calculator::SetLineEditStyle(QLineEdit *line) {
-  line->setStyleSheet(
-      "QLineEdit {"
-      "border: 1px solid green;"
-      "border-radius: 7px;"
-      "background: black;"
-      "selection-background-color: #40494D;"
-      "color: green;"
-      "font-weight: bold;"
-      "}");
-}
-
-void Calculator::SetValueLine(QLineEdit *value_line) {
-  value_line->setAlignment(Qt::AlignRight);
-  SetLineEditStyle(value_line_);
 }
 
 void Calculator::SetPaletteForLCD(QLCDNumber *lcd) {
