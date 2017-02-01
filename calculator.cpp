@@ -48,6 +48,11 @@ void Calculator::CalculateResult(const QString &value) {
   emit CompletedDoubleValue(multipyer_.GetCompleteDoubleValue());
 }
 
+void Calculator::ConnectWidgets()
+{
+
+}
+
 void Calculator::SetMainWindow(QGridLayout *layout) {
   setLayout(layout);
   setFixedSize(210, 160);

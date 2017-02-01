@@ -28,6 +28,8 @@ class Calculator : public QWidget {
  private:
   enum AppTheme { kProgrammer, kMoto, kOffice };
 
+  void ConnectWidgets();
+
   void SetMainWindow(QGridLayout* layout);
 
   QClipboard* clipboard_ = nullptr;
