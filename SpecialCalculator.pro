@@ -12,7 +12,8 @@ SOURCES += main.cpp \
     checkbox_styler.cpp \
     line_styler.cpp \
     lcd_styler.cpp \
-    common_layout.cpp
+    common_layout.cpp \
+    calculator_styler.cpp
 
 HEADERS  += \
     calculator.h \
@@ -20,7 +21,8 @@ HEADERS  += \
     checkbox_styler.h \
     line_styler.h \
     lcd_styler.h \
-    common_layout.h
+    common_layout.h \
+    calculator_styler.h
 
 DISTFILES += \
     Todo_list

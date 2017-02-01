@@ -18,7 +18,6 @@ Calculator::Calculator(QWidget *parent)
       lcd_(new QLCDNumber(16)) {
   line_styler_.SetCoefficientLine(coefficient_line_);
   line_styler_.SetValueLine(value_line_);
-
   lcd_styler_.SetLCDNumber(lcd_);
 
   QLabel *coefficient_label_ = label_styler_.GetLabel("Coefficient:");

@@ -28,16 +28,16 @@ class Calculator : public QWidget {
 
   void SetMainWindow(QGridLayout* layout);
 
+  QClipboard* clipboard_ = nullptr;
+  QLineEdit* coefficient_line_ = nullptr;
+  QLineEdit* value_line_ = nullptr;
+  QLCDNumber* lcd_ = nullptr;
+
   LabelStyler label_styler_;
   CheckBoxStyler checkbox_styler_;
   LineStyler line_styler_;
   LcdStyler lcd_styler_;
   CommonLayout layout_;
-
-  QClipboard* clipboard_ = nullptr;
-  QLineEdit* coefficient_line_ = nullptr;
-  QLineEdit* value_line_ = nullptr;
-  QLCDNumber* lcd_ = nullptr;
 
   double complete_value_ = 0.0;
 };
