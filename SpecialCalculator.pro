@@ -14,7 +14,7 @@ SOURCES += main.cpp \
     lcd_styler.cpp \
     common_layout.cpp \
     calculator_styler.cpp \
-    string_transformer.cpp
+    transformer.cpp
 
 HEADERS  += \
     calculator.h \
@@ -24,7 +24,7 @@ HEADERS  += \
     lcd_styler.h \
     common_layout.h \
     calculator_styler.h \
-    string_transformer.h
+    transformer.h
 
 DISTFILES += \
     Todo_list

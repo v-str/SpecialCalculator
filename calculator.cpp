@@ -1,5 +1,5 @@
 #include "calculator.h"
-#include "string_transformer.h"
+#include "transformer.h"
 
 #include <cmath>
 
@@ -43,8 +43,8 @@ Calculator::Calculator(QWidget *parent)
 void Calculator::CalculateResult(const QString &value) {
   double multiply_coefficient = coefficient_line_->text().toDouble();
 
-  StringTransformer::TransformString(const_cast<QString &>(value));
-  double number = StringTransformer::GetModyfiedString();
+  Transformer::TransformString(const_cast<QString &>(value));
+  double number = Transformer::GetModyfiedString();
 
   complete_value_ = number * multiply_coefficient;
 
@@ -56,7 +56,6 @@ void Calculator::CalculateResult(const QString &value) {
   clipboard_->setText(complete_qstring_value);
 
   emit CompletedDoubleValue(complete_value_);
-  // emit CompleteQStringValue(complete_qstring_value);
 }
 
 void Calculator::SetMainWindow(QGridLayout *layout) {

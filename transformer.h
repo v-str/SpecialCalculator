@@ -1,9 +1,9 @@
-#ifndef STRING_TRANSFORMER_H
-#define STRING_TRANSFORMER_H
+#ifndef TRANSFORMER_H
+#define TRANSFORMER_H
 
 class QString;
 
-class StringTransformer {
+class Transformer {
  public:
   static void TransformString(QString &value);
   static double GetModyfiedString();
@@ -12,4 +12,4 @@ class StringTransformer {
   static double modyfied_value_;
 };
 
-#endif  // STRING_TRANSFORMER_H
+#endif  // TRANSFORMER_H
