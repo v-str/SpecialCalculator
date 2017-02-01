@@ -7,7 +7,7 @@
 #include "lcd_styler.h"
 #include "line_styler.h"
 
-#include "calculation/multiplyer.h"
+#include "multiplyer.h"
 
 #include <QWidget>
 

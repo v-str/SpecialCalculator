@@ -1,12 +1,21 @@
 QT       += core gui
-
 QT += widgets
 
 TARGET = SpecialCalculator
 TEMPLATE = app
 
 INCLUDEPATH += \
-    ../calculation \
+    ../src/calculation \
+
+HEADERS  += \
+    $$PWD/calculation/*.h \
+    calculator.h \
+    label_styler.h \
+    checkbox_styler.h \
+    line_styler.h \
+    lcd_styler.h \
+    common_layout.h \
+    calculator_styler.h \
 
 SOURCES += main.cpp \
     $$PWD/calculation/*.cpp \
@@ -18,15 +27,6 @@ SOURCES += main.cpp \
     common_layout.cpp \
     calculator_styler.cpp \
 
-HEADERS  += \
-    $$PWD/calculation/*.cpp \
-    calculator.h \
-    label_styler.h \
-    checkbox_styler.h \
-    line_styler.h \
-    lcd_styler.h \
-    common_layout.h \
-    calculator_styler.h \
 
 
 DISTFILES += \
