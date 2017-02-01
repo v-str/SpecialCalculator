@@ -9,4 +9,4 @@ void Transformer::TransformString(QString &value) {
   modyfied_value_ = value.toDouble();
 }
 
-double Transformer::GetModyfiedString() { return modyfied_value_; }
+double Transformer::GetTransformedValue() { return modyfied_value_; }

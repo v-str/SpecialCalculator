@@ -44,7 +44,7 @@ void Calculator::CalculateResult(const QString &value) {
   double multiply_coefficient = coefficient_line_->text().toDouble();
 
   Transformer::TransformString(const_cast<QString &>(value));
-  double number = Transformer::GetModyfiedString();
+  double number = Transformer::GetTransformedValue();
 
   complete_value_ = number * multiply_coefficient;
 

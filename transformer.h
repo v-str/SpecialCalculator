@@ -6,7 +6,7 @@ class QString;
 class Transformer {
  public:
   static void TransformString(QString &value);
-  static double GetModyfiedString();
+  static double GetTransformedValue();
 
  private:
   static double modyfied_value_;
