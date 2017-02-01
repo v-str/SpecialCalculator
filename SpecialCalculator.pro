@@ -5,8 +5,11 @@ QT += widgets
 TARGET = SpecialCalculator
 TEMPLATE = app
 
+INCLUDEPATH += \
+    ../calculation \
 
 SOURCES += main.cpp \
+    $$PWD/calculation/*.cpp \
     calculator.cpp \
     label_styler.cpp \
     checkbox_styler.cpp \
@@ -14,9 +17,9 @@ SOURCES += main.cpp \
     lcd_styler.cpp \
     common_layout.cpp \
     calculator_styler.cpp \
-    transformer.cpp
 
 HEADERS  += \
+    $$PWD/calculation/*.cpp \
     calculator.h \
     label_styler.h \
     checkbox_styler.h \
@@ -24,7 +27,7 @@ HEADERS  += \
     lcd_styler.h \
     common_layout.h \
     calculator_styler.h \
-    transformer.h
+
 
 DISTFILES += \
     Todo_list
