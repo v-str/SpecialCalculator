@@ -1,6 +1,6 @@
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += widgets
 
 TARGET = SpecialCalculator
 TEMPLATE = app
@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     line_styler.cpp \
     lcd_styler.cpp \
     common_layout.cpp \
-    calculator_styler.cpp
+    calculator_styler.cpp \
+    string_transformer.cpp
 
 HEADERS  += \
     calculator.h \
@@ -22,7 +23,8 @@ HEADERS  += \
     line_styler.h \
     lcd_styler.h \
     common_layout.h \
-    calculator_styler.h
+    calculator_styler.h \
+    string_transformer.h
 
 DISTFILES += \
     Todo_list

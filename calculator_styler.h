@@ -1,8 +1,8 @@
-#ifndef CALCULATORSTYLER_H
-#define CALCULATORSTYLER_H
+#ifndef CALCULATOR_STYLER_H
+#define CALCULATOR_STYLER_H
 
 class CalculatorStyler {
  public:
 };
 
-#endif  // CALCULATORSTYLER_H
+#endif  // CALCULATOR_STYLER_H
