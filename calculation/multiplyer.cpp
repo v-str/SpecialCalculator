@@ -7,7 +7,9 @@
 
 Multiplyer::Multiplyer() : multiply_coefficient_(0.0), number_(0.0) {}
 
-void Multiplyer::SetCoefficient(double coef) { multiply_coefficient_ = coef; }
+void Multiplyer::SetCoefficient(double coefficient) {
+  multiply_coefficient_ = coefficient;
+}
 
 void Multiplyer::SetNumber(const QString &value_string) {
   Transformer::TransformString(const_cast<QString &>(value_string));

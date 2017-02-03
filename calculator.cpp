@@ -1,26 +1,16 @@
 #include "calculator.h"
 
-#include <cmath>
-
 #include <QApplication>
-#include <QCheckBox>
 #include <QClipboard>
-#include <QGridLayout>
-#include <QLCDNumber>
-#include <QLabel>
-#include <QLineEdit>
 
 Calculator::Calculator(QWidget *parent)
     : QWidget(parent),
       clipboard_(QApplication::clipboard()),
+      multipyer_(new Multiplyer),
       configurator_(new CaclulatorStyleConfigurator) {
-  configurator_->SetStyle(CaclulatorStyleConfigurator::kProgrammer);
-
-  QGridLayout *layout = configurator_->GetLayout();
-
+  SetAppStyle(kProgrammer);
   SetConnections();
-
-  SetMainWindow(layout);
+  SetMainWindow();
 }
 
 void Calculator::SetConnections() {
@@ -41,19 +31,34 @@ void Calculator::SetConnections() {
 }
 
 void Calculator::CalculateResult(const QString &value) {
-  multipyer_.SetCoefficient(coefficient_);
-  multipyer_.SetNumber(value);
+  multipyer_->SetCoefficient(coefficient_);
+  multipyer_->SetNumber(value);
 
-  clipboard_->setText(multipyer_.GetCompleteStringValue());
+  clipboard_->setText(multipyer_->GetCompleteStringValue());
 
-  emit CompletedDoubleValue(multipyer_.GetCompleteDoubleValue());
+  emit CompletedDoubleValue(multipyer_->GetCompleteDoubleValue());
 }
 
 void Calculator::SetCoefficient(const QString &coefficient) {
   coefficient_ = coefficient.toDouble();
 }
 
-void Calculator::SetMainWindow(QGridLayout *layout) {
+void Calculator::SetAppStyle(Calculator::AppTheme theme) {
+  switch (theme) {
+    case kProgrammer:
+      configurator_->SetStyle(CaclulatorStyleConfigurator::kProgrammer);
+      break;
+    case kMoto:
+      configurator_->SetStyle(CaclulatorStyleConfigurator::kMoto);
+      break;
+    case kOffice:
+      configurator_->SetStyle(CaclulatorStyleConfigurator::kOffice);
+      break;
+  }
+}
+
+void Calculator::SetMainWindow() {
+  QGridLayout *layout = configurator_->GetLayout();
   setLayout(layout);
   setFixedSize(210, 160);
   setWindowTitle("Calculator");

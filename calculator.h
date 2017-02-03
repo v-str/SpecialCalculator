@@ -13,6 +13,8 @@ class QClipboard;
 class Calculator : public QWidget {
   Q_OBJECT
  public:
+  enum AppTheme { kProgrammer, kMoto, kOffice };
+
   explicit Calculator(QWidget* parent = nullptr);
 
  public slots:
@@ -24,18 +26,17 @@ class Calculator : public QWidget {
   void CompleteQStringValue(const QString& complete_value);
 
  private:
-  enum AppTheme { kProgrammer, kMoto, kOffice };
-
-  void SetMainWindow(QGridLayout* layout);
+  void SetAppStyle(AppTheme theme);
+  void SetMainWindow();
   void SetConnections();
 
   QClipboard* clipboard_ = nullptr;
 
-  Multiplyer multipyer_;
+  std::unique_ptr<Multiplyer> multipyer_ = nullptr;
 
   std::unique_ptr<CaclulatorStyleConfigurator> configurator_ = nullptr;
 
-  double coefficient_ = 0.0;
+  double coefficient_ = 1.18;
 };
 
 #endif  // CALCULATOR_H

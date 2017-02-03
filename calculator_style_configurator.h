@@ -1,11 +1,11 @@
 #ifndef CALCULATOR_STYLE_CONFIGURATOR_H
 #define CALCULATOR_STYLE_CONFIGURATOR_H
 
-class QLabel;
-class QCheckBox;
-class QLineEdit;
-class QLCDNumber;
-class QGridLayout;
+#include <QCheckBox>
+#include <QGridLayout>
+#include <QLCDNumber>
+#include <QLabel>
+#include <QLineEdit>
 
 class LabelStyleConfigurator;
 class CheckBoxStyleConfigurator;
