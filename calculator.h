@@ -15,8 +15,11 @@ class Calculator : public QWidget {
  public:
   explicit Calculator(QWidget* parent = nullptr);
 
+  void SetConnections();
+
  public slots:
   void CalculateResult(const QString& result);
+  void SetCoefficient(const QString& coefficient);
 
  signals:
   void CompletedDoubleValue(double complete_value);
