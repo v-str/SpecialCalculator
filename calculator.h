@@ -16,6 +16,7 @@ class Calculator : public QWidget {
   enum AppTheme { kProgrammer, kMoto, kOffice };
 
   explicit Calculator(QWidget* parent = nullptr);
+  ~Calculator();
 
  public slots:
   void CalculateResult(const QString& result);

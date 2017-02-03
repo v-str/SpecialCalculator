@@ -13,6 +13,8 @@ Calculator::Calculator(QWidget *parent)
   SetMainWindow();
 }
 
+Calculator::~Calculator() {}
+
 void Calculator::SetConnections() {
   QLineEdit *value_line = configurator_->GetValueLine();
   QLineEdit *coefficient_line = configurator_->GetCoefficientLine();
