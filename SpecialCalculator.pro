@@ -10,22 +10,22 @@ INCLUDEPATH += \
 HEADERS  += \
     $$PWD/calculation/*.h \
     calculator.h \
-    label_styler.h \
-    checkbox_styler.h \
-    line_styler.h \
-    lcd_styler.h \
     common_layout.h \
-    calculator_styler.h \
+    calculator_style_configurator.h \
+    label_style_configurator.h \
+    checkbox_style_configurator.h \
+    lcd_style_configurator.h \
+    line_style_configurator.h
 
 SOURCES += main.cpp \
     $$PWD/calculation/*.cpp \
     calculator.cpp \
-    label_styler.cpp \
-    checkbox_styler.cpp \
-    line_styler.cpp \
-    lcd_styler.cpp \
     common_layout.cpp \
-    calculator_styler.cpp \
+    calculator_style_configurator.cpp \
+    label_style_configurator.cpp \
+    checkbox_style_configurator.cpp \
+    lcd_style_configurator.cpp \
+    line_style_configurator.cpp
 
 
 

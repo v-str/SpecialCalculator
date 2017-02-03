@@ -1,14 +1,14 @@
-#include "checkbox_styler.h"
+#include "checkbox_style_configurator.h"
 
 #include <QCheckBox>
 
-QCheckBox *CheckBoxStyler::GetCheckBox() {
+QCheckBox *CheckBoxStyleConfigurator::GetCheckBox() {
   QCheckBox *checkbox = new QCheckBox;
   SetCheckBoxStyle(checkbox);
   return checkbox;
 }
 
-void CheckBoxStyler::SetCheckBoxStyle(QCheckBox *checkbox) {
+void CheckBoxStyleConfigurator::SetCheckBoxStyle(QCheckBox *checkbox) {
   checkbox->setStyleSheet(
       "QCheckBox::indicator:unchecked {"
       "border: 3px solid #084913;"

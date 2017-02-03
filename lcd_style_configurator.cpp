@@ -1,9 +1,9 @@
-#include "lcd_styler.h"
+#include "lcd_style_configurator.h"
 
 #include <QLCDNumber>
 #include <QPalette>
 
-void LcdStyler::SetLCDNumber(QLCDNumber *lcd) {
+void LcdStyleConfigurator::SetLCDNumber(QLCDNumber *lcd) {
   lcd->setAutoFillBackground(true);
   lcd->setSegmentStyle(QLCDNumber::Flat);
   lcd->setFrameStyle(QFrame::NoFrame);
@@ -11,7 +11,7 @@ void LcdStyler::SetLCDNumber(QLCDNumber *lcd) {
   SetStyleForLCD(lcd);
 }
 
-void LcdStyler::SetStyleForLCD(QLCDNumber *lcd) {
+void LcdStyleConfigurator::SetStyleForLCD(QLCDNumber *lcd) {
   lcd->setStyleSheet(
       "QLCDNumber {"
       "border: 1px solid green;"

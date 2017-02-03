@@ -1,9 +1,9 @@
-#ifndef LINESTYLER_H
-#define LINESTYLER_H
+#ifndef LINE_STYLE_CONFIGURATOR_H
+#define LINE_STYLE_CONFIGURATOR_H
 
 class QLineEdit;
 
-class LineStyler {
+class LineStyleConfigurator {
  public:
   void SetCoefficientLine(QLineEdit* coefficient_line);
   void SetValueLine(QLineEdit* value_line);
@@ -12,4 +12,4 @@ class LineStyler {
   void SetLineEditStyle(QLineEdit* line);
 };
 
-#endif  // LINESTYLER_H
+#endif  // LINE_STYLE_CONFIGURATOR_H

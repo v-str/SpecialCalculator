@@ -13,34 +13,30 @@
 Calculator::Calculator(QWidget *parent)
     : QWidget(parent),
       clipboard_(QApplication::clipboard()),
-      coefficient_line_(new QLineEdit),
-      value_line_(new QLineEdit),
-      lcd_(new QLCDNumber(16)) {
-  line_styler_.SetCoefficientLine(coefficient_line_);
-  line_styler_.SetValueLine(value_line_);
-  lcd_styler_.SetLCDNumber(lcd_);
+      configurator_(new CaclulatorStyleConfigurator) {
+  configurator_->SetStyle(CaclulatorStyleConfigurator::kProgrammer);
 
-  QLabel *coefficient_label_ = label_styler_.GetLabel("Coefficient:");
-  QLabel *result_label = label_styler_.GetLabel("Result:", 14);
-  QCheckBox *coefficient_checkbox = checkbox_styler_.GetCheckBox();
+  QLineEdit *value_line = configurator_->GetValueLine();
+  QLCDNumber *lcd = configurator_->GetLCDNumber();
+  QLineEdit *coefficient_line = configurator_->GetCoefficientLine();
+  QCheckBox *coef_checkbox = configurator_->GetCoefficientCheckBox();
+  QGridLayout *layout = configurator_->GetLayout();
 
-  layout_.SetHorizontalLayout(coefficient_label_, coefficient_checkbox,
-                              coefficient_line_);
-  layout_.SetGridLayout(value_line_, result_label, lcd_);
+  coefficient_ = coefficient_line->text().toDouble();
 
-  connect(value_line_, SIGNAL(returnPressed()), value_line_, SLOT(clear()));
-  connect(value_line_, SIGNAL(textChanged(QString)),
+  SetMainWindow(layout);
+
+  connect(value_line, SIGNAL(returnPressed()), value_line, SLOT(clear()));
+  connect(value_line, SIGNAL(textChanged(QString)),
           SLOT(CalculateResult(QString)));
-  connect(this, SIGNAL(CompletedDoubleValue(double)), lcd_,
+  connect(this, SIGNAL(CompletedDoubleValue(double)), lcd,
           SLOT(display(double)));
-  connect(coefficient_checkbox, SIGNAL(clicked(bool)), coefficient_line_,
+  connect(coef_checkbox, SIGNAL(clicked(bool)), coefficient_line,
           SLOT(setEnabled(bool)));
-
-  SetMainWindow(layout_.GetLayout());
 }
 
 void Calculator::CalculateResult(const QString &value) {
-  multipyer_.SetCoefficient(coefficient_line_->text().toDouble());
+  multipyer_.SetCoefficient(coefficient_);
   multipyer_.SetNumber(value);
 
   clipboard_->setText(multipyer_.GetCompleteStringValue());
@@ -48,10 +44,7 @@ void Calculator::CalculateResult(const QString &value) {
   emit CompletedDoubleValue(multipyer_.GetCompleteDoubleValue());
 }
 
-void Calculator::ConnectWidgets()
-{
-
-}
+void Calculator::ConnectWidgets() {}
 
 void Calculator::SetMainWindow(QGridLayout *layout) {
   setLayout(layout);

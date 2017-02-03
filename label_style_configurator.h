@@ -1,11 +1,11 @@
-#ifndef LABEL_STYLER_H
-#define LABEL_STYLER_H
+#ifndef LABEL_STYLE_CONFIGURATOR_H
+#define LABEL_STYLE_CONFIGURATOR_H
 
 class QString;
 class QLabel;
 class QFont;
 
-class LabelStyler {
+class LabelStyleConfigurator {
  public:
   QLabel* GetLabel(const QString& text_label, int label_font = 10);
 
@@ -16,4 +16,4 @@ class LabelStyler {
   QFont GetFont(int point_size);
 };
 
-#endif  // LABEL_STYLER_H
+#endif  // LABEL_STYLE_CONFIGURATOR_H

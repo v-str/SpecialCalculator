@@ -1,15 +1,12 @@
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
 
-#include "checkbox_styler.h"
-#include "common_layout.h"
-#include "label_styler.h"
-#include "lcd_styler.h"
-#include "line_styler.h"
+#include "calculator_style_configurator.h"
 
 #include "multiplyer.h"
 
 #include <QWidget>
+#include <memory>
 
 class QClipboard;
 
@@ -33,17 +30,12 @@ class Calculator : public QWidget {
   void SetMainWindow(QGridLayout* layout);
 
   QClipboard* clipboard_ = nullptr;
-  QLineEdit* coefficient_line_ = nullptr;
-  QLineEdit* value_line_ = nullptr;
-  QLCDNumber* lcd_ = nullptr;
-
-  LabelStyler label_styler_;
-  CheckBoxStyler checkbox_styler_;
-  LineStyler line_styler_;
-  LcdStyler lcd_styler_;
-  CommonLayout layout_;
 
   Multiplyer multipyer_;
+
+  std::unique_ptr<CaclulatorStyleConfigurator> configurator_ = nullptr;
+
+  double coefficient_ = 0.0;
 };
 
 #endif  // CALCULATOR_H

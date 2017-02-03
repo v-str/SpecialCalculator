@@ -1,5 +1,5 @@
-#ifndef COMMONLAYOUT_H
-#define COMMONLAYOUT_H
+#ifndef COMMON_LAYOUT_H
+#define COMMON_LAYOUT_H
 
 class QGridLayout;
 class QHBoxLayout;
@@ -24,4 +24,4 @@ class CommonLayout {
   QHBoxLayout* horizontal_layout_;
 };
 
-#endif  // COMMONLAYOUT_H
+#endif  // COMMON_LAYOUT_H

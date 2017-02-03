@@ -1,8 +1,8 @@
-#include "line_styler.h"
+#include "line_style_configurator.h"
 
 #include <QLineEdit>
 
-void LineStyler::SetCoefficientLine(QLineEdit *coefficient_line) {
+void LineStyleConfigurator::SetCoefficientLine(QLineEdit *coefficient_line) {
   coefficient_line->setDisabled(true);
   coefficient_line->setAlignment(Qt::AlignRight);
   coefficient_line->setText("1.18");
@@ -10,12 +10,12 @@ void LineStyler::SetCoefficientLine(QLineEdit *coefficient_line) {
   SetLineEditStyle(coefficient_line);
 }
 
-void LineStyler::SetValueLine(QLineEdit *value_line) {
+void LineStyleConfigurator::SetValueLine(QLineEdit *value_line) {
   value_line->setAlignment(Qt::AlignRight);
   SetLineEditStyle(value_line);
 }
 
-void LineStyler::SetLineEditStyle(QLineEdit *line) {
+void LineStyleConfigurator::SetLineEditStyle(QLineEdit *line) {
   line->setStyleSheet(
       "QLineEdit {"
       "border: 1px solid green;"
