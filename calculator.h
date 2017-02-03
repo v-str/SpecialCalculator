@@ -15,8 +15,6 @@ class Calculator : public QWidget {
  public:
   explicit Calculator(QWidget* parent = nullptr);
 
-  void SetConnections();
-
  public slots:
   void CalculateResult(const QString& result);
   void SetCoefficient(const QString& coefficient);
@@ -28,9 +26,8 @@ class Calculator : public QWidget {
  private:
   enum AppTheme { kProgrammer, kMoto, kOffice };
 
-  void ConnectWidgets();
-
   void SetMainWindow(QGridLayout* layout);
+  void SetConnections();
 
   QClipboard* clipboard_ = nullptr;
 

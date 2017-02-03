@@ -18,9 +18,15 @@ Calculator::Calculator(QWidget *parent)
 
   QGridLayout *layout = configurator_->GetLayout();
 
+  SetConnections();
+
+  SetMainWindow(layout);
+}
+
+void Calculator::SetConnections() {
   QLineEdit *value_line = configurator_->GetValueLine();
-  QLCDNumber *lcd = configurator_->GetLCDNumber();
   QLineEdit *coefficient_line = configurator_->GetCoefficientLine();
+  QLCDNumber *lcd = configurator_->GetLCDNumber();
   QCheckBox *coef_checkbox = configurator_->GetCoefficientCheckBox();
 
   connect(value_line, SIGNAL(returnPressed()), value_line, SLOT(clear()));
@@ -32,13 +38,7 @@ Calculator::Calculator(QWidget *parent)
           SLOT(setEnabled(bool)));
   connect(coefficient_line, SIGNAL(textChanged(QString)),
           SLOT(SetCoefficient(QString)));
-
-  SetMainWindow(layout);
 }
-
-void Calculator::SetConnections() {}
-
-void Calculator::ConnectWidgets() {}
 
 void Calculator::CalculateResult(const QString &value) {
   multipyer_.SetCoefficient(coefficient_);
