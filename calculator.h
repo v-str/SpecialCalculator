@@ -8,6 +8,10 @@
 #include <QWidget>
 #include <memory>
 
+#include <QAction>
+#include <QMenu>
+#include <QMenuBar>
+
 class QClipboard;
 
 class Calculator : public QWidget {
@@ -16,7 +20,6 @@ class Calculator : public QWidget {
   enum AppTheme { kProgrammer, kMoto, kOffice };
 
   explicit Calculator(QWidget* parent = nullptr);
-  ~Calculator();
 
  public slots:
   void CalculateResult(const QString& result);
@@ -28,14 +31,27 @@ class Calculator : public QWidget {
 
  private:
   void SetAppStyle(AppTheme theme);
-  void SetMainWindow();
+  void SetMainWindow(AppTheme theme);
   void SetConnections();
+
+  void SetMenuBar(QMenu* menu);
+  void SetMenu();
+
+  void SetStyleMenuBar(AppTheme theme);
+  void SetStyleMenu(AppTheme theme);
 
   QClipboard* clipboard_ = nullptr;
 
   std::unique_ptr<Multiplyer> multipyer_ = nullptr;
-
   std::unique_ptr<CaclulatorStyleConfigurator> configurator_ = nullptr;
+
+  QMenu* appearance_menu_ = nullptr;
+  QMenu* about_menu_ = nullptr;
+  QMenuBar* menu_bar_ = nullptr;
+
+  QAction* programmer_ = nullptr;
+  QAction* moto_ = nullptr;
+  QAction* office_ = nullptr;
 
   double coefficient_ = 1.18;
 };

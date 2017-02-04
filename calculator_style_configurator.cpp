@@ -102,15 +102,19 @@ QFont CaclulatorStyleConfigurator::GetFont(int point_size) {
 
 void CaclulatorStyleConfigurator::SetCheckBox(QCheckBox *checkbox) {
   checkbox->setStyleSheet(
+      "QCheckBox::indicator {"
+      "width: 15px;"
+      "height: 15px;"
+      "}"
       "QCheckBox::indicator:unchecked {"
-      "border: 3px solid #084913;"
+      "border: 2px solid #084913;"
       "border-radius: 5px;"
       "background-color: black;"
       "}"
       "QCheckBox::indicator:checked {"
-      "border: 3px solid #084913;"
+      "border: 2px solid #084913;"
       "border-radius: 5px;"
-      "background-color: #367240;"
+      "background-color: #0080FF;"
       "}");
 }
 

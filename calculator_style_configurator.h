@@ -1,6 +1,7 @@
 #ifndef CALCULATOR_STYLE_CONFIGURATOR_H
 #define CALCULATOR_STYLE_CONFIGURATOR_H
 
+#include <QAction>
 #include <QCheckBox>
 #include <QFont>
 #include <QGridLayout>
