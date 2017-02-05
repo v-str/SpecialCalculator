@@ -21,3 +21,7 @@ SOURCES += main.cpp \
 
 DISTFILES += \
     Todo_list
+
+RESOURCES += \
+    res.qrc
+

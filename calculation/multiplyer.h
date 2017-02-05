@@ -7,7 +7,7 @@ class Multiplyer {
  public:
   Multiplyer();
 
-  void SetCoefficient(double coefficient);
+  void SetMultiplyCoefficient(double multiply_coefficient);
   void SetNumber(const QString &value_string);
 
   QString GetCompleteStringValue();

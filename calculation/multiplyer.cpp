@@ -7,14 +7,12 @@
 
 Multiplyer::Multiplyer() : multiply_coefficient_(0.0), number_(0.0) {}
 
-void Multiplyer::SetCoefficient(double coefficient) {
-  multiply_coefficient_ = coefficient;
+void Multiplyer::SetMultiplyCoefficient(double multiply_coefficient) {
+  multiply_coefficient_ = multiply_coefficient;
 }
 
 void Multiplyer::SetNumber(const QString &value_string) {
-  Transformer::TransformString(const_cast<QString &>(value_string));
-  number_ = Transformer::GetTransformedValue();
-
+  number_ = Transformer::TransformString(value_string);
   Myltiply();
 }
 

@@ -5,11 +5,7 @@ class QString;
 
 class Transformer {
  public:
-  static void TransformString(QString &value);
-  static double GetTransformedValue();
-
- private:
-  static double modyfied_value_;
+  static double TransformString(const QString &value);
 };
 
 #endif  // TRANSFORMER_H

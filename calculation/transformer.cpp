@@ -2,11 +2,8 @@
 
 #include <QString>
 
-double Transformer::modyfied_value_ = 0.0;
-
-void Transformer::TransformString(QString &value) {
-  value.remove(' ');
-  modyfied_value_ = value.toDouble();
+double Transformer::TransformString(const QString &value) {
+  QString modyfied_string_value_ = value;
+  modyfied_string_value_.remove(' ');
+  return modyfied_string_value_.toDouble();
 }
-
-double Transformer::GetTransformedValue() { return modyfied_value_; }
