@@ -11,13 +11,14 @@
 #include <QLineEdit>
 #include <QVBoxLayout>
 
+#include "line_edit_style_config.h"
+#include "theme_configuration.h"
+
 class CaclulatorStyleConfigurator {
  public:
-  enum AppTheme { kProgrammer, kMoto, kOffice };
-
   CaclulatorStyleConfigurator();
 
-  void SetStyle(AppTheme theme);
+  void SetStyle(config::Theme theme = config::kProgrammer);
 
   QLineEdit *GetValueLine();
   QLineEdit *GetCoefficientLine();
@@ -26,30 +27,25 @@ class CaclulatorStyleConfigurator {
   QGridLayout *GetLayout();
 
  private:
-  void SetCoefficientLine(QLineEdit *line, AppTheme theme = kProgrammer);
-  void SetValueLine(QLineEdit *line, AppTheme theme = kProgrammer);
-  void SetLineEditStyle(QLineEdit *line, AppTheme theme = kProgrammer);
-  void SetLineStyleSheet(QLineEdit *line, const QString &border_color,
-                         const QString &background,
-                         const QString &selection_color,
-                         const QString &text_color, const QString &font_weight);
-
-  void SetLCDNumber(QLCDNumber *lcd, AppTheme theme = kProgrammer);
-  void SetLCDStyle(QLCDNumber *lcd, AppTheme theme = kProgrammer);
+  void SetLCDNumber(QLCDNumber *lcd, config::Theme theme = config::kProgrammer);
+  void SetLCDStyle(QLCDNumber *lcd, config::Theme theme);
   void SetLCDStyleSheet(QLCDNumber *lcd, const QString &border_color,
                         const QString &background, const QString &value_color);
 
   void SetLabel(QLabel *label, const QString &text_of_label,
-                int label_size = 10, AppTheme theme = kProgrammer);
+                int label_size = 10, config::Theme theme = config::kProgrammer);
+
   void SetLabelStyleSheet(QLabel *label, const QString &text_of_label,
                           const QString &text_color,
                           const QString &background_format,
                           const QString &background);
 
-  void SetCheckBox(QCheckBox *checkbox, AppTheme theme = kProgrammer);
+  QFont GetFont(int point_size);
 
-  void SetGridLayout(QGridLayout *grid_layout, QLineEdit *line_edit,
-                     QLabel *number_label, QLabel *result_label,
+  void SetCheckBox(QCheckBox *checkbox, config::Theme theme);
+
+  void SetGridLayout(QGridLayout *grid_layout, QLabel *number_label,
+                     QLineEdit *line_edit, QLabel *result_label,
                      QLCDNumber *lcd);
 
   void SetHorizontalLayout(QHBoxLayout *layout, QLabel *label,
@@ -60,12 +56,12 @@ class CaclulatorStyleConfigurator {
   QLCDNumber *lcd_ = nullptr;
   QLabel *coefficient_label_ = nullptr;
   QLabel *number_label_ = nullptr;
-
   QLabel *result_label_ = nullptr;
-  QFont GetFont(int point_size);
   QCheckBox *coefficient_checkbox_ = nullptr;
   QGridLayout *grid_layout_ = nullptr;
   QHBoxLayout *horizontal_layout_ = nullptr;
+
+  LineEditStyleConfig *line_edit_styler = nullptr;
 };
 
 #endif  // CALCULATOR_STYLE_CONFIGURATOR_H

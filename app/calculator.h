@@ -1,24 +1,23 @@
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
 
-#include "calculator_style_configurator.h"
-
-#include "multiplyer.h"
-
 #include <QWidget>
+
 #include <memory>
 
 #include <QAction>
 #include <QMenu>
 #include <QMenuBar>
 
+#include "calculator_style_configurator.h"
+#include "multiplyer.h"
+#include "theme_configuration.h"
+
 class QClipboard;
 
 class Calculator : public QWidget {
   Q_OBJECT
  public:
-  enum AppTheme { kProgrammer, kMoto, kOffice };
-
   explicit Calculator(QWidget* parent = nullptr);
 
  public slots:
@@ -26,23 +25,23 @@ class Calculator : public QWidget {
   void SetCoefficient(const QString& coefficient);
 
   void SetProgrammerTheme();
-  void SetMotoTheme();
   void SetOfficeTheme();
+  void SetMotoTheme();
 
  signals:
   void CompletedDoubleValue(double complete_value);
   void CompleteQStringValue(const QString& complete_value);
 
  private:
-  void SetAppStyle(AppTheme theme = kProgrammer);
-  void SetMainWindow(AppTheme theme);
+  void SetAppStyle(config::Theme theme = config::kProgrammer);
+  void SetMainWindow(config::Theme theme);
   void SetConnections();
 
   void SetMenuBar(QMenu* menu);
   void SetAppearanceMenu();
 
-  void SetStyleMenuBar(AppTheme theme);
-  void SetStyleMenu(AppTheme theme);
+  void SetStyleMenuBar(config::Theme theme);
+  void SetStyleMenu(config::Theme theme);
 
   QClipboard* clipboard_ = nullptr;
 
@@ -53,8 +52,8 @@ class Calculator : public QWidget {
   QMenu* appearance_menu_ = nullptr;
 
   QAction* programmer_ = nullptr;
-  QAction* moto_ = nullptr;
   QAction* office_ = nullptr;
+  QAction* moto_ = nullptr;
 
   double coefficient_ = 1.18;
 };

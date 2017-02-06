@@ -3,10 +3,6 @@
 #include <QApplication>
 #include <QClipboard>
 
-#include <QAction>
-#include <QMenu>
-#include <QMenuBar>
-
 Calculator::Calculator(QWidget *parent)
     : QWidget(parent),
       clipboard_(QApplication::clipboard()),
@@ -15,26 +11,26 @@ Calculator::Calculator(QWidget *parent)
       menu_bar_(new QMenuBar),
       appearance_menu_(new QMenu(tr("Appearance"))),
       programmer_(new QAction(tr("Programmer"), this)),
-      moto_(new QAction(tr("Moto"), this)),
-      office_(new QAction(tr("Office"), this)) {
+      office_(new QAction(tr("Office"), this)),
+      moto_(new QAction(tr("Moto"), this)) {
   SetAppStyle();
-  SetConnections();
   SetAppearanceMenu();
   SetMenuBar(appearance_menu_);
+  SetConnections();
 
   layout()->setMenuBar(menu_bar_);
 }
 
-void Calculator::SetAppStyle(Calculator::AppTheme theme) {
+void Calculator::SetAppStyle(config::Theme theme) {
   switch (theme) {
-    case kProgrammer:
-      configurator_->SetStyle(CaclulatorStyleConfigurator::kProgrammer);
+    case config::kProgrammer:
+      configurator_->SetStyle(config::kProgrammer);
       break;
-    case kMoto:
-      configurator_->SetStyle(CaclulatorStyleConfigurator::kMoto);
+    case config::kOffice:
+      configurator_->SetStyle(config::kOffice);
       break;
-    case kOffice:
-      configurator_->SetStyle(CaclulatorStyleConfigurator::kOffice);
+    case config::kMoto:
+      configurator_->SetStyle(config::kMoto);
       break;
   }
   SetMainWindow(theme);
@@ -42,23 +38,24 @@ void Calculator::SetAppStyle(Calculator::AppTheme theme) {
 
 void Calculator::SetConnections() {
   QLineEdit *value_line = configurator_->GetValueLine();
-  QLineEdit *coefficient_line = configurator_->GetCoefficientLine();
-  QLCDNumber *lcd = configurator_->GetLCDNumber();
-  QCheckBox *coef_checkbox = configurator_->GetCoefficientCheckBox();
-
   connect(value_line, SIGNAL(returnPressed()), value_line, SLOT(clear()));
   connect(value_line, SIGNAL(textChanged(QString)),
           SLOT(CalculateResult(QString)));
-  connect(this, SIGNAL(CompletedDoubleValue(double)), lcd,
-          SLOT(display(double)));
+
+  QLineEdit *coefficient_line = configurator_->GetCoefficientLine();
+  QCheckBox *coef_checkbox = configurator_->GetCoefficientCheckBox();
   connect(coef_checkbox, SIGNAL(clicked(bool)), coefficient_line,
           SLOT(setEnabled(bool)));
   connect(coefficient_line, SIGNAL(textChanged(QString)),
           SLOT(SetCoefficient(QString)));
 
+  QLCDNumber *lcd = configurator_->GetLCDNumber();
+  connect(this, SIGNAL(CompletedDoubleValue(double)), lcd,
+          SLOT(display(double)));
+
   connect(programmer_, SIGNAL(triggered(bool)), SLOT(SetProgrammerTheme()));
-  connect(moto_, SIGNAL(triggered(bool)), SLOT(SetMotoTheme()));
   connect(office_, SIGNAL(triggered(bool)), SLOT(SetOfficeTheme()));
+  connect(moto_, SIGNAL(triggered(bool)), SLOT(SetMotoTheme()));
 }
 
 void Calculator::CalculateResult(const QString &value) {
@@ -75,35 +72,35 @@ void Calculator::SetCoefficient(const QString &coefficient) {
 }
 
 void Calculator::SetProgrammerTheme() {
-  SetAppStyle(kProgrammer);
-  SetMainWindow(kProgrammer);
-}
-
-void Calculator::SetMotoTheme() {
-  SetAppStyle(kMoto);
-  SetMainWindow(kMoto);
+  SetAppStyle(config::kProgrammer);
+  SetMainWindow(config::kProgrammer);
 }
 
 void Calculator::SetOfficeTheme() {
-  SetAppStyle(kOffice);
-  SetMainWindow(kOffice);
+  SetAppStyle(config::kOffice);
+  SetMainWindow(config::kOffice);
 }
 
-void Calculator::SetMainWindow(AppTheme theme) {
-  QGridLayout *layout = configurator_->GetLayout();
-  setLayout(layout);
+void Calculator::SetMotoTheme() {
+  SetAppStyle(config::kMoto);
+  SetMainWindow(config::kMoto);
+}
+
+void Calculator::SetMainWindow(config::Theme theme) {
+  QGridLayout *grid_layout = configurator_->GetLayout();
+  setLayout(grid_layout);
   setFixedSize(225, 300);
   setWindowTitle("Calculator");
 
   switch (theme) {
-    case kProgrammer:
+    case config::kProgrammer:
       setStyleSheet("background-color:black;");
       break;
-    case kMoto:
-      setStyleSheet("background-color:white;");
-      break;
-    case kOffice:
+    case config::kOffice:
       setStyleSheet("background-color:#404040");
+      break;
+    case config::kMoto:
+      setStyleSheet("background-color:white;");
       break;
   }
   SetStyleMenuBar(theme);
@@ -113,13 +110,13 @@ void Calculator::SetMenuBar(QMenu *menu) { menu_bar_->addMenu(menu); }
 
 void Calculator::SetAppearanceMenu() {
   appearance_menu_->addAction(programmer_);
-  appearance_menu_->addAction(moto_);
   appearance_menu_->addAction(office_);
+  appearance_menu_->addAction(moto_);
 }
 
-void Calculator::SetStyleMenuBar(Calculator::AppTheme theme) {
+void Calculator::SetStyleMenuBar(config::Theme theme) {
   switch (theme) {
-    case kProgrammer:
+    case config::kProgrammer:
       menu_bar_->setStyleSheet(
           "QMenuBar {"
           "background-color: black;"
@@ -134,7 +131,23 @@ void Calculator::SetStyleMenuBar(Calculator::AppTheme theme) {
           "background-color: #202020;"
           "}");
       break;
-    case kMoto:
+    case config::kOffice:
+      menu_bar_->setStyleSheet(
+          "QMenuBar {"
+          "background-color: #404040;"
+          "color: black;"
+          "}"
+          "QMenuBar::item {"
+          "border: 1px solid black;"
+          "border-radius: 2px;"
+          "padding: 1px 4px;"
+          "background-color: #606060;"
+          "}"
+          "QMenuBar::item:selected {"
+          "background-color: grey;"
+          "}");
+      break;
+    case config::kMoto:
       menu_bar_->setStyleSheet(
           "QMenuBar {"
           "background-color: white;"
@@ -150,28 +163,13 @@ void Calculator::SetStyleMenuBar(Calculator::AppTheme theme) {
           "background-color: #99CCFF;"
           "}");
       break;
-    case kOffice:
-      menu_bar_->setStyleSheet(
-          "QMenuBar {"
-          "background-color: #404040;"
-          "color: black;"
-          "}"
-          "QMenuBar::item {"
-          "border: 1px solid black;"
-          "border-radius: 2px;"
-          "padding: 1px 4px;"
-          "background-color: #606060;"
-          "}"
-          "QMenuBar::item:selected {"
-          "background-color: grey;"
-          "}");
   }
   SetStyleMenu(theme);
 }
 
-void Calculator::SetStyleMenu(Calculator::AppTheme theme) {
+void Calculator::SetStyleMenu(config::Theme theme) {
   switch (theme) {
-    case kProgrammer:
+    case config::kProgrammer:
       appearance_menu_->setStyleSheet(
           "QMenu {"
           "background-color: black;"
@@ -183,7 +181,19 @@ void Calculator::SetStyleMenu(Calculator::AppTheme theme) {
           "background-color: #202020;"
           "}");
       break;
-    case kMoto:
+    case config::kOffice:
+      appearance_menu_->setStyleSheet(
+          "QMenu {"
+          "background-color: #606060;"
+          "border: 1px solid black;"
+          "border-radius: 2px;"
+          "color: black;"
+          "}"
+          "QMenu::item:selected {"
+          "background-color: grey;"
+          "}");
+      break;
+    case config::kMoto:
       appearance_menu_->setStyleSheet(
           "QMenu {"
           "background-color: white;"
@@ -195,16 +205,5 @@ void Calculator::SetStyleMenu(Calculator::AppTheme theme) {
           "background-color: #99CCFF;"
           "}");
       break;
-    case kOffice:
-      appearance_menu_->setStyleSheet(
-          "QMenu {"
-          "background-color: #606060;"
-          "border: 1px solid black;"
-          "border-radius: 2px;"
-          "color: black;"
-          "}"
-          "QMenu::item:selected {"
-          "background-color: grey;"
-          "}");
   }
 }
