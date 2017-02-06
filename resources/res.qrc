@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>moto.jpg</file>
+	<file>motogp_logo.jpeg</file>
+    </qresource>
+</RCC>
