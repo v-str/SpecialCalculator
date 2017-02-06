@@ -6,22 +6,23 @@ TEMPLATE = app
 
 INCLUDEPATH += \
     ../src/calculation \
+    ../src/config \
+    ../src/app \
+    ../resources \
 
 HEADERS  += \
     $$PWD/calculation/*.h \
-    calculator.h \
-    calculator_style_configurator.h
+    $$PWD/config/*.h \
+    $$PWD/app/*.h \
 
-SOURCES += main.cpp \
+SOURCES += \
     $$PWD/calculation/*.cpp \
-    calculator.cpp \
-    calculator_style_configurator.cpp
-
-
+    $$PWD/config/*.cpp \
+    $$PWD/app/*.cpp \
 
 DISTFILES += \
     Todo_list
 
 RESOURCES += \
-    res.qrc
+    resources/res.qrc
 
