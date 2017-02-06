@@ -60,31 +60,26 @@ void CaclulatorStyleConfigurator::SetLineEditStyle(QLineEdit *line,
                                                    AppTheme theme) {
   switch (theme) {
     case kProgrammer:
-      SetLineStyleSheet(line, "2", "green", "7", "black", "#40494D", "green",
-                        "bold");
+      SetLineStyleSheet(line, "green", "black", "#40494D", "green", "bold");
       break;
     case kMoto:
-      SetLineStyleSheet(line, "2", "#000099", "7", "white", "#40494D", "black",
-                        "bold");
+      SetLineStyleSheet(line, "#000099", "white", "#40494D", "black", "bold");
       break;
     case kOffice:
-      SetLineStyleSheet(line, "2", "black", "7", "#606060", "#40494D", "black",
-                        "normal");
+      SetLineStyleSheet(line, "black", "#606060", "#40494D", "black", "normal");
       break;
   }
 }
 
 void CaclulatorStyleConfigurator::SetLineStyleSheet(
-    QLineEdit *line, const QString &border_width, const QString border_color,
-    const QString border_radius, const QString background,
-    const QString selection_color, const QString text_color,
-    const QString font_weight) {
+    QLineEdit *line, const QString &border_color, const QString &background,
+    const QString &selection_color, const QString &text_color,
+    const QString &font_weight) {
   line->setStyleSheet(
       "QLineEdit {"
-      "border: " +
-      border_width + "px solid " + border_color + ";" + "border-radius: " +
-      border_radius + "px;" + "background: " + background + ";" +
-      "selection-background-color: " + selection_color + ";" + "color: " +
+      "border: 2px solid " +
+      border_color + ";" + "border-radius: 7px;" + "background: " + background +
+      ";" + "selection-background-color: " + selection_color + ";" + "color: " +
       text_color + ";" + "font-weight: " + font_weight + ";}");
 }
 
@@ -100,33 +95,26 @@ void CaclulatorStyleConfigurator::SetLCDNumber(QLCDNumber *lcd,
 void CaclulatorStyleConfigurator::SetLCDStyle(QLCDNumber *lcd, AppTheme theme) {
   switch (theme) {
     case kProgrammer:
-      lcd->setStyleSheet(
-          "QLCDNumber {"
-          "border: 1px solid green;"
-          "border-radius: 7px;"
-          "background: black;"
-          "color: green;"
-          "}");
+      SetLCDStyleSheet(lcd, "green", "black", "green");
       break;
     case kMoto:
-      lcd->setStyleSheet(
-          "QLCDNumber {"
-          "border: 2px solid #000099;"
-          "border-radius: 7px;"
-          "background: white;"
-          "color: black;"
-          "}");
+      SetLCDStyleSheet(lcd, "#000099", "white", "black");
       break;
     case kOffice:
-      lcd->setStyleSheet(
-          "QLCDNumber {"
-          "border: 2px solid black;"
-          "border-radius: 7px;"
-          "background: #606060;"
-          "color: black;"
-          "}");
+      SetLCDStyleSheet(lcd, "black", "#606060", "black");
       break;
   }
+}
+
+void CaclulatorStyleConfigurator::SetLCDStyleSheet(QLCDNumber *lcd,
+                                                   const QString &border_color,
+                                                   const QString &background,
+                                                   const QString &value_color) {
+  lcd->setStyleSheet(
+      "QLCDNumber {"
+      "border: 2px solid " +
+      border_color + ";" + "border-radius: 7px;" + "background: " + background +
+      ";" + "color: " + value_color + ";}");
 }
 
 void CaclulatorStyleConfigurator::SetCoefficientLabel(
