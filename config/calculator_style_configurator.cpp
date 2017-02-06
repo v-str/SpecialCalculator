@@ -16,9 +16,9 @@ void CaclulatorStyleConfigurator::SetStyle(
   SetCoefficientLine(coefficient_line_, theme);
   SetValueLine(value_line_, theme);
   SetLCDNumber(lcd_, theme);
-  SetCoefficientLabel(coefficient_label_, "Coefficient", 10, theme);
-  SetNumberLabel(number_label_, "Number:", 14, theme);
-  SetResultLabel(result_label_, "Result:", 16, theme);
+  SetLabel(coefficient_label_, "Coefficient", 10, theme);
+  SetLabel(number_label_, "Number:", 14, theme);
+  SetLabel(result_label_, "Result:", 16, theme);
   SetCheckBox(coefficient_checkbox_, theme);
 
   SetHorizontalLayout(horizontal_layout_, coefficient_label_,
@@ -117,64 +117,51 @@ void CaclulatorStyleConfigurator::SetLCDStyleSheet(QLCDNumber *lcd,
       ";" + "color: " + value_color + ";}");
 }
 
-void CaclulatorStyleConfigurator::SetCoefficientLabel(
-    QLabel *label, const QString &text_of_label, int label_size,
-    AppTheme theme) {
+void CaclulatorStyleConfigurator::SetLabel(QLabel *label,
+                                           const QString &text_of_label,
+                                           int label_size, AppTheme theme) {
+  QString background = "color";
+  QString image = "url(:/motogp_logo.jpg)";
+
+  if (text_of_label == "Coefficient") {
+    image = "white";
+  } else if (text_of_label == "Number:") {
+    background = "image";
+  } else if (text_of_label == "Result:") {
+    background = "image";
+    image = "url(:/moto.jpg)";
+  }
+
   switch (theme) {
     case kProgrammer:
-      label->setText("<font color='green'>" + text_of_label + "</font>");
-      label->setStyleSheet("background-color: black;");
+      SetLabelStyleSheet(label, text_of_label, "green", "color", "black");
       break;
     case kMoto:
-      label->setText("<font color='green'> </font>");
-      label->setStyleSheet("background-color: white;");
+      SetLabelStyleSheet(label, "", "white", background, image);
       break;
     case kOffice:
-      label->setText("<font color=#CC6600>" + text_of_label + "</font>");
-      label->setStyleSheet("background-color: #404040;");
+      SetLabelStyleSheet(label, text_of_label, "#CC6600", "color", "#404040");
       break;
   }
   label->setFont(GetFont(label_size));
 }
-void CaclulatorStyleConfigurator::SetNumberLabel(QLabel *label,
-                                                 const QString &text_of_label,
-                                                 int label_size,
-                                                 AppTheme theme) {
-  switch (theme) {
-    case kProgrammer:
-      label->setText("<font color='green'>" + text_of_label + "</font>");
-      label->setStyleSheet("background-color: black;");
-      break;
-    case kMoto:
-      label->setText("<font color='green'> </font>");
-      label->setStyleSheet("background-image: url(:/motogp_logo.jpeg)");
-      break;
-    case kOffice:
-      label->setText("<font color=#CC6600>" + text_of_label + "</font>");
-      label->setStyleSheet("background-color: #404040;");
-      break;
+
+void CaclulatorStyleConfigurator::SetLabelStyleSheet(
+    QLabel *label, const QString &text_of_label, const QString &text_color,
+    const QString &background_format, const QString &background) {
+  QString temporary_background_format = "";
+
+  if (background_format == "color") {
+    temporary_background_format = "background-color: ";
+  } else if (background_format == "image") {
+    temporary_background_format = "background-image: ";
   }
-  label->setFont(GetFont(label_size));
-}
-void CaclulatorStyleConfigurator::SetResultLabel(QLabel *label,
-                                                 const QString &text_of_label,
-                                                 int label_size,
-                                                 AppTheme theme) {
-  switch (theme) {
-    case kProgrammer:
-      label->setText("<font color='green'>" + text_of_label + "</font>");
-      label->setStyleSheet("background-color: black;");
-      break;
-    case kMoto:
-      label->setText("<font color='green'> </font>");
-      label->setStyleSheet("background-image: url(:/moto.jpg)");
-      break;
-    case kOffice:
-      label->setText("<font color=#CC6600>" + text_of_label + "</font>");
-      label->setStyleSheet("background-color: #404040;");
-      break;
-  }
-  label->setFont(GetFont(label_size));
+
+  label->setText(text_of_label);
+  label->setStyleSheet(
+      "QLabel {"
+      "color: " +
+      text_color + ";" + temporary_background_format + background + ";}");
 }
 QFont CaclulatorStyleConfigurator::GetFont(int point_size) {
   QFont font;

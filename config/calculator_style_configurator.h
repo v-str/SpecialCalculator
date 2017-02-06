@@ -39,14 +39,12 @@ class CaclulatorStyleConfigurator {
   void SetLCDStyleSheet(QLCDNumber *lcd, const QString &border_color,
                         const QString &background, const QString &value_color);
 
-  void SetCoefficientLabel(QLabel *label, const QString &text_of_label,
-                           int label_size = 10, AppTheme theme = kProgrammer);
-
-  void SetNumberLabel(QLabel *label, const QString &text_of_label,
-                      int label_size = 10, AppTheme theme = kProgrammer);
-
-  void SetResultLabel(QLabel *label, const QString &text_of_label,
-                      int label_size = 10, AppTheme theme = kProgrammer);
+  void SetLabel(QLabel *label, const QString &text_of_label,
+                int label_size = 10, AppTheme theme = kProgrammer);
+  void SetLabelStyleSheet(QLabel *label, const QString &text_of_label,
+                          const QString &text_color,
+                          const QString &background_format,
+                          const QString &background);
 
   void SetCheckBox(QCheckBox *checkbox, AppTheme theme = kProgrammer);
 
