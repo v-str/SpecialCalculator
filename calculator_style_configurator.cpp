@@ -1,9 +1,5 @@
 #include "calculator_style_configurator.h"
 
-#include <QBitmap>
-#include <QPalette>
-#include <QPixmap>
-
 CaclulatorStyleConfigurator::CaclulatorStyleConfigurator()
     : coefficient_line_(new QLineEdit),
       value_line_(new QLineEdit),
@@ -64,39 +60,32 @@ void CaclulatorStyleConfigurator::SetLineEditStyle(QLineEdit *line,
                                                    AppTheme theme) {
   switch (theme) {
     case kProgrammer:
-      line->setStyleSheet(
-          "QLineEdit {"
-          "border: 1px solid green;"
-          "border-radius: 7px;"
-          "background: black;"
-          "selection-background-color: #40494D;"
-          "color: green;"
-          "font-weight: bold;"
-          "}");
+      SetLineStyleSheet(line, "2", "green", "7", "black", "#40494D", "green",
+                        "bold");
       break;
     case kMoto:
-      line->setStyleSheet(
-          "QLineEdit {"
-          "border: 2px solid #000099;"
-          "border-radius: 7px;"
-          "background: white;"
-          "selection-background-color: #40494D;"
-          "color: black;"
-          "font-weight: bold;"
-          "}");
+      SetLineStyleSheet(line, "2", "#000099", "7", "white", "#40494D", "black",
+                        "bold");
       break;
     case kOffice:
-      line->setStyleSheet(
-          "QLineEdit {"
-          "border: 2px solid black;"
-          "border-radius: 7px;"
-          "background: #606060;"
-          "selection-background-color: #40494D;"
-          "color: black;"
-          "font-weight: normal;"
-          "}");
+      SetLineStyleSheet(line, "2", "black", "7", "#606060", "#40494D", "black",
+                        "normal");
       break;
   }
+}
+
+void CaclulatorStyleConfigurator::SetLineStyleSheet(
+    QLineEdit *line, const QString &border_width, const QString border_color,
+    const QString border_radius, const QString background,
+    const QString selection_color, const QString text_color,
+    const QString font_weight) {
+  line->setStyleSheet(
+      "QLineEdit {"
+      "border: " +
+      border_width + "px solid " + border_color + ";" + "border-radius: " +
+      border_radius + "px;" + "background: " + background + ";" +
+      "selection-background-color: " + selection_color + ";" + "color: " +
+      text_color + ";" + "font-weight: " + font_weight + ";}");
 }
 
 void CaclulatorStyleConfigurator::SetLCDNumber(QLCDNumber *lcd,

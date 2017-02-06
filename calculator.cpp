@@ -6,16 +6,14 @@
 #include <QAction>
 #include <QMenu>
 #include <QMenuBar>
-#include <QPalette>
-#include <QPixmap>
 
 Calculator::Calculator(QWidget *parent)
     : QWidget(parent),
       clipboard_(QApplication::clipboard()),
       multipyer_(new Multiplyer),
       configurator_(new CaclulatorStyleConfigurator),
-      appearance_menu_(new QMenu(tr("Appearance"))),
       menu_bar_(new QMenuBar),
+      appearance_menu_(new QMenu(tr("Appearance"))),
       programmer_(new QAction(tr("Programmer"), this)),
       moto_(new QAction(tr("Moto"), this)),
       office_(new QAction(tr("Office"), this)) {
@@ -31,17 +29,15 @@ void Calculator::SetAppStyle(Calculator::AppTheme theme) {
   switch (theme) {
     case kProgrammer:
       configurator_->SetStyle(CaclulatorStyleConfigurator::kProgrammer);
-      SetMainWindow(kProgrammer);
       break;
     case kMoto:
       configurator_->SetStyle(CaclulatorStyleConfigurator::kMoto);
-      SetMainWindow(kMoto);
       break;
     case kOffice:
       configurator_->SetStyle(CaclulatorStyleConfigurator::kOffice);
-      SetMainWindow(kOffice);
       break;
   }
+  SetMainWindow(theme);
 }
 
 void Calculator::SetConnections() {
@@ -187,7 +183,6 @@ void Calculator::SetStyleMenu(Calculator::AppTheme theme) {
           "background-color: #202020;"
           "}");
       break;
-
     case kMoto:
       appearance_menu_->setStyleSheet(
           "QMenu {"
@@ -200,7 +195,6 @@ void Calculator::SetStyleMenu(Calculator::AppTheme theme) {
           "background-color: #99CCFF;"
           "}");
       break;
-
     case kOffice:
       appearance_menu_->setStyleSheet(
           "QMenu {"

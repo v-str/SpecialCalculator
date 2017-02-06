@@ -29,18 +29,31 @@ class CaclulatorStyleConfigurator {
   void SetCoefficientLine(QLineEdit *line, AppTheme theme = kProgrammer);
   void SetValueLine(QLineEdit *line, AppTheme theme = kProgrammer);
   void SetLineEditStyle(QLineEdit *line, AppTheme theme = kProgrammer);
+
+  void SetLineStyleSheet(QLineEdit *line, const QString &border_width,
+                         const QString border_color,
+                         const QString border_radius, const QString background,
+                         const QString selection_color,
+                         const QString text_color, const QString font_weight);
+
   void SetLCDNumber(QLCDNumber *lcd, AppTheme theme = kProgrammer);
   void SetLCDStyle(QLCDNumber *lcd, AppTheme theme = kProgrammer);
+
   void SetCoefficientLabel(QLabel *label, const QString &text_of_label,
-                int label_size = 10, AppTheme theme = kProgrammer);
+                           int label_size = 10, AppTheme theme = kProgrammer);
+
   void SetNumberLabel(QLabel *label, const QString &text_of_label,
-                int label_size = 10, AppTheme theme = kProgrammer);
+                      int label_size = 10, AppTheme theme = kProgrammer);
+
   void SetResultLabel(QLabel *label, const QString &text_of_label,
-                int label_size = 10, AppTheme theme = kProgrammer);
+                      int label_size = 10, AppTheme theme = kProgrammer);
+
   void SetCheckBox(QCheckBox *checkbox, AppTheme theme = kProgrammer);
+
   void SetGridLayout(QGridLayout *grid_layout, QLineEdit *line_edit,
                      QLabel *number_label, QLabel *result_label,
                      QLCDNumber *lcd);
+
   void SetHorizontalLayout(QHBoxLayout *layout, QLabel *label,
                            QCheckBox *checkbox, QLineEdit *line_edit);
 

@@ -41,7 +41,6 @@ class Calculator : public QWidget {
   void SetMenuBar(QMenu* menu);
   void SetAppearanceMenu();
 
-
   void SetStyleMenuBar(AppTheme theme);
   void SetStyleMenu(AppTheme theme);
 
@@ -50,13 +49,12 @@ class Calculator : public QWidget {
   std::unique_ptr<Multiplyer> multipyer_ = nullptr;
   std::unique_ptr<CaclulatorStyleConfigurator> configurator_ = nullptr;
 
-  QMenu* appearance_menu_ = nullptr;
   QMenuBar* menu_bar_ = nullptr;
+  QMenu* appearance_menu_ = nullptr;
 
   QAction* programmer_ = nullptr;
   QAction* moto_ = nullptr;
   QAction* office_ = nullptr;
-
 
   double coefficient_ = 1.18;
 };
