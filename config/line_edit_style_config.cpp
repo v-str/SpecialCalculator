@@ -4,17 +4,21 @@
 
 void LineEditStyleConfig::SetCoefficientLine(QLineEdit *line_edit,
                                              config::Theme theme) {
-  line_edit->setDisabled(true);
-  line_edit->setAlignment(Qt::AlignRight);
-  line_edit->setMaximumSize(75, 25);
-
+  SetLineFeature(line_edit, true, 75, 25);
   SetLineEditStyle(line_edit, theme);
 }
 
 void LineEditStyleConfig::SetValueLine(QLineEdit *line_edit,
                                        config::Theme theme) {
-  line_edit->setAlignment(Qt::AlignRight);
+  SetLineFeature(line_edit, false, 200, 25);
   SetLineEditStyle(line_edit, theme);
+}
+
+void LineEditStyleConfig::SetLineFeature(QLineEdit *line_edit,
+                                         bool disable_status, int w, int h) {
+  line_edit->setAlignment(Qt::AlignRight);
+  line_edit->setDisabled(disable_status);
+  line_edit->setMaximumSize(w, h);
 }
 
 void LineEditStyleConfig::SetLineEditStyle(QLineEdit *line_edit,
