@@ -1,7 +1,7 @@
 #include "calculator_style_configurator.h"
 
 CaclulatorStyleConfigurator::CaclulatorStyleConfigurator()
-    : coefficient_line_(new QLineEdit),
+    : coefficient_line_(new QLineEdit("1.18")),
       value_line_(new QLineEdit),
       lcd_(new QLCDNumber(16)),
       coefficient_label_(new QLabel),

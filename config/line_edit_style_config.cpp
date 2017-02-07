@@ -6,7 +6,6 @@ void LineEditStyleConfig::SetCoefficientLine(QLineEdit *line_edit,
                                              config::Theme theme) {
   line_edit->setDisabled(true);
   line_edit->setAlignment(Qt::AlignRight);
-  line_edit->setText("1.18");
   line_edit->setMaximumSize(75, 25);
 
   SetLineEditStyle(line_edit, theme);
