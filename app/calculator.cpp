@@ -7,7 +7,7 @@ Calculator::Calculator(QWidget *parent)
     : QWidget(parent),
       clipboard_(QApplication::clipboard()),
       multipyer_(new Multiplyer),
-      configurator_(new CaclulatorStyleConfigurator),
+      configurator_(new CaclulatorStyleConfig),
       menu_bar_(new QMenuBar),
       appearance_menu_(new QMenu(tr("Appearance"))),
       programmer_(new QAction(tr("Programmer"), this)),

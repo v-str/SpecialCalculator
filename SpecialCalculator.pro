@@ -14,7 +14,6 @@ HEADERS  += \
     $$PWD/calculation/*.h \
     $$PWD/config/*.h \
     $$PWD/app/*.h \
-    config/theme_configuration.h
 
 SOURCES += \
     $$PWD/calculation/*.cpp \

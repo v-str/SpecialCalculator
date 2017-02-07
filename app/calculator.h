@@ -9,7 +9,7 @@
 #include <QMenu>
 #include <QMenuBar>
 
-#include "calculator_style_configurator.h"
+#include "calculator_style_config.h"
 #include "multiplyer.h"
 #include "theme_configuration.h"
 
@@ -46,7 +46,7 @@ class Calculator : public QWidget {
   QClipboard* clipboard_ = nullptr;
 
   std::unique_ptr<Multiplyer> multipyer_ = nullptr;
-  std::unique_ptr<CaclulatorStyleConfigurator> configurator_ = nullptr;
+  std::unique_ptr<CaclulatorStyleConfig> configurator_ = nullptr;
 
   QMenuBar* menu_bar_ = nullptr;
   QMenu* appearance_menu_ = nullptr;

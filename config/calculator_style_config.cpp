@@ -1,6 +1,6 @@
-#include "calculator_style_configurator.h"
+#include "calculator_style_config.h"
 
-CaclulatorStyleConfigurator::CaclulatorStyleConfigurator()
+CaclulatorStyleConfig::CaclulatorStyleConfig()
     : coefficient_line_(new QLineEdit("1.18")),
       value_line_(new QLineEdit),
       lcd_(new QLCDNumber(16)),
@@ -12,7 +12,7 @@ CaclulatorStyleConfigurator::CaclulatorStyleConfigurator()
       horizontal_layout_(new QHBoxLayout),
       line_edit_styler(new LineEditStyleConfig) {}
 
-void CaclulatorStyleConfigurator::SetStyle(config::Theme theme) {
+void CaclulatorStyleConfig::SetStyle(config::Theme theme) {
   line_edit_styler->SetCoefficientLine(coefficient_line_, theme);
   line_edit_styler->SetValueLine(value_line_, theme);
 
@@ -28,21 +28,21 @@ void CaclulatorStyleConfigurator::SetStyle(config::Theme theme) {
   SetGridLayout(grid_layout_, number_label_, value_line_, result_label_, lcd_);
 }
 
-QLineEdit *CaclulatorStyleConfigurator::GetValueLine() { return value_line_; }
+QLineEdit *CaclulatorStyleConfig::GetValueLine() { return value_line_; }
 
-QLineEdit *CaclulatorStyleConfigurator::GetCoefficientLine() {
+QLineEdit *CaclulatorStyleConfig::GetCoefficientLine() {
   return coefficient_line_;
 }
 
-QLCDNumber *CaclulatorStyleConfigurator::GetLCDNumber() { return lcd_; }
+QLCDNumber *CaclulatorStyleConfig::GetLCDNumber() { return lcd_; }
 
-QCheckBox *CaclulatorStyleConfigurator::GetCoefficientCheckBox() {
+QCheckBox *CaclulatorStyleConfig::GetCoefficientCheckBox() {
   return coefficient_checkbox_;
 }
 
-QGridLayout *CaclulatorStyleConfigurator::GetLayout() { return grid_layout_; }
+QGridLayout *CaclulatorStyleConfig::GetLayout() { return grid_layout_; }
 
-void CaclulatorStyleConfigurator::SetLCDNumber(QLCDNumber *lcd,
+void CaclulatorStyleConfig::SetLCDNumber(QLCDNumber *lcd,
                                                config::Theme theme) {
   lcd->setAutoFillBackground(true);
   lcd->setSegmentStyle(QLCDNumber::Flat);
@@ -51,7 +51,7 @@ void CaclulatorStyleConfigurator::SetLCDNumber(QLCDNumber *lcd,
   SetLCDStyle(lcd, theme);
 }
 
-void CaclulatorStyleConfigurator::SetLCDStyle(QLCDNumber *lcd,
+void CaclulatorStyleConfig::SetLCDStyle(QLCDNumber *lcd,
                                               config::Theme theme) {
   switch (theme) {
     case config::kProgrammer:
@@ -66,7 +66,7 @@ void CaclulatorStyleConfigurator::SetLCDStyle(QLCDNumber *lcd,
   }
 }
 
-void CaclulatorStyleConfigurator::SetLCDStyleSheet(QLCDNumber *lcd,
+void CaclulatorStyleConfig::SetLCDStyleSheet(QLCDNumber *lcd,
                                                    const QString &border_color,
                                                    const QString &background,
                                                    const QString &value_color) {
@@ -77,7 +77,7 @@ void CaclulatorStyleConfigurator::SetLCDStyleSheet(QLCDNumber *lcd,
       ";" + "color: " + value_color + ";}");
 }
 
-void CaclulatorStyleConfigurator::SetLabel(QLabel *label,
+void CaclulatorStyleConfig::SetLabel(QLabel *label,
                                            const QString &text_of_label,
                                            int label_size,
                                            config::Theme theme) {
@@ -108,7 +108,7 @@ void CaclulatorStyleConfigurator::SetLabel(QLabel *label,
   label->setFont(GetFont(label_size));
 }
 
-void CaclulatorStyleConfigurator::SetLabelStyleSheet(
+void CaclulatorStyleConfig::SetLabelStyleSheet(
     QLabel *label, const QString &text_of_label, const QString &text_color,
     const QString &background_format, const QString &background) {
   QString temporary_background_format = "";
@@ -125,14 +125,14 @@ void CaclulatorStyleConfigurator::SetLabelStyleSheet(
       "color: " +
       text_color + ";" + temporary_background_format + background + ";}");
 }
-QFont CaclulatorStyleConfigurator::GetFont(int point_size) {
+QFont CaclulatorStyleConfig::GetFont(int point_size) {
   QFont font;
   font.setPointSize(point_size);
 
   return font;
 }
 
-void CaclulatorStyleConfigurator::SetCheckBox(QCheckBox *checkbox,
+void CaclulatorStyleConfig::SetCheckBox(QCheckBox *checkbox,
                                               config::Theme theme) {
   switch (theme) {
     case config::kProgrammer:
@@ -190,7 +190,7 @@ void CaclulatorStyleConfigurator::SetCheckBox(QCheckBox *checkbox,
   }
 }
 
-void CaclulatorStyleConfigurator::SetGridLayout(QGridLayout *grid_layout,
+void CaclulatorStyleConfig::SetGridLayout(QGridLayout *grid_layout,
                                                 QLabel *number_label,
                                                 QLineEdit *line_edit,
                                                 QLabel *result_label,
@@ -203,7 +203,7 @@ void CaclulatorStyleConfigurator::SetGridLayout(QGridLayout *grid_layout,
   grid_layout->setSpacing(1);
 }
 
-void CaclulatorStyleConfigurator::SetHorizontalLayout(QHBoxLayout *layout,
+void CaclulatorStyleConfig::SetHorizontalLayout(QHBoxLayout *layout,
                                                       QLabel *label,
                                                       QCheckBox *checkbox,
                                                       QLineEdit *line_edit) {

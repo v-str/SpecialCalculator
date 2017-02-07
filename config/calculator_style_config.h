@@ -1,5 +1,5 @@
-#ifndef CALCULATOR_STYLE_CONFIGURATOR_H
-#define CALCULATOR_STYLE_CONFIGURATOR_H
+#ifndef CALCULATOR_STYLE_CONFIG_H
+#define CALCULATOR_STYLE_CONFIG_H
 
 #include <QAction>
 #include <QCheckBox>
@@ -14,9 +14,9 @@
 #include "line_edit_style_config.h"
 #include "theme_configuration.h"
 
-class CaclulatorStyleConfigurator {
+class CaclulatorStyleConfig {
  public:
-  CaclulatorStyleConfigurator();
+  CaclulatorStyleConfig();
 
   void SetStyle(config::Theme theme = config::kProgrammer);
 
@@ -64,4 +64,4 @@ class CaclulatorStyleConfigurator {
   LineEditStyleConfig *line_edit_styler = nullptr;
 };
 
-#endif  // CALCULATOR_STYLE_CONFIGURATOR_H
+#endif  // CALCULATOR_STYLE_CONFIGUR_H
