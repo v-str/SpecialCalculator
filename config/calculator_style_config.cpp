@@ -10,13 +10,15 @@ CaclulatorStyleConfig::CaclulatorStyleConfig()
       coefficient_checkbox_(new QCheckBox),
       grid_layout_(new QGridLayout),
       horizontal_layout_(new QHBoxLayout),
-      line_edit_styler(new LineEditStyleConfig) {}
+      line_edit_styler(new LineEditStyleConfig),
+      lcd_styler_(new LCDStyleConfig) {}
 
 void CaclulatorStyleConfig::SetStyle(config::Theme theme) {
   line_edit_styler->SetCoefficientLine(coefficient_line_, theme);
   line_edit_styler->SetValueLine(value_line_, theme);
 
-  SetLCDNumber(lcd_, theme);
+  lcd_styler_->SetLCDNumber(lcd_, theme);
+
   SetLabel(coefficient_label_, "Coefficient", 10, theme);
   SetLabel(number_label_, "Number:", 14, theme);
   SetLabel(result_label_, "Result:", 16, theme);
@@ -42,45 +44,9 @@ QCheckBox *CaclulatorStyleConfig::GetCoefficientCheckBox() {
 
 QGridLayout *CaclulatorStyleConfig::GetLayout() { return grid_layout_; }
 
-void CaclulatorStyleConfig::SetLCDNumber(QLCDNumber *lcd,
-                                               config::Theme theme) {
-  lcd->setAutoFillBackground(true);
-  lcd->setSegmentStyle(QLCDNumber::Flat);
-  lcd->setFrameStyle(QFrame::NoFrame);
-
-  SetLCDStyle(lcd, theme);
-}
-
-void CaclulatorStyleConfig::SetLCDStyle(QLCDNumber *lcd,
-                                              config::Theme theme) {
-  switch (theme) {
-    case config::kProgrammer:
-      SetLCDStyleSheet(lcd, "green", "black", "green");
-      break;
-    case config::kMoto:
-      SetLCDStyleSheet(lcd, "#000099", "white", "black");
-      break;
-    case config::kOffice:
-      SetLCDStyleSheet(lcd, "black", "#606060", "black");
-      break;
-  }
-}
-
-void CaclulatorStyleConfig::SetLCDStyleSheet(QLCDNumber *lcd,
-                                                   const QString &border_color,
-                                                   const QString &background,
-                                                   const QString &value_color) {
-  lcd->setStyleSheet(
-      "QLCDNumber {"
-      "border: 2px solid " +
-      border_color + ";" + "border-radius: 7px;" + "background: " + background +
-      ";" + "color: " + value_color + ";}");
-}
-
 void CaclulatorStyleConfig::SetLabel(QLabel *label,
-                                           const QString &text_of_label,
-                                           int label_size,
-                                           config::Theme theme) {
+                                     const QString &text_of_label,
+                                     int label_size, config::Theme theme) {
   QString background = "color";
   QString image = "url(:/motogp_logo.jpg)";
 
@@ -108,9 +74,11 @@ void CaclulatorStyleConfig::SetLabel(QLabel *label,
   label->setFont(GetFont(label_size));
 }
 
-void CaclulatorStyleConfig::SetLabelStyleSheet(
-    QLabel *label, const QString &text_of_label, const QString &text_color,
-    const QString &background_format, const QString &background) {
+void CaclulatorStyleConfig::SetLabelStyleSheet(QLabel *label,
+                                               const QString &text_of_label,
+                                               const QString &text_color,
+                                               const QString &background_format,
+                                               const QString &background) {
   QString temporary_background_format = "";
 
   if (background_format == "color") {
@@ -133,7 +101,7 @@ QFont CaclulatorStyleConfig::GetFont(int point_size) {
 }
 
 void CaclulatorStyleConfig::SetCheckBox(QCheckBox *checkbox,
-                                              config::Theme theme) {
+                                        config::Theme theme) {
   switch (theme) {
     case config::kProgrammer:
       checkbox->setStyleSheet(
@@ -191,10 +159,10 @@ void CaclulatorStyleConfig::SetCheckBox(QCheckBox *checkbox,
 }
 
 void CaclulatorStyleConfig::SetGridLayout(QGridLayout *grid_layout,
-                                                QLabel *number_label,
-                                                QLineEdit *line_edit,
-                                                QLabel *result_label,
-                                                QLCDNumber *lcd) {
+                                          QLabel *number_label,
+                                          QLineEdit *line_edit,
+                                          QLabel *result_label,
+                                          QLCDNumber *lcd) {
   grid_layout->addLayout(horizontal_layout_, 0, 0, 1, 2);
   grid_layout->addWidget(number_label, 1, 1);
   grid_layout->addWidget(line_edit, 2, 1);
@@ -204,9 +172,9 @@ void CaclulatorStyleConfig::SetGridLayout(QGridLayout *grid_layout,
 }
 
 void CaclulatorStyleConfig::SetHorizontalLayout(QHBoxLayout *layout,
-                                                      QLabel *label,
-                                                      QCheckBox *checkbox,
-                                                      QLineEdit *line_edit) {
+                                                QLabel *label,
+                                                QCheckBox *checkbox,
+                                                QLineEdit *line_edit) {
   layout->addWidget(label);
   layout->addWidget(checkbox, 1, Qt::AlignRight);
   layout->addWidget(line_edit);

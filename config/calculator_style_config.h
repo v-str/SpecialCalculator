@@ -11,6 +11,7 @@
 #include <QLineEdit>
 #include <QVBoxLayout>
 
+#include "lcd_style_config.h"
 #include "line_edit_style_config.h"
 #include "theme_configuration.h"
 
@@ -27,11 +28,6 @@ class CaclulatorStyleConfig {
   QGridLayout *GetLayout();
 
  private:
-  void SetLCDNumber(QLCDNumber *lcd, config::Theme theme);
-  void SetLCDStyle(QLCDNumber *lcd, config::Theme theme);
-  void SetLCDStyleSheet(QLCDNumber *lcd, const QString &border_color,
-                        const QString &background, const QString &value_color);
-
   void SetLabel(QLabel *label, const QString &text_of_label,
                 int label_size = 10, config::Theme theme = config::kProgrammer);
 
@@ -62,6 +58,7 @@ class CaclulatorStyleConfig {
   QHBoxLayout *horizontal_layout_ = nullptr;
 
   LineEditStyleConfig *line_edit_styler = nullptr;
+  LCDStyleConfig *lcd_styler_ = nullptr;
 };
 
 #endif  // CALCULATOR_STYLE_CONFIGUR_H
