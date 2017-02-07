@@ -27,7 +27,7 @@ class CaclulatorStyleConfigurator {
   QGridLayout *GetLayout();
 
  private:
-  void SetLCDNumber(QLCDNumber *lcd, config::Theme theme = config::kProgrammer);
+  void SetLCDNumber(QLCDNumber *lcd, config::Theme theme);
   void SetLCDStyle(QLCDNumber *lcd, config::Theme theme);
   void SetLCDStyleSheet(QLCDNumber *lcd, const QString &border_color,
                         const QString &background, const QString &value_color);

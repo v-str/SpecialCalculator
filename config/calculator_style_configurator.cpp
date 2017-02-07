@@ -95,13 +95,14 @@ void CaclulatorStyleConfigurator::SetLabel(QLabel *label,
 
   switch (theme) {
     case config::kProgrammer:
-      SetLabelStyleSheet(label, text_of_label, "green", "color", "black");
+      SetLabelStyleSheet(label, text_of_label, "green", background, "black");
+      break;
+    case config::kOffice:
+      SetLabelStyleSheet(label, text_of_label, "#CC6600", background,
+                         "#404040");
       break;
     case config::kMoto:
       SetLabelStyleSheet(label, "", "white", background, image);
-      break;
-    case config::kOffice:
-      SetLabelStyleSheet(label, text_of_label, "#CC6600", "color", "#404040");
       break;
   }
   label->setFont(GetFont(label_size));

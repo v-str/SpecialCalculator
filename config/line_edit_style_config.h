@@ -17,10 +17,9 @@ class LineEditStyleConfig {
 
   void SetLineEditStyle(QLineEdit *line_edit, config::Theme theme);
 
-  void SetLineStyleSheet(QLineEdit *line_edit, const QString &border_color,
+  void SetLineStyleSheet(QLineEdit *line_edit, const QString &color,
                          const QString &background,
-                         const QString &selection_color,
-                         const QString &text_color, const QString &font_weight);
+                         const QString &font_weight = "bold");
 };
 
 #endif  // LINE_EDIT_STYLE_CONFIG_H
