@@ -11,7 +11,8 @@ CaclulatorStyleConfig::CaclulatorStyleConfig()
       grid_layout_(new QGridLayout),
       horizontal_layout_(new QHBoxLayout),
       line_edit_styler(new LineEditStyler),
-      lcd_styler_(new LCDStyler) {}
+      lcd_styler_(new LCDStyler),
+      label_styler_(new LabelStyler) {}
 
 void CaclulatorStyleConfig::SetStyle(config::Theme theme) {
   line_edit_styler->SetCoefficientLine(coefficient_line_, theme);
@@ -19,9 +20,9 @@ void CaclulatorStyleConfig::SetStyle(config::Theme theme) {
 
   lcd_styler_->SetLCDNumber(lcd_, theme);
 
-  SetLabel(coefficient_label_, "Coefficient", 10, theme);
-  SetLabel(number_label_, "Number:", 14, theme);
-  SetLabel(result_label_, "Result:", 16, theme);
+  label_styler_->SetLabel(coefficient_label_, "Coefficient", 10, theme);
+  label_styler_->SetLabel(number_label_, "Number:", 14, theme);
+  label_styler_->SetLabel(result_label_, "Result:", 16, theme);
   SetCheckBox(coefficient_checkbox_, theme);
 
   SetHorizontalLayout(horizontal_layout_, coefficient_label_,
