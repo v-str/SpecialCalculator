@@ -30,18 +30,6 @@ class CaclulatorStyleConfig {
   QGridLayout *GetLayout();
 
  private:
-  void SetLabel(QLabel *label, const QString &text_of_label,
-                int label_size = 10, config::Theme theme = config::kProgrammer);
-
-  void SetLabelStyleSheet(QLabel *label, const QString &text_of_label,
-                          const QString &text_color,
-                          const QString &background_format,
-                          const QString &background);
-
-  QFont GetFont(int point_size);
-
-  void SetCheckBox(QCheckBox *checkbox, config::Theme theme);
-
   void SetGridLayout(QGridLayout *grid_layout, QLabel *number_label,
                      QLineEdit *line_edit, QLabel *result_label,
                      QLCDNumber *lcd);

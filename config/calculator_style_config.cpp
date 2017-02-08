@@ -1,5 +1,7 @@
 #include "calculator_style_config.h"
 
+#include "checkbox_styler.h"
+
 CaclulatorStyleConfig::CaclulatorStyleConfig()
     : coefficient_line_(new QLineEdit("1.18")),
       value_line_(new QLineEdit),
@@ -23,7 +25,7 @@ void CaclulatorStyleConfig::SetStyle(config::Theme theme) {
   label_styler_->SetLabel(coefficient_label_, "Coefficient", 10, theme);
   label_styler_->SetLabel(number_label_, "Number:", 14, theme);
   label_styler_->SetLabel(result_label_, "Result:", 16, theme);
-  SetCheckBox(coefficient_checkbox_, theme);
+  CheckBoxStyler::SetCheckBox(coefficient_checkbox_, theme);
 
   SetHorizontalLayout(horizontal_layout_, coefficient_label_,
                       coefficient_checkbox_, coefficient_line_);
@@ -44,120 +46,6 @@ QCheckBox *CaclulatorStyleConfig::GetCoefficientCheckBox() {
 }
 
 QGridLayout *CaclulatorStyleConfig::GetLayout() { return grid_layout_; }
-
-void CaclulatorStyleConfig::SetLabel(QLabel *label,
-                                     const QString &text_of_label,
-                                     int label_size, config::Theme theme) {
-  QString background = "color";
-  QString image = "url(:/motogp_logo.jpg)";
-
-  if (text_of_label == "Coefficient") {
-    image = "white";
-  } else if (text_of_label == "Number:") {
-    background = "image";
-  } else if (text_of_label == "Result:") {
-    background = "image";
-    image = "url(:/moto.jpg)";
-  }
-
-  switch (theme) {
-    case config::kProgrammer:
-      SetLabelStyleSheet(label, text_of_label, "green", background, "black");
-      break;
-    case config::kOffice:
-      SetLabelStyleSheet(label, text_of_label, "#CC6600", background,
-                         "#404040");
-      break;
-    case config::kMoto:
-      SetLabelStyleSheet(label, "", "white", background, image);
-      break;
-  }
-  label->setFont(GetFont(label_size));
-}
-
-void CaclulatorStyleConfig::SetLabelStyleSheet(QLabel *label,
-                                               const QString &text_of_label,
-                                               const QString &text_color,
-                                               const QString &background_format,
-                                               const QString &background) {
-  QString temporary_background_format = "";
-
-  if (background_format == "color") {
-    temporary_background_format = "background-color: ";
-  } else if (background_format == "image") {
-    temporary_background_format = "background-image: ";
-  }
-
-  label->setText(text_of_label);
-  label->setStyleSheet(
-      "QLabel {"
-      "color: " +
-      text_color + ";" + temporary_background_format + background + ";}");
-}
-QFont CaclulatorStyleConfig::GetFont(int point_size) {
-  QFont font;
-  font.setPointSize(point_size);
-
-  return font;
-}
-
-void CaclulatorStyleConfig::SetCheckBox(QCheckBox *checkbox,
-                                        config::Theme theme) {
-  switch (theme) {
-    case config::kProgrammer:
-      checkbox->setStyleSheet(
-          "QCheckBox::indicator {"
-          "width: 15px;"
-          "height: 15px;"
-          "}"
-          "QCheckBox::indicator:unchecked {"
-          "border: 2px solid #084913;"
-          "border-radius: 5px;"
-          "background-color: black;"
-          "}"
-          "QCheckBox::indicator:checked {"
-          "border: 2px solid #084913;"
-          "border-radius: 5px;"
-          "background-color: #00FF00;"
-          "}");
-      break;
-    case config::kMoto:
-      checkbox->setStyleSheet(
-          "QCheckBox::indicator {"
-          "width: 17px;"
-          "height: 17px;"
-          "}"
-          "QCheckBox::indicator:unchecked {"
-          "border: 2px solid #000099;"
-          "border-radius: 5px;"
-          "background-color: white;"
-          "}"
-          "QCheckBox::indicator:checked {"
-          "border: 2px solid #000099;"
-          "border-radius: 5px;"
-          "background-color: #0080FF;"
-          "}");
-
-      break;
-    case config::kOffice:
-      checkbox->setStyleSheet(
-          "QCheckBox::indicator {"
-          "width: 15px;"
-          "height: 15px;"
-          "}"
-          "QCheckBox::indicator:unchecked {"
-          "border: 2px solid black;"
-          "border-radius: 5px;"
-          "background-color: #606060;"
-          "}"
-          "QCheckBox::indicator:checked {"
-          "border: 2px solid black;"
-          "border-radius: 5px;"
-          "background-color: #CC6600;"
-          "}");
-      break;
-  }
-}
 
 void CaclulatorStyleConfig::SetGridLayout(QGridLayout *grid_layout,
                                           QLabel *number_label,
