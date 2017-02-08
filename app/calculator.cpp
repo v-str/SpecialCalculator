@@ -36,7 +36,7 @@ void Calculator::SetAppStyle(config::Theme theme) {
   SetMainWindow(theme);
 }
 
-void Calculator::SetConnections() {
+void Calculator::SetConnections() const {
   QLineEdit *value_line = configurator_->GetValueLine();
   connect(value_line, SIGNAL(returnPressed()), value_line, SLOT(clear()));
   connect(value_line, SIGNAL(textChanged(QString)),

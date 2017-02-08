@@ -15,10 +15,10 @@ void LineEditStyleConfig::SetValueLine(QLineEdit *line_edit,
 }
 
 void LineEditStyleConfig::SetLineFeature(QLineEdit *line_edit,
-                                         bool disable_status, int w, int h) {
+                                         bool disable_state, int w, int h) {
   line_edit->setAlignment(Qt::AlignRight);
-  line_edit->setDisabled(disable_status);
-  line_edit->setMaximumSize(w, h);
+  line_edit->setDisabled(disable_state);
+  line_edit->setFixedSize(w, h);
 }
 
 void LineEditStyleConfig::SetLineEditStyle(QLineEdit *line_edit,

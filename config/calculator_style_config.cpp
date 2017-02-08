@@ -11,7 +11,7 @@ CaclulatorStyleConfig::CaclulatorStyleConfig()
       grid_layout_(new QGridLayout),
       horizontal_layout_(new QHBoxLayout),
       line_edit_styler(new LineEditStyleConfig),
-      lcd_styler_(new LCDStyleConfig) {}
+      lcd_styler_(new LCDStyler) {}
 
 void CaclulatorStyleConfig::SetStyle(config::Theme theme) {
   line_edit_styler->SetCoefficientLine(coefficient_line_, theme);

@@ -11,8 +11,10 @@
 #include <QLineEdit>
 #include <QVBoxLayout>
 
-#include "lcd_style_config.h"
+#include "lcd_styler.h"
+
 #include "line_edit_style_config.h"
+
 #include "theme_configuration.h"
 
 class CaclulatorStyleConfig {
@@ -58,7 +60,7 @@ class CaclulatorStyleConfig {
   QHBoxLayout *horizontal_layout_ = nullptr;
 
   LineEditStyleConfig *line_edit_styler = nullptr;
-  LCDStyleConfig *lcd_styler_ = nullptr;
+  LCDStyler *lcd_styler_ = nullptr;
 };
 
 #endif  // CALCULATOR_STYLE_CONFIGUR_H

@@ -35,7 +35,7 @@ class Calculator : public QWidget {
  private:
   void SetAppStyle(config::Theme theme = config::kProgrammer);
   void SetMainWindow(config::Theme theme);
-  void SetConnections();
+  void SetConnections() const;
 
   void SetMenuBar(QMenu* menu);
   void SetAppearanceMenu();

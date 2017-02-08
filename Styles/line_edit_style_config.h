@@ -13,7 +13,7 @@ class LineEditStyleConfig {
   void SetValueLine(QLineEdit *line_edit, config::Theme theme);
 
  private:
-  void SetLineFeature(QLineEdit *line_edit, bool disable_status, int w, int h);
+  void SetLineFeature(QLineEdit *line_edit, bool disable_state, int w, int h);
 
   void SetLineEditStyle(QLineEdit *line_edit, config::Theme theme);
 
