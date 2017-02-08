@@ -13,7 +13,7 @@
 
 #include "lcd_styler.h"
 
-#include "line_edit_style_config.h"
+#include "line_edit_styler.h"
 
 #include "theme_configuration.h"
 
@@ -59,7 +59,7 @@ class CaclulatorStyleConfig {
   QGridLayout *grid_layout_ = nullptr;
   QHBoxLayout *horizontal_layout_ = nullptr;
 
-  LineEditStyleConfig *line_edit_styler = nullptr;
+  LineEditStyler *line_edit_styler = nullptr;
   LCDStyler *lcd_styler_ = nullptr;
 };
 

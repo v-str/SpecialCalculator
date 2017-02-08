@@ -1,5 +1,5 @@
-#ifndef LINE_EDIT_STYLE_CONFIG_H
-#define LINE_EDIT_STYLE_CONFIG_H
+#ifndef LINE_EDIT_STYLER_H
+#define LINE_EDIT_STYLER_H
 
 #include <QString>
 
@@ -7,7 +7,7 @@
 
 class QLineEdit;
 
-class LineEditStyleConfig {
+class LineEditStyler {
  public:
   void SetCoefficientLine(QLineEdit *line_edit, config::Theme theme);
   void SetValueLine(QLineEdit *line_edit, config::Theme theme);
@@ -22,4 +22,4 @@ class LineEditStyleConfig {
                          const QString &font_weight = "bold");
 };
 
-#endif  // LINE_EDIT_STYLE_CONFIG_H
+#endif  // LINE_EDIT_STYLER_H

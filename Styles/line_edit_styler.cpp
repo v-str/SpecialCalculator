@@ -1,28 +1,27 @@
-#include "line_edit_style_config.h"
+#include "line_edit_styler.h"
 
 #include <QLineEdit>
 
-void LineEditStyleConfig::SetCoefficientLine(QLineEdit *line_edit,
-                                             config::Theme theme) {
+void LineEditStyler::SetCoefficientLine(QLineEdit *line_edit,
+                                        config::Theme theme) {
   SetLineFeature(line_edit, true, 75, 25);
   SetLineEditStyle(line_edit, theme);
 }
 
-void LineEditStyleConfig::SetValueLine(QLineEdit *line_edit,
-                                       config::Theme theme) {
+void LineEditStyler::SetValueLine(QLineEdit *line_edit, config::Theme theme) {
   SetLineFeature(line_edit, false, 200, 25);
   SetLineEditStyle(line_edit, theme);
 }
 
-void LineEditStyleConfig::SetLineFeature(QLineEdit *line_edit,
-                                         bool disable_state, int w, int h) {
+void LineEditStyler::SetLineFeature(QLineEdit *line_edit, bool disable_state,
+                                    int w, int h) {
   line_edit->setAlignment(Qt::AlignRight);
   line_edit->setDisabled(disable_state);
   line_edit->setFixedSize(w, h);
 }
 
-void LineEditStyleConfig::SetLineEditStyle(QLineEdit *line_edit,
-                                           config::Theme theme) {
+void LineEditStyler::SetLineEditStyle(QLineEdit *line_edit,
+                                      config::Theme theme) {
   switch (theme) {
     case config::kProgrammer:
       SetLineStyleSheet(line_edit, "green", "black");
@@ -36,10 +35,10 @@ void LineEditStyleConfig::SetLineEditStyle(QLineEdit *line_edit,
   }
 }
 
-void LineEditStyleConfig::SetLineStyleSheet(QLineEdit *line_edit,
-                                            const QString &color,
-                                            const QString &background,
-                                            const QString &font_weight) {
+void LineEditStyler::SetLineStyleSheet(QLineEdit *line_edit,
+                                       const QString &color,
+                                       const QString &background,
+                                       const QString &font_weight) {
   QString style_sheet =
       "QLineEdit {"
       "border: 2px solid %1;"

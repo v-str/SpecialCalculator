@@ -10,7 +10,7 @@ CaclulatorStyleConfig::CaclulatorStyleConfig()
       coefficient_checkbox_(new QCheckBox),
       grid_layout_(new QGridLayout),
       horizontal_layout_(new QHBoxLayout),
-      line_edit_styler(new LineEditStyleConfig),
+      line_edit_styler(new LineEditStyler),
       lcd_styler_(new LCDStyler) {}
 
 void CaclulatorStyleConfig::SetStyle(config::Theme theme) {
