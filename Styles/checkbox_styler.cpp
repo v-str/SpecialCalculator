@@ -2,9 +2,9 @@
 
 #include <QCheckBox>
 
-void CheckBoxStyler::SetCheckBox(QCheckBox *checkbox, config::Theme theme) {
-  switch (theme) {
-    case config::kProgrammer:
+void CheckBoxStyler::SetCheckBox(QCheckBox *checkbox, int style) {
+  switch (style) {
+    case 0:
       checkbox->setStyleSheet(
           "QCheckBox::indicator {"
           "width: 15px;"
@@ -21,25 +21,7 @@ void CheckBoxStyler::SetCheckBox(QCheckBox *checkbox, config::Theme theme) {
           "background-color: #00FF00;"
           "}");
       break;
-    case config::kMoto:
-      checkbox->setStyleSheet(
-          "QCheckBox::indicator {"
-          "width: 17px;"
-          "height: 17px;"
-          "}"
-          "QCheckBox::indicator:unchecked {"
-          "border: 2px solid #000099;"
-          "border-radius: 5px;"
-          "background-color: white;"
-          "}"
-          "QCheckBox::indicator:checked {"
-          "border: 2px solid #000099;"
-          "border-radius: 5px;"
-          "background-color: #0080FF;"
-          "}");
-
-      break;
-    case config::kOffice:
+    case 1:
       checkbox->setStyleSheet(
           "QCheckBox::indicator {"
           "width: 15px;"
@@ -54,6 +36,23 @@ void CheckBoxStyler::SetCheckBox(QCheckBox *checkbox, config::Theme theme) {
           "border: 2px solid black;"
           "border-radius: 5px;"
           "background-color: #CC6600;"
+          "}");
+      break;
+    case 2:
+      checkbox->setStyleSheet(
+          "QCheckBox::indicator {"
+          "width: 17px;"
+          "height: 17px;"
+          "}"
+          "QCheckBox::indicator:unchecked {"
+          "border: 2px solid #000099;"
+          "border-radius: 5px;"
+          "background-color: white;"
+          "}"
+          "QCheckBox::indicator:checked {"
+          "border: 2px solid #000099;"
+          "border-radius: 5px;"
+          "background-color: #0080FF;"
           "}");
       break;
   }

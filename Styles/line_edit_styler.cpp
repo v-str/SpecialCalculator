@@ -2,43 +2,24 @@
 
 #include <QLineEdit>
 
-void LineEditStyler::SetCoefficientLine(QLineEdit *line_edit,
-                                        config::Theme theme) {
-  SetLineFeature(line_edit, true, 75, 25);
-  SetLineEditStyle(line_edit, theme);
-}
-
-void LineEditStyler::SetValueLine(QLineEdit *line_edit, config::Theme theme) {
-  SetLineFeature(line_edit, false, 200, 25);
-  SetLineEditStyle(line_edit, theme);
-}
-
-void LineEditStyler::SetLineFeature(QLineEdit *line_edit, bool disable_state,
-                                    int w, int h) {
-  line_edit->setAlignment(Qt::AlignRight);
-  line_edit->setDisabled(disable_state);
-  line_edit->setFixedSize(w, h);
-}
-
-void LineEditStyler::SetLineEditStyle(QLineEdit *line_edit,
-                                      config::Theme theme) {
-  switch (theme) {
-    case config::kProgrammer:
-      SetLineStyleSheet(line_edit, "green", "black");
+void LineEditStyler::SetLine(QLineEdit *line_edit, int style) {
+  switch (style) {
+    case 0:
+      StaticSetLineStyleSheet(line_edit, "green", "black");
       break;
-    case config::kOffice:
-      SetLineStyleSheet(line_edit, "black", "#606060", "normal");
+    case 1:
+      StaticSetLineStyleSheet(line_edit, "black", "#606060", "normal");
       break;
-    case config::kMoto:
-      SetLineStyleSheet(line_edit, "#000099", "white");
+    case 2:
+      StaticSetLineStyleSheet(line_edit, "#000099", "white");
       break;
   }
 }
 
-void LineEditStyler::SetLineStyleSheet(QLineEdit *line_edit,
-                                       const QString &color,
-                                       const QString &background,
-                                       const QString &font_weight) {
+void LineEditStyler::StaticSetLineStyleSheet(QLineEdit *line_edit,
+                                             const QString &color,
+                                             const QString &background,
+                                             const QString &font_weight) {
   QString style_sheet =
       "QLineEdit {"
       "border: 2px solid %1;"

@@ -5,27 +5,27 @@ TARGET = SpecialCalculator
 TEMPLATE = app
 
 INCLUDEPATH += \
-    ../src/calculation \
-    ../src/config \
-    ../src/app \
+    ../src/Application \
+    ../src/Calculation \
+    ../src/WidgetComposition \
     ../src/Styles \
-    ../resources \
+    ../Resources \
 
 HEADERS  += \
-    $$PWD/calculation/*.h \
-    $$PWD/config/*.h \
-    $$PWD/app/*.h \
+    $$PWD/Calculation/*.h \
+    $$PWD/Application/*.h \
     $$PWD/Styles/*.h \
+    $$PWD/WidgetComposition/*.h \
 
 SOURCES += \
-    $$PWD/calculation/*.cpp \
-    $$PWD/config/*.cpp \
-    $$PWD/app/*.cpp \
+    $$PWD/Calculation/*.cpp \
+    $$PWD/Application/*.cpp \
     $$PWD/Styles/*.cpp \
+    $$PWD/WidgetComposition/*.cpp \
 
 DISTFILES += \
     Todo_list
 
 RESOURCES += \
-    resources/res.qrc
+    Resources/res.qrc
 
