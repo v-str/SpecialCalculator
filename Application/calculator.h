@@ -22,6 +22,7 @@ class Calculator : public QWidget {
 
  public:
   explicit Calculator(QWidget* parent = nullptr);
+  ~Calculator();
 
  public slots:
   void CalculateResult(const QString& result);
@@ -44,13 +45,11 @@ class Calculator : public QWidget {
   void SetMainWindowStyle(Style style);
 
   QClipboard* clipboard_ = nullptr;
-
-  std::unique_ptr<Multiplyer> multipyer_ = nullptr;
-
-  double coefficient_ = 1.18;
-
+  Multiplyer* multipyer_ = nullptr;
   Former* former_ = nullptr;
   StyleMaker* style_maker_ = nullptr;
+
+  double coefficient_ = 1.18;
 };
 
 #endif  // CALCULATOR_H

@@ -21,6 +21,8 @@ Former::Former()
   SetWidgetAppearance();  // Move in separate class.
 }
 
+Former::~Former() { delete font_; }
+
 QLabel *Former::NumberLabel() const {
   number_label_->setText("Number:");
   return number_label_;

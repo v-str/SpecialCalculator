@@ -12,6 +12,7 @@
 class Former {
  public:
   Former();
+  ~Former();
 
   QLabel* CoefficientLabel() const;
   QLabel* NumberLabel() const;

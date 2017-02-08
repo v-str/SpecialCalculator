@@ -17,6 +17,12 @@ Calculator::Calculator(QWidget *parent)
   SetConnections();
 }
 
+Calculator::~Calculator() {
+  delete multipyer_;
+  delete former_;
+  delete style_maker_;
+}
+
 void Calculator::SetConnections() {
   QLineEdit *edit_line = former_->EditLine();
   connect(edit_line, SIGNAL(returnPressed()), edit_line, SLOT(clear()));
