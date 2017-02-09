@@ -9,6 +9,8 @@
 #include <QLabel>
 #include <QLineEdit>
 
+#include "proportion.h"
+
 class Former {
  public:
   Former();
@@ -31,15 +33,6 @@ class Former {
   QGridLayout* GridLayout() const;
 
  private:
-  void SetWidgetFont();
-  void SetLayout();
-  void SetWidgetAppearance();
-
-  template <typename Widget>
-  void SetFont(Widget* widget, int font_size);
-
-  const QFont& Font(int size);
-
   QLabel* number_label_ = nullptr;
   QLabel* result_label_ = nullptr;
 
@@ -53,11 +46,7 @@ class Former {
 
   QLCDNumber* lcd_ = nullptr;
 
-  QHBoxLayout* radio_layout_ = nullptr;
-  QHBoxLayout* horizontal_layout_ = nullptr;
-  QGridLayout* grid_layout_ = nullptr;
-
-  QFont* font_ = nullptr;
+  Proportion* propotion_ = nullptr;
 };
 
 #endif  // FORMER_H

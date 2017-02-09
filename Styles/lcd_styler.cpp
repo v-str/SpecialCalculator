@@ -11,7 +11,7 @@ void LCDStyler::StaticSetLCD(QLCDNumber *lcd, int style) {
       StaticSetLCDStyleSheet(lcd, "black", "#606060", "black");
       break;
     case 2:
-      StaticSetLCDStyleSheet(lcd, "#000099", "white", "black");
+      StaticSetLCDStyleSheet(lcd, "#000099", "white", "#000099");
       break;
   }
 }
