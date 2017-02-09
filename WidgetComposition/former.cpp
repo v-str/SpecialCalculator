@@ -13,7 +13,7 @@ Former::Former()
       propotion_(new Proportion)
 
 {
-  propotion_->SetPropotion(programmer_style_checkbox_, office_style_checkbox_,
+  propotion_->SetProportion(programmer_style_checkbox_, office_style_checkbox_,
                            moto_style_checkbox_, state_checkbox_,
                            coefficient_line_, number_label_, edit_line_,
                            result_label_, lcd_);

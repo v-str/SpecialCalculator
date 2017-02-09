@@ -12,7 +12,7 @@ Proportion::Proportion()
 
 Proportion::~Proportion() { delete font_; }
 
-void Proportion::SetPropotion(QCheckBox *programmer_checkbox,
+void Proportion::SetProportion(QCheckBox *programmer_checkbox,
                               QCheckBox *office_checkbox,
                               QCheckBox *moto_checkbox,
                               QCheckBox *state_checkbox,

@@ -15,7 +15,7 @@ class Proportion {
   Proportion();
   ~Proportion();
 
-  void SetPropotion(QCheckBox* programmer_checkbox, QCheckBox* office_checkbox,
+  void SetProportion(QCheckBox* programmer_checkbox, QCheckBox* office_checkbox,
                     QCheckBox* moto_checkbox, QCheckBox* state_checkbox,
                     QLineEdit* coefficient_line, QLabel* number_label,
                     QLineEdit* edit_line, QLabel* result_label,
