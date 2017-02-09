@@ -36,8 +36,6 @@ class Calculator : public QWidget {
   void CompletedDoubleValue(double complete_value);
   void CompleteQStringValue(const QString& complete_value);
 
-  ////
-
  private:
   void SetConnections();
 
