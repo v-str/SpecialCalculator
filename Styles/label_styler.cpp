@@ -21,18 +21,18 @@ void LabelStyler::SetLabel(QLabel *label, int theme) {
 
   switch (theme) {
     case 0:
-      StaticSetLabelStyleSheet(label, text, "green", background, "black");
+      SetStyleSheet(label, text, "green", background, "black");
       break;
     case 1:
-      StaticSetLabelStyleSheet(label, text, "#CC6600", background, "#404040");
+      SetStyleSheet(label, text, "#CC6600", background, "#404040");
       break;
     case 2:
-      StaticSetLabelStyleSheet(label, "", "white", background, image);
+      SetStyleSheet(label, "", "white", background, image);
       break;
   }
 }
 
-void LabelStyler::StaticSetLabelStyleSheet(QLabel *label,
+void LabelStyler::SetStyleSheet(QLabel *label,
                                            const QString &text_of_label,
                                            const QString &text_color,
                                            const QString &background_format,

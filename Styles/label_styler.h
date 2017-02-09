@@ -10,7 +10,7 @@ class LabelStyler {
   static void SetLabel(QLabel* label, int theme);
 
  private:
-  static void StaticSetLabelStyleSheet(QLabel* label,
+  static void SetStyleSheet(QLabel* label,
                                        const QString& text_of_label,
                                        const QString& text_color,
                                        const QString& background_format,

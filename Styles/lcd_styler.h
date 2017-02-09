@@ -7,10 +7,10 @@ class QString;
 
 class LCDStyler {
  public:
-  static void StaticSetLCD(QLCDNumber *lcd, int style);
+  static void SetLCD(QLCDNumber *lcd, int style);
 
  private:
-  static void StaticSetLCDStyleSheet(QLCDNumber *lcd,
+  static void SetStyleSheet(QLCDNumber *lcd,
                                      const QString &border_color,
                                      const QString &background,
                                      const QString &value_color);

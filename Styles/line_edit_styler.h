@@ -10,7 +10,7 @@ class LineEditStyler {
   static void SetLine(QLineEdit *line_edit, int style);
 
  private:
-  static void StaticSetLineStyleSheet(QLineEdit *line_edit,
+  static void SetStyleSheet(QLineEdit *line_edit,
                                       const QString &color,
                                       const QString &background,
                                       const QString &font_weight = "bold");

@@ -2,21 +2,21 @@
 
 #include <QString>
 
-void LCDStyler::StaticSetLCD(QLCDNumber *lcd, int style) {
+void LCDStyler::SetLCD(QLCDNumber *lcd, int style) {
   switch (style) {
     case 0:
-      StaticSetLCDStyleSheet(lcd, "green", "black", "green");
+      SetStyleSheet(lcd, "green", "black", "green");
       break;
     case 1:
-      StaticSetLCDStyleSheet(lcd, "black", "#606060", "black");
+      SetStyleSheet(lcd, "black", "#606060", "black");
       break;
     case 2:
-      StaticSetLCDStyleSheet(lcd, "#000099", "white", "#000099");
+      SetStyleSheet(lcd, "#000099", "white", "#000099");
       break;
   }
 }
 
-void LCDStyler::StaticSetLCDStyleSheet(QLCDNumber *lcd,
+void LCDStyler::SetStyleSheet(QLCDNumber *lcd,
                                        const QString &border_color,
                                        const QString &background,
                                        const QString &value_color) {

@@ -32,5 +32,5 @@ void StyleMaker::SetLineEdit(Style style) {
 }
 
 void StyleMaker::SetLCD(Style style) {
-  LCDStyler::StaticSetLCD(former_->LCDNumber(), style);
+  LCDStyler::SetLCD(former_->LCDNumber(), style);
 }

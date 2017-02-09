@@ -5,55 +5,37 @@
 void CheckBoxStyler::SetCheckBox(QCheckBox *checkbox, int style) {
   switch (style) {
     case 0:
-      checkbox->setStyleSheet(
-          "QCheckBox::indicator {"
-          "width: 15px;"
-          "height: 15px;"
-          "}"
-          "QCheckBox::indicator:unchecked {"
-          "border: 2px solid #084913;"
-          "border-radius: 5px;"
-          "background-color: black;"
-          "}"
-          "QCheckBox::indicator:checked {"
-          "border: 2px solid #084913;"
-          "border-radius: 5px;"
-          "background-color: #00FF00;"
-          "}");
+      SetStyleSheet(checkbox, "#084913", "black", "#00FF00");
       break;
     case 1:
-      checkbox->setStyleSheet(
-          "QCheckBox::indicator {"
-          "width: 15px;"
-          "height: 15px;"
-          "}"
-          "QCheckBox::indicator:unchecked {"
-          "border: 2px solid black;"
-          "border-radius: 5px;"
-          "background-color: #606060;"
-          "}"
-          "QCheckBox::indicator:checked {"
-          "border: 2px solid black;"
-          "border-radius: 5px;"
-          "background-color: #CC6600;"
-          "}");
+      SetStyleSheet(checkbox, "black", "#606060", "#CC6600");
       break;
     case 2:
-      checkbox->setStyleSheet(
-          "QCheckBox::indicator {"
-          "width: 17px;"
-          "height: 17px;"
-          "}"
-          "QCheckBox::indicator:unchecked {"
-          "border: 2px solid #000099;"
-          "border-radius: 5px;"
-          "background-color: white;"
-          "}"
-          "QCheckBox::indicator:checked {"
-          "border: 2px solid #000099;"
-          "border-radius: 5px;"
-          "background-color: #0080FF;"
-          "}");
+      SetStyleSheet(checkbox, "#000099", "white", "#0080FF");
       break;
   }
+}
+
+void CheckBoxStyler::SetStyleSheet(QCheckBox *checkbox,
+                                   const QString border_color,
+                                   const QString unchecked_color,
+                                   const QString checked_color) {
+  QString style_sheet =
+      "QCheckBox::indicator {"
+      "width: 15px;"
+      "height: 15px;"
+      "}"
+      "QCheckBox::indicator:unchecked {"
+      "border: 2px solid %1;"
+      "border-radius: 5px;"
+      "background-color: %2;"
+      "}"
+      "QCheckBox::indicator:checked {"
+      "border: 2px solid %3;"
+      "border-radius: 5px;"
+      "background-color: %4;"
+      "}";
+
+  checkbox->setStyleSheet(style_sheet.arg(border_color, unchecked_color,
+                                          border_color, checked_color));
 }
