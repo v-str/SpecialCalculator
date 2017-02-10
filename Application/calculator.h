@@ -3,8 +3,6 @@
 
 #include <QWidget>
 
-#include <memory>
-
 #include <QAction>
 #include <QMenu>
 #include <QMenuBar>
@@ -38,9 +36,15 @@ class Calculator : public QWidget {
 
  private:
   void SetConnections();
+  void ConnectEditLine();
+  void ConnectCoefficientLineActivation();
+  void ConnectLCD();
+  void ConnectCheckBoxStyles();
 
-  void SetApplicationStyle(Style style = 0);
+  void SetStyle(Style style = 0);
   void SetMainWindowStyle(Style style);
+
+  void SetMainWindow();
 
   QClipboard* clipboard_ = nullptr;
   Multiplyer* multipyer_ = nullptr;

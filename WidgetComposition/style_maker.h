@@ -1,8 +1,6 @@
 #ifndef STYLEMAKER_H
 #define STYLEMAKER_H
 
-#include <memory>
-
 #include "former.h"
 
 class StyleMaker {

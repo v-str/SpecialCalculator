@@ -2,9 +2,6 @@
 #define FORMER_H
 
 #include <QCheckBox>
-#include <QFont>
-#include <QGridLayout>
-#include <QHBoxLayout>
 #include <QLCDNumber>
 #include <QLabel>
 #include <QLineEdit>

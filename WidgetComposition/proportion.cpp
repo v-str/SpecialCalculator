@@ -13,12 +13,12 @@ Proportion::Proportion()
 Proportion::~Proportion() { delete font_; }
 
 void Proportion::SetProportion(QCheckBox *programmer_checkbox,
-                              QCheckBox *office_checkbox,
-                              QCheckBox *moto_checkbox,
-                              QCheckBox *state_checkbox,
-                              QLineEdit *coefficient_line, QLabel *number_label,
-                              QLineEdit *edit_line, QLabel *result_label,
-                              QLCDNumber *lcd) {
+                               QCheckBox *office_checkbox,
+                               QCheckBox *moto_checkbox,
+                               QCheckBox *state_checkbox,
+                               QLineEdit *coefficient_line,
+                               QLabel *number_label, QLineEdit *edit_line,
+                               QLabel *result_label, QLCDNumber *lcd) {
   SetWidgetAppearance(coefficient_line, edit_line, lcd, programmer_checkbox);
   SetHorizontalLayoutProportion(programmer_checkbox, office_checkbox,
                                 moto_checkbox, state_checkbox,

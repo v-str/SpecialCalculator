@@ -1,53 +1,52 @@
 #include "label_styler.h"
 
-#include <QFont>
 #include <QLabel>
 #include <QString>
 
-void LabelStyler::SetLabel(QLabel *label, int theme) {
-  QString text = label->text();
+void LabelStyler::SetLabel(QLabel *label, int style) {
+  QString label_text = label->text();
+  QString background_format = "color";
+  QString image = "";
 
-  QString background = "color";
-  QString image = "url(:/motogp_logo.jpg)";
-
-  if (text == "Coefficient") {
-    image = "white";
-  } else if (text == "Number:") {
-    background = "image";
-  } else if (text == "Result:") {
-    background = "image";
+  if (label_text == "Number:") {
+    background_format = "image";
+    image = "url(:/motogp_logo.jpg)";
+  } else if (label_text == "Result:") {
+    background_format = "image";
     image = "url(:/moto.jpg)";
   }
 
-  switch (theme) {
+  switch (style) {
     case 0:
-      SetStyleSheet(label, text, "green", background, "black");
+      SetStyleSheet(label, label_text, "green", background_format, "black");
       break;
     case 1:
-      SetStyleSheet(label, text, "#CC6600", background, "#404040");
+      SetStyleSheet(label, label_text, "#CC6600", background_format, "#404040");
       break;
     case 2:
-      SetStyleSheet(label, "", "white", background, image);
+      SetStyleSheet(label, "", "white", background_format, image);
       break;
   }
 }
 
-void LabelStyler::SetStyleSheet(QLabel *label,
-                                           const QString &text_of_label,
-                                           const QString &text_color,
-                                           const QString &background_format,
-                                           const QString &background) {
-  QString temporary_background_format = "";
+void LabelStyler::SetStyleSheet(QLabel *label, const QString &text_of_label,
+                                const QString &text_color,
+                                const QString &background_format,
+                                const QString &background) {
+  label->setText(text_of_label);
 
-  if (background_format == "color") {
-    temporary_background_format = "background-color: ";
-  } else if (background_format == "image") {
+  QString temporary_background_format = "background-color: ";
+
+  if (background_format == "image") {
     temporary_background_format = "background-image: ";
   }
 
-  label->setText(text_of_label);
-  label->setStyleSheet(
+  QString style_sheet =
       "QLabel {"
-      "color: " +
-      text_color + ";" + temporary_background_format + background + ";}");
+      "color: %1;"
+      "%2%3;"
+      "}";
+
+  label->setStyleSheet(
+      style_sheet.arg(text_color, temporary_background_format, background));
 }
