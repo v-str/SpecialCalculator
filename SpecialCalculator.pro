@@ -1,15 +1,13 @@
-QT       += core gui
-QT += widgets
-
 TARGET = SpecialCalculator
 TEMPLATE = app
 
+QT += core gui widgets
+
 INCLUDEPATH += \
-    ../src/Application \
-    ../src/Calculation \
-    ../src/WidgetComposition \
-    ../src/Styles \
-    ../Resources \
+    $$PWD/Application \
+    $$PWD/Calculation \
+    $$PWD/WidgetComposition \
+    $$PWD/Styles
 
 HEADERS  += \
     $$PWD/Calculation/*.h \
@@ -21,7 +19,7 @@ SOURCES += \
     $$PWD/Calculation/*.cpp \
     $$PWD/Application/*.cpp \
     $$PWD/Styles/*.cpp \
-    $$PWD/WidgetComposition/*.cpp \
+    $$PWD/WidgetComposition/*.cpp
 
 DISTFILES += \
     Todo_list
