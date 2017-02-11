@@ -8,9 +8,7 @@ Calculator::Calculator(QWidget *parent)
       clipboard_(QApplication::clipboard()),
       multipyer_(new Multiplyer),
       former_(new Former),
-      style_maker_(new StyleMaker(former_))
-
-{
+      style_maker_(new StyleMaker(former_)) {
   SetMainWindow();
   SetStyle();
   SetConnections();
