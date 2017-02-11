@@ -7,7 +7,7 @@ class StyleMaker {
   typedef unsigned int Style;
 
  public:
-  StyleMaker(Former *former);
+  explicit StyleMaker(Former *former);
 
   void SetStyle(Style style = 0);
 

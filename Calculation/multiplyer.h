@@ -11,7 +11,7 @@ class Multiplyer {
   void SetNumber(const QString &value_string);
 
   QString GetCompleteStringValue();
-  double GetCompleteDoubleValue();
+  double GetCompleteDoubleValue() const;
 
  private:
   void Myltiply();

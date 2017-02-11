@@ -19,7 +19,18 @@ Former::Former()
                             result_label_, lcd_);
 }
 
-Former::~Former() { delete propotion_; }
+Former::~Former() {
+  delete number_label_;
+  delete result_label_;
+  delete coefficient_line_;
+  delete edit_line_;
+  delete state_checkbox_;
+  delete programmer_style_checkbox_;
+  delete office_style_checkbox_;
+  delete moto_style_checkbox_;
+  delete lcd_;
+  delete propotion_;
+}
 
 QLabel *Former::NumberLabel() const {
   number_label_->setText("Number:");

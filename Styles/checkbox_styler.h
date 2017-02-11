@@ -7,12 +7,12 @@ class QCheckBox;
 
 class CheckBoxStyler {
  public:
-  static void SetCheckBox(QCheckBox* checkbox, int style);
+  static void SetCheckBox(QCheckBox *checkbox, int style);
 
  private:
-  static void SetStyleSheet(QCheckBox* checkbox, const QString border_color,
-                            const QString unchecked_color,
-                            const QString checked_color);
+  static void SetStyleSheet(QCheckBox *checkbox, const QString &border_color,
+                            const QString &unchecked_color,
+                            const QString &checked_color);
 };
 
 #endif  // CHECKBOXSTYLER_H

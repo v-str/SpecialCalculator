@@ -13,6 +13,9 @@ class Former {
   Former();
   ~Former();
 
+  Former(const Former& former) = delete;
+  Former& operator=(const Former& former) = delete;
+
   QLabel* CoefficientLabel() const;
   QLabel* NumberLabel() const;
   QLabel* ResultLabel() const;

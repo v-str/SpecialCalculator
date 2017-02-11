@@ -15,6 +15,8 @@ class Proportion {
   Proportion();
   ~Proportion();
 
+  Proportion(const Proportion& proportion) = delete;
+
   void SetProportion(QCheckBox* programmer_checkbox, QCheckBox* office_checkbox,
                      QCheckBox* moto_checkbox, QCheckBox* state_checkbox,
                      QLineEdit* coefficient_line, QLabel* number_label,
@@ -24,8 +26,9 @@ class Proportion {
   QGridLayout* GridLayout();
 
  private:
-  void SetWidgetAppearance(QLineEdit* coefficient_line, QLineEdit* edit_line,
-                           QLCDNumber* lcd, QCheckBox* programmer_checkbox);
+  static void SetWidgetAppearance(QLineEdit* coefficient_line,
+                                  QLineEdit* edit_line, QLCDNumber* lcd,
+                                  QCheckBox* programmer_checkbox);
 
   void SetHorizontalLayoutProportion(QCheckBox* programmer_checkbox,
                                      QCheckBox* office_checkbox,

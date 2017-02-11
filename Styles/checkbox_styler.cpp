@@ -17,9 +17,9 @@ void CheckBoxStyler::SetCheckBox(QCheckBox *checkbox, int style) {
 }
 
 void CheckBoxStyler::SetStyleSheet(QCheckBox *checkbox,
-                                   const QString border_color,
-                                   const QString unchecked_color,
-                                   const QString checked_color) {
+                                   const QString &border_color,
+                                   const QString &unchecked_color,
+                                   const QString &checked_color) {
   QString style_sheet =
       "QCheckBox::indicator {"
       "width: 15px;"

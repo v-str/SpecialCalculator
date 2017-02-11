@@ -20,7 +20,7 @@ QString Multiplyer::GetCompleteStringValue() {
   return QString::number(number_, 'g', 10);
 }
 
-double Multiplyer::GetCompleteDoubleValue() { return number_; }
+double Multiplyer::GetCompleteDoubleValue() const { return number_; }
 
 void Multiplyer::Myltiply() {
   number_ *= multiply_coefficient_;
