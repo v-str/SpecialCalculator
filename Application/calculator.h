@@ -7,9 +7,9 @@
 #include <QMenu>
 #include <QMenuBar>
 
-#include "former.h"
-#include "multiplyer.h"
-#include "style_maker.h"
+class Former;
+class Multiplier;
+class StyleMaker;
 
 class QClipboard;
 
@@ -46,7 +46,7 @@ class Calculator : public QWidget {
   void SetMainWindow();
 
   QClipboard* clipboard_ = nullptr;
-  Multiplyer* multipyer_ = nullptr;
+  Multiplier* multiplier_ = nullptr;
   Former* former_ = nullptr;
   StyleMaker* style_maker_ = nullptr;
 

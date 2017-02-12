@@ -1,11 +1,11 @@
-#ifndef MULTIPLYER_H
-#define MULTIPLYER_H
+#ifndef MULTIPLIER_H
+#define MULTIPLIER_H
 
 class QString;
 
-class Multiplyer {
+class Multiplier {
  public:
-  Multiplyer();
+  Multiplier();
 
   void SetMultiplyCoefficient(double multiply_coefficient);
   void SetNumber(const QString &value_string);
@@ -20,4 +20,4 @@ class Multiplyer {
   double number_;
 };
 
-#endif  // MULTIPLYER_H
+#endif  // MULTIPLIER_H

@@ -1,12 +1,16 @@
 #include "calculator.h"
 
+#include "former.h"
+#include "multiplier.h"
+#include "style_maker.h"
+
 #include <QApplication>
 #include <QClipboard>
 
 Calculator::Calculator(QWidget *parent)
     : QWidget(parent),
       clipboard_(QApplication::clipboard()),
-      multipyer_(new Multiplyer),
+      multiplier_(new Multiplier),
       former_(new Former),
       style_maker_(new StyleMaker(former_)) {
   SetMainWindow();
@@ -15,7 +19,7 @@ Calculator::Calculator(QWidget *parent)
 }
 
 Calculator::~Calculator() {
-  delete multipyer_;
+  delete multiplier_;
   delete former_;
   delete style_maker_;
 }
@@ -60,10 +64,10 @@ void Calculator::ConnectRadioButton() {
   connect(button3, SIGNAL(clicked(bool)), SLOT(SetMoto()));
 }
 void Calculator::CalculateResult(const QString &value) {
-  multipyer_->SetMultiplyCoefficient(coefficient_);
-  multipyer_->SetNumber(value);
-  clipboard_->setText(multipyer_->GetCompleteStringValue());
-  emit CompletedDoubleValue(multipyer_->GetCompleteDoubleValue());
+  multiplier_->SetMultiplyCoefficient(coefficient_);
+  multiplier_->SetNumber(value);
+  clipboard_->setText(multiplier_->GetCompleteStringValue());
+  emit CompletedDoubleValue(multiplier_->GetCompleteDoubleValue());
 }
 
 void Calculator::SetCoefficient(const QString &coefficient) {
