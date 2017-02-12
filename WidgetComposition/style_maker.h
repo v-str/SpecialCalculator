@@ -4,9 +4,9 @@
 #include "former.h"
 
 class StyleMaker {
-  typedef unsigned int Style;
-
  public:
+  using Style = unsigned int;
+
   explicit StyleMaker(Former *former);
 
   void SetStyle(Style style = 0);
@@ -16,6 +16,7 @@ class StyleMaker {
   void SetCheckBox(Style style);
   void SetLineEdit(Style style);
   void SetLCD(Style style);
+  void SetRadioButton(Style style);
 
   Former *former_ = nullptr;
 };

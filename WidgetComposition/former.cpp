@@ -6,17 +6,14 @@ Former::Former()
       coefficient_line_(new QLineEdit("1.18")),
       edit_line_(new QLineEdit),
       state_checkbox_(new QCheckBox),
-      programmer_style_checkbox_(new QCheckBox),
-      office_style_checkbox_(new QCheckBox),
-      moto_style_checkbox_(new QCheckBox),
       lcd_(new QLCDNumber(16)),
-      propotion_(new Proportion)
-
-{
-  propotion_->SetProportion(programmer_style_checkbox_, office_style_checkbox_,
-                            moto_style_checkbox_, state_checkbox_,
-                            coefficient_line_, number_label_, edit_line_,
-                            result_label_, lcd_);
+      propotion_(new Proportion),
+      programming_button1_(new QRadioButton),
+      office_button2_(new QRadioButton),
+      moto_button3_(new QRadioButton) {
+  propotion_->SetProportion(programming_button1_, office_button2_,
+                            moto_button3_, state_checkbox_, coefficient_line_,
+                            number_label_, edit_line_, result_label_, lcd_);
 }
 
 Former::~Former() {
@@ -25,11 +22,11 @@ Former::~Former() {
   delete coefficient_line_;
   delete edit_line_;
   delete state_checkbox_;
-  delete programmer_style_checkbox_;
-  delete office_style_checkbox_;
-  delete moto_style_checkbox_;
   delete lcd_;
   delete propotion_;
+  delete programming_button1_;
+  delete office_button2_;
+  delete moto_button3_;
 }
 
 QLabel *Former::NumberLabel() const {
@@ -48,14 +45,12 @@ QLineEdit *Former::EditLine() const { return edit_line_; }
 
 QCheckBox *Former::StateCheckBox() const { return state_checkbox_; }
 
-QCheckBox *Former::ProgrammerCheckBox() const {
-  return programmer_style_checkbox_;
-}
-
-QCheckBox *Former::OfficeCheckBox() const { return office_style_checkbox_; }
-
-QCheckBox *Former::MotoCheckBox() const { return moto_style_checkbox_; }
-
 QLCDNumber *Former::LCDNumber() const { return lcd_; }
 
 QGridLayout *Former::GridLayout() const { return propotion_->GridLayout(); }
+
+QRadioButton *Former::Button1() const { return programming_button1_; }
+
+QRadioButton *Former::Button2() const { return office_button2_; }
+
+QRadioButton *Former::Button3() const { return moto_button3_; }

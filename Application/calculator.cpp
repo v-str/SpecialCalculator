@@ -24,7 +24,7 @@ void Calculator::SetConnections() {
   ConnectEditLine();
   ConnectCoefficientLineActivation();
   ConnectLCD();
-  ConnectCheckBoxStyles();
+  ConnectRadioButton();
 }
 
 void Calculator::ConnectEditLine() {
@@ -49,15 +49,16 @@ void Calculator::ConnectLCD() {
           SLOT(display(double)));
 }
 
-void Calculator::ConnectCheckBoxStyles() {
-  QCheckBox *prgm_button = former_->ProgrammerCheckBox();
-  connect(prgm_button, SIGNAL(clicked(bool)), SLOT(SetProgrammingStyle()));
-  QCheckBox *office_button = former_->OfficeCheckBox();
-  connect(office_button, SIGNAL(clicked(bool)), SLOT(SetOfficeStyle()));
-  QCheckBox *moto_button = former_->MotoCheckBox();
-  connect(moto_button, SIGNAL(clicked(bool)), SLOT(SetMoto()));
-}
+void Calculator::ConnectRadioButton() {
+  QRadioButton *button1 = former_->Button1();
+  connect(button1, SIGNAL(clicked(bool)), SLOT(SetProgrammingStyle()));
 
+  QRadioButton *button2 = former_->Button2();
+  connect(button2, SIGNAL(clicked(bool)), SLOT(SetOfficeStyle()));
+
+  QRadioButton *button3 = former_->Button3();
+  connect(button3, SIGNAL(clicked(bool)), SLOT(SetMoto()));
+}
 void Calculator::CalculateResult(const QString &value) {
   multipyer_->SetMultiplyCoefficient(coefficient_);
   multipyer_->SetNumber(value);
@@ -69,23 +70,11 @@ void Calculator::SetCoefficient(const QString &coefficient) {
   coefficient_ = coefficient.toDouble();
 }
 
-void Calculator::SetProgrammingStyle() {
-  former_->OfficeCheckBox()->setChecked(false);
-  former_->MotoCheckBox()->setChecked(false);
-  SetStyle(0);
-}
+void Calculator::SetProgrammingStyle() { SetStyle(0); }
 
-void Calculator::SetOfficeStyle() {
-  former_->ProgrammerCheckBox()->setChecked(false);
-  former_->MotoCheckBox()->setChecked(false);
-  SetStyle(1);
-}
+void Calculator::SetOfficeStyle() { SetStyle(1); }
 
-void Calculator::SetMoto() {
-  former_->ProgrammerCheckBox()->setChecked(false);
-  former_->OfficeCheckBox()->setChecked(false);
-  SetStyle(2);
-}
+void Calculator::SetMoto() { SetStyle(2); }
 
 void Calculator::SetStyle(Calculator::Style style) {
   switch (style) {

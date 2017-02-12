@@ -15,9 +15,6 @@ class QClipboard;
 
 class Calculator : public QWidget {
   Q_OBJECT
-
-  typedef unsigned int Style;
-
  public:
   explicit Calculator(QWidget* parent = nullptr);
   ~Calculator();
@@ -35,11 +32,13 @@ class Calculator : public QWidget {
   void CompleteQStringValue(const QString& complete_value);
 
  private:
+  using Style = unsigned int;
+
   void SetConnections();
   void ConnectEditLine();
   void ConnectCoefficientLineActivation();
   void ConnectLCD();
-  void ConnectCheckBoxStyles();
+  void ConnectRadioButton();
 
   void SetStyle(Style style = 0);
   void SetMainWindowStyle(Style style);

@@ -1,5 +1,5 @@
-#ifndef CHECKBOXSTYLER_H
-#define CHECKBOXSTYLER_H
+#ifndef CHECKBOX_STYLER_H
+#define CHECKBOX_STYLER_H
 
 #include <QString>
 
@@ -15,4 +15,4 @@ class CheckBoxStyler {
                             const QString &checked_color);
 };
 
-#endif  // CHECKBOXSTYLER_H
+#endif  // CHECKBOX_STYLER_H

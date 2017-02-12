@@ -9,6 +9,9 @@ class QCheckBox;
 class QLineEdit;
 class QLabel;
 class QLCDNumber;
+class QWidget;
+
+class QRadioButton;
 
 class Proportion {
  public:
@@ -17,8 +20,8 @@ class Proportion {
 
   Proportion(const Proportion& proportion) = delete;
 
-  void SetProportion(QCheckBox* programmer_checkbox, QCheckBox* office_checkbox,
-                     QCheckBox* moto_checkbox, QCheckBox* state_checkbox,
+  void SetProportion(QRadioButton* button1, QRadioButton* button2,
+                     QRadioButton* button3, QCheckBox* state_checkbox,
                      QLineEdit* coefficient_line, QLabel* number_label,
                      QLineEdit* edit_line, QLabel* result_label,
                      QLCDNumber* lcd);
@@ -28,23 +31,20 @@ class Proportion {
  private:
   static void SetWidgetAppearance(QLineEdit* coefficient_line,
                                   QLineEdit* edit_line, QLCDNumber* lcd,
-                                  QCheckBox* programmer_checkbox);
+                                  QRadioButton* button1);
 
-  void SetHorizontalLayoutProportion(QCheckBox* programmer_checkbox,
-                                     QCheckBox* office_checkbox,
-                                     QCheckBox* moto_checkbox,
-                                     QCheckBox* state_checkbox,
-                                     QLineEdit* coefficient_line);
+  void SetHorizontalLayout(QRadioButton* button1, QRadioButton* button2,
+                           QRadioButton* button3, QCheckBox* state_checkbox,
+                           QLineEdit* coefficient_line);
 
-  void SetGridLayoutProportion(QLabel* number_label, QLineEdit* edit_line,
-                               QLabel* result_label, QLCDNumber* lcd);
+  void SetGridLayout(QLabel* number_label, QLineEdit* edit_line,
+                     QLabel* result_label, QLCDNumber* lcd);
 
   void SetWidgetFont(QLabel* number_label, QLabel* result_label,
                      QLineEdit* coefficient_line, QLineEdit* edit_line,
                      QLCDNumber* lcd);
 
-  template <typename Widget>
-  void SetFont(Widget* widget, int font_size);
+  void SetFont(QWidget* widget, int font_size);
 
   const QFont& Font(int font_size);
 

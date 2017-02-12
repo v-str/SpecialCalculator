@@ -5,6 +5,8 @@
 #include <QLabel>
 #include <QLineEdit>
 
+#include <QRadioButton>
+
 Proportion::Proportion()
     : horizontal_layout_(new QHBoxLayout),
       grid_layout_(new QGridLayout),
@@ -12,18 +14,17 @@ Proportion::Proportion()
 
 Proportion::~Proportion() { delete font_; }
 
-void Proportion::SetProportion(QCheckBox *programmer_checkbox,
-                               QCheckBox *office_checkbox,
-                               QCheckBox *moto_checkbox,
+void Proportion::SetProportion(QRadioButton *programming_button,
+                               QRadioButton *office_button,
+                               QRadioButton *moto_button,
                                QCheckBox *state_checkbox,
                                QLineEdit *coefficient_line,
                                QLabel *number_label, QLineEdit *edit_line,
                                QLabel *result_label, QLCDNumber *lcd) {
-  SetWidgetAppearance(coefficient_line, edit_line, lcd, programmer_checkbox);
-  SetHorizontalLayoutProportion(programmer_checkbox, office_checkbox,
-                                moto_checkbox, state_checkbox,
-                                coefficient_line);
-  SetGridLayoutProportion(number_label, edit_line, result_label, lcd);
+  SetWidgetAppearance(coefficient_line, edit_line, lcd, programming_button);
+  SetHorizontalLayout(programming_button, office_button, moto_button,
+                      state_checkbox, coefficient_line);
+  SetGridLayout(number_label, edit_line, result_label, lcd);
   SetWidgetFont(number_label, result_label, coefficient_line, edit_line, lcd);
 }
 
@@ -31,7 +32,8 @@ QGridLayout *Proportion::GridLayout() { return grid_layout_; }
 
 void Proportion::SetWidgetAppearance(QLineEdit *coefficient_line,
                                      QLineEdit *edit_line, QLCDNumber *lcd,
-                                     QCheckBox *programmer_checkbox) {
+                                     QRadioButton *button1) {
+  coefficient_line->setEnabled(false);
   coefficient_line->setAlignment(Qt::AlignRight);
   coefficient_line->setFixedSize(75, 25);
   edit_line->setAlignment(Qt::AlignRight);
@@ -40,27 +42,26 @@ void Proportion::SetWidgetAppearance(QLineEdit *coefficient_line,
   lcd->setSegmentStyle(QLCDNumber::Flat);
   lcd->setFrameStyle(QFrame::NoFrame);
 
-  programmer_checkbox->setChecked(true);
+  button1->setChecked(true);
 }
 
-void Proportion::SetHorizontalLayoutProportion(QCheckBox *programmer_checkbox,
-                                               QCheckBox *office_checkbox,
-                                               QCheckBox *moto_checkbox,
-                                               QCheckBox *state_checkbox,
-                                               QLineEdit *coefficient_line) {
-  horizontal_layout_->addWidget(programmer_checkbox, 1, Qt::AlignRight);
-  horizontal_layout_->addWidget(office_checkbox, 1, Qt::AlignRight);
-  horizontal_layout_->addWidget(moto_checkbox, 1, Qt::AlignRight);
+void Proportion::SetHorizontalLayout(QRadioButton *button1,
+                                     QRadioButton *button2,
+                                     QRadioButton *button3,
+                                     QCheckBox *state_checkbox,
+                                     QLineEdit *coefficient_line) {
+  horizontal_layout_->addWidget(button1, 1, Qt::AlignLeft);
+  horizontal_layout_->addWidget(button2, 1, Qt::AlignLeft);
+  horizontal_layout_->addWidget(button3, 1, Qt::AlignLeft);
+
   horizontal_layout_->addWidget(state_checkbox, 1, Qt::AlignRight);
 
   horizontal_layout_->addWidget(coefficient_line);
   horizontal_layout_->setSpacing(1);
 }
 
-void Proportion::SetGridLayoutProportion(QLabel *number_label,
-                                         QLineEdit *edit_line,
-                                         QLabel *result_label,
-                                         QLCDNumber *lcd) {
+void Proportion::SetGridLayout(QLabel *number_label, QLineEdit *edit_line,
+                               QLabel *result_label, QLCDNumber *lcd) {
   grid_layout_->addLayout(horizontal_layout_, 1, 0, 1, 2);
   grid_layout_->addWidget(number_label, 2, 1);
   grid_layout_->addWidget(edit_line, 3, 1);
@@ -80,8 +81,7 @@ void Proportion::SetWidgetFont(QLabel *number_label, QLabel *result_label,
   SetFont(lcd, 10);
 }
 
-template <typename Widget>
-void Proportion::SetFont(Widget *widget, int font_size) {
+void Proportion::SetFont(QWidget *widget, int font_size) {
   widget->setFont(Font(font_size));
 }
 

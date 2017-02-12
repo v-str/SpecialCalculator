@@ -19,7 +19,7 @@ SOURCES += \
     $$PWD/Calculation/*.cpp \
     $$PWD/Application/*.cpp \
     $$PWD/Styles/*.cpp \
-    $$PWD/WidgetComposition/*.cpp
+    $$PWD/WidgetComposition/*.cpp \
 
 DISTFILES += \
     Todo_list

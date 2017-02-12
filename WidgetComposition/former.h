@@ -8,6 +8,8 @@
 
 #include "proportion.h"
 
+#include <QRadioButton>
+
 class Former {
  public:
   Former();
@@ -24,13 +26,14 @@ class Former {
   QLineEdit* EditLine() const;
 
   QCheckBox* StateCheckBox() const;
-  QCheckBox* ProgrammerCheckBox() const;
-  QCheckBox* OfficeCheckBox() const;
-  QCheckBox* MotoCheckBox() const;
 
   QLCDNumber* LCDNumber() const;
 
   QGridLayout* GridLayout() const;
+
+  QRadioButton* Button1() const;
+  QRadioButton* Button2() const;
+  QRadioButton* Button3() const;
 
  private:
   QLabel* number_label_ = nullptr;
@@ -40,13 +43,14 @@ class Former {
   QLineEdit* edit_line_ = nullptr;
 
   QCheckBox* state_checkbox_ = nullptr;
-  QCheckBox* programmer_style_checkbox_ = nullptr;
-  QCheckBox* office_style_checkbox_ = nullptr;
-  QCheckBox* moto_style_checkbox_ = nullptr;
 
   QLCDNumber* lcd_ = nullptr;
 
   Proportion* propotion_ = nullptr;
+
+  QRadioButton* programming_button1_ = nullptr;
+  QRadioButton* office_button2_ = nullptr;
+  QRadioButton* moto_button3_ = nullptr;
 };
 
 #endif  // FORMER_H
