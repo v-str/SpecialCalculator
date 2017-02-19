@@ -5,7 +5,7 @@ class QString;
 
 class Transformer {
  public:
-  static double TransformString(const QString &string);
+  static double TransformString(QString string);
 
  private:
   static void Analyze(const QString &string);
@@ -16,6 +16,7 @@ class Transformer {
   static bool space_with_dot_;
   static bool space_;
   static bool comma_;
+  static int two_commas_;
 };
 
 #endif  // TRANSFORMER_H
