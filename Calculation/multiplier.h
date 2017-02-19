@@ -1,6 +1,8 @@
 #ifndef MULTIPLIER_H
 #define MULTIPLIER_H
 
+#include "transformer.h"
+
 class QString;
 
 class Multiplier {
@@ -15,6 +17,8 @@ class Multiplier {
 
  private:
   void Myltiply();
+
+  Transformer transformer_;
 
   double multiply_coefficient_;
   double number_;

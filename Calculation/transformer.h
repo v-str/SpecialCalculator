@@ -5,18 +5,26 @@ class QString;
 
 class Transformer {
  public:
-  static double TransformString(QString string);
+  Transformer();
+
+  double TransformString(QString string);
 
  private:
-  static void Analyze(const QString &string);
-  static void Transform(QString &string);
+  void Analyze(const QString &string);
+  void Transform(QString &string) const;
 
-  static bool comma_and_dot_;
-  static bool space_with_comma;
-  static bool space_with_dot_;
-  static bool space_;
-  static bool comma_;
-  static int two_commas_;
+  bool Contains(const QString &string, const char symbol_one,
+                const char symbol_two);
+  bool Contains(const QString &string, const char symbol);
+
+  void DeleteCommas(QString &string) const;
+
+  bool comma_and_dot_;
+  bool space_with_comma;
+  bool space_with_dot_;
+  bool space_;
+  bool comma_;
+  bool two_commas_;
 };
 
 #endif  // TRANSFORMER_H

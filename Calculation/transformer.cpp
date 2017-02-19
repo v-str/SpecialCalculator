@@ -3,12 +3,13 @@
 #include <QDebug>
 #include <QString>
 
-bool Transformer::comma_and_dot_ = false;
-bool Transformer::space_with_comma = false;
-bool Transformer::space_with_dot_ = false;
-bool Transformer::space_ = false;
-bool Transformer::comma_ = false;
-int Transformer::two_commas_ = 0;
+Transformer::Transformer()
+    : comma_and_dot_(false),
+      space_with_comma(false),
+      space_with_dot_(false),
+      space_(false),
+      comma_(false),
+      two_commas_(false) {}
 
 double Transformer::TransformString(QString string) {
   Analyze(string);
@@ -17,15 +18,15 @@ double Transformer::TransformString(QString string) {
 }
 
 void Transformer::Analyze(const QString &string) {
-  comma_and_dot_ = string.contains(',') && string.contains('.');
-  space_with_comma = string.contains(' ') && string.contains(',');
-  space_with_dot_ = string.contains(' ') && string.contains('.');
-  space_ = string.contains(' ');
-  comma_ = string.contains(',');
-  two_commas_ = string.count(',');
+  comma_and_dot_ = Contains(string, ',', '.');
+  space_with_comma = Contains(string, ' ', ',');
+  space_with_dot_ = Contains(string, ' ', '.');
+  space_ = Contains(string, ' ');
+  comma_ = Contains(string, ',');
+  two_commas_ = string.count(',') == 2;
 }
 
-void Transformer::Transform(QString &string) {
+void Transformer::Transform(QString &string) const {
   if (comma_and_dot_) {
     string.remove(',');
   } else if (space_with_comma) {
@@ -35,21 +36,34 @@ void Transformer::Transform(QString &string) {
     string.remove(' ');
   } else if (space_) {
     string.remove(' ');
-  } else if (comma_ && two_commas_ == 2) {
-    int index = 0;
-    for (int i = 0; i <= string.length(); ++i) {
-      if (string[i] == ',') {
-        string.remove(i, 1);
-        index = i;
-        break;
-      }
-    }
-    for (int i = index; i <= string.length(); ++i) {
-      if (string[i] == ',') {
-        string.replace(',', '.');
-      }
-    }
+  } else if (two_commas_) {
+    DeleteCommas(string);
   } else if (comma_) {
     string.replace(',', '.');
+  }
+}
+
+bool Transformer::Contains(const QString &string, const char symbol_one,
+                           const char symbol_two) {
+  return string.contains(symbol_one) && string.contains(symbol_two);
+}
+
+bool Transformer::Contains(const QString &string, const char symbol) {
+  return string.contains(symbol);
+}
+
+void Transformer::DeleteCommas(QString &string) const {
+  int index = 0;
+  for (int i = 0; i <= string.length(); ++i) {
+    if (string[i] == ',') {
+      string.remove(i, 1);
+      index = i;
+      break;
+    }
+  }
+  for (int i = index; i <= string.length(); ++i) {
+    if (string[i] == ',') {
+      string.replace(',', '.');
+    }
   }
 }

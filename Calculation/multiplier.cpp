@@ -1,5 +1,4 @@
 #include "multiplier.h"
-#include "transformer.h"
 
 #include <cmath>
 
@@ -12,7 +11,7 @@ void Multiplier::SetMultiplyCoefficient(double multiply_coefficient) {
 }
 
 void Multiplier::SetNumber(const QString &value_string) {
-  number_ = Transformer::TransformString(value_string);
+  number_ = transformer_.TransformString(value_string);
   Myltiply();
 }
 
