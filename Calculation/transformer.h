@@ -11,11 +11,12 @@ class Transformer {
 
  private:
   void Analyze(const QString &string);
+
   void Transform(QString &string) const;
 
   bool Contains(const QString &string, const char symbol_one,
-                const char symbol_two);
-  bool Contains(const QString &string, const char symbol);
+                const char symbol_two) const;
+  bool Contains(const QString &string, const char symbol) const;
 
   void DeleteCommas(QString &string) const;
 

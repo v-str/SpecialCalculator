@@ -1,6 +1,5 @@
 #include "transformer.h"
 
-#include <QDebug>
 #include <QString>
 
 Transformer::Transformer()
@@ -44,11 +43,11 @@ void Transformer::Transform(QString &string) const {
 }
 
 bool Transformer::Contains(const QString &string, const char symbol_one,
-                           const char symbol_two) {
+                           const char symbol_two) const {
   return string.contains(symbol_one) && string.contains(symbol_two);
 }
 
-bool Transformer::Contains(const QString &string, const char symbol) {
+bool Transformer::Contains(const QString &string, const char symbol) const {
   return string.contains(symbol);
 }
 
